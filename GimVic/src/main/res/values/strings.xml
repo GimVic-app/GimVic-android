@@ -23,7 +23,7 @@
     <string name="navodila_profesorji">Profesorji vpišejo kar svoje ime ali del imena (npr. "Šemrov").</string>
     <string name="vec_filtrov">Več iskalnih filtrov nastavite tako, da jih ločite z vejico (npr. "3. b, MSOC, Šket").</string>
     <string name="title_activity_about">O aplikaciji</string>
-    <string name="version">1.0.3</string>
+    <string name="version">1.0.4</string>
     <string name="no_data">Ni podatkov</string>
     <string name="no_internet_connection">Ni internetne povezave</string>
     <string name="force_update_title">Obvezna posodobitev</string>
