@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/pref_header_data_sync">
+    <CheckBoxPreference
+        android:key="enable_sync"
+        android:title="@string/enable_sync"
+        android:defaultValue="true"
+        android:icon="@drawable/ic_action_navigation_refresh"/>
+
+    <CheckBoxPreference
+        android:key="wifi_only"
+        android:title="@string/wifi_only"
+        android:defaultValue="false"
+        android:summary="@string/wifi_only_description"
+        android:icon="@drawable/ic_action_device_access_network_wifi"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_header_notifications">
+    <Preference
+        android:key="check_for_update"
+        android:title="@string/check_for_update_prefs_title"
+        android:summary="@string/check_for_update_prefs_explanation"
+        android:icon="@drawable/ic_action_navigation_collapse"/>
+
+    <Preference
+        android:key="spremeni_filtre"
+        android:title="@string/set_data_filters"
+        android:icon="@drawable/ic_action_content_edit"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/other">
+        <Preference
+            android:key="about"
+            android:title="@string/about_app"
+            android:icon="@drawable/ic_action_action_about" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
+        <!-- Customize your theme here. -->
+
+    </style>
+
+    <style name="AppThemeMainActivity" parent="@android:style/Theme.Holo.Light">
+        <!-- Customize your theme here. -->
+
+        <!--<item name="android:windowBackground">@color/blur</item>
+        <item name="android:windowShowWallpaper">true</item>-->
+    </style>
+
+</resources>
