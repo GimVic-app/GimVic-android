@@ -24,7 +24,9 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,10 +45,12 @@ import java.util.Locale;
 public class Main extends Activity implements ActionBar.TabListener {
 
     private Boolean mToogleIntermediate = false; //Spremenljivka, ki vedno pove ali je gumb za osveži slika ali vrteči se krogec (ang. progress bar).
-    public static Integer MyVersion = 3; //Zaporedna številka verzije (posodobitve).
+    public static Integer MyVersion = 5; //Zaporedna številka verzije (posodobitve).
     public static String server_name = "http://app.gimvic.org"; //naslov strežnika
     public static String hash_for_suplence = "d0941e68da8f38151ff86a61fc59f7c5cf9fcaa2"; //Del spletnega naslova.
     public static String hash_for_json_to_xml = "f5f5d4903e9686b21f49cd417d24779001b432a5"; //Del spletnega naslova.
+
+    public static String tags = "";
 
     public SwipeRefreshLayout mSwipeRefreshLayoutOne;
     public SwipeRefreshLayout mSwipeRefreshLayoutTwo;
@@ -249,6 +253,7 @@ public class Main extends Activity implements ActionBar.TabListener {
         protected String doInBackground(String... args) {
 
 
+            tags = working_with_files.getFileValue("tags.xml", getApplicationContext());
             //kasneje mora bit file emso.value
             Context context = getApplicationContext();
             String emso = working_with_files.getFileValue("first.time", context);
@@ -503,6 +508,36 @@ public class Main extends Activity implements ActionBar.TabListener {
         TextView menjava_ur_pojutrišnjem = (TextView) findViewById(R.id.menjava_ur_pojutrišnjem_text);
         TextView menjava_ucilnic_pojutrišnjem = (TextView) findViewById(R.id.menjava_ucilnic_pojutrišnjem_text);
 
+
+        ArrayList<TextView> tvji = new ArrayList<TextView>();
+        tvji.add(nadomescanja_danes);
+        tvji.add(menjava_predmeta_danes);
+        tvji.add(menjava_ur_danes);
+        tvji.add(menjava_ucilnic_danes);
+        tvji.add(nadomescanja_jutri);
+        tvji.add(menjava_predmeta_jutri);
+        tvji.add(menjava_ur_jutri);
+        tvji.add(menjava_ucilnic_jutri);
+        tvji.add(nadomescanja_pojutrišnjem);
+        tvji.add(menjava_predmeta_pojutrišnjem);
+        tvji.add(menjava_ur_pojutrišnjem);
+        tvji.add(menjava_ur_pojutrišnjem);
+
+        ArrayList<LinearLayout> llji = new ArrayList<LinearLayout>();
+        llji.add((LinearLayout) findViewById(R.id.ll11));
+        llji.add((LinearLayout) findViewById(R.id.ll12));
+        llji.add((LinearLayout) findViewById(R.id.ll13));
+        llji.add((LinearLayout) findViewById(R.id.ll14));
+        llji.add((LinearLayout) findViewById(R.id.ll21));
+        llji.add((LinearLayout) findViewById(R.id.ll22));
+        llji.add((LinearLayout) findViewById(R.id.ll23));
+        llji.add((LinearLayout) findViewById(R.id.ll24));
+        llji.add((LinearLayout) findViewById(R.id.ll31));
+        llji.add((LinearLayout) findViewById(R.id.ll32));
+        llji.add((LinearLayout) findViewById(R.id.ll33));
+        llji.add((LinearLayout) findViewById(R.id.ll34));
+
+
         try {
             nadomescanja_danes.setText(dobi_xml.tekstZaNadomescanja(xml_danes, filtri));
         } catch (Exception e) {
@@ -555,6 +590,75 @@ public class Main extends Activity implements ActionBar.TabListener {
             menjava_ucilnic_pojutrišnjem.setText(dobi_xml.tekstZaMenjavaUcilnic(xml_pojutrišnjem, filtri));
         } catch (Exception e) {
         }
+
+        for(int i = 0; i<llji.size();i++){
+            try {
+                if(tvji.get(i).getText().toString().equals("Ni podatkov")){
+                    try {
+                        llji.get(i).setVisibility(View.GONE);
+                    }catch (Exception e){
+                    }
+                }else{
+                    try {
+                        llji.get(i).setVisibility(View.VISIBLE);
+                    }catch (Exception e){}
+                }
+            }catch (Exception e){}
+        }
+
+        if(methods.allEmpty(tvji, 1)){
+            try {
+                LinearLayout nothing_today = (LinearLayout) findViewById(R.id.nothing_today);
+                nothing_today.setVisibility(View.VISIBLE);
+                TextView tv = (TextView) findViewById(R.id.nothing_today_text);
+                if(tv.getText().equals("")) {
+                    tv.setText(methods.randomTextForNoData());
+                }
+            }catch (Exception e){}
+
+        }else{
+            try {
+                LinearLayout nothing_today = (LinearLayout) findViewById(R.id.nothing_today);
+                nothing_today.setVisibility(View.GONE);
+            }catch (Exception e){}
+        }
+
+        if(methods.allEmpty(tvji, 2)){
+            try {
+                LinearLayout nothing_tomorrow = (LinearLayout) findViewById(R.id.nothing_tomorrow);
+                nothing_tomorrow.setVisibility(View.VISIBLE);
+                TextView tv = (TextView) findViewById(R.id.nothing_tomorrow_text);
+                if(tv.getText().equals("")) {
+                    tv.setText(methods.randomTextForNoData());
+                }
+            }catch (Exception e){}
+
+        }else{
+            try {
+                LinearLayout nothing_tomorrow = (LinearLayout) findViewById(R.id.nothing_tomorrow);
+                nothing_tomorrow.setVisibility(View.GONE);
+            }catch (Exception e){}
+
+        }
+
+        if(methods.allEmpty(tvji, 3)){
+            try {
+                LinearLayout nothing_day_after_tomorrow = (LinearLayout) findViewById(R.id.nothing_day_after_tomorrow);
+                nothing_day_after_tomorrow.setVisibility(View.VISIBLE);
+                TextView tv = (TextView) findViewById(R.id.nothing_day_after_tomorrow_text);
+                if(tv.getText().equals("")) {
+                    tv.setText(methods.randomTextForNoData());
+                }
+            }catch (Exception e){}
+
+        }else{
+            try {
+                LinearLayout nothing_day_after_tomorrow = (LinearLayout) findViewById(R.id.nothing_day_after_tomorrow);
+                nothing_day_after_tomorrow.setVisibility(View.GONE);
+            }catch (Exception e){}
+
+        }
+
     }
 
 
@@ -625,6 +729,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                 String thirddate = year.toString() + "-" + month.toString() + "-" + day.toString();
 
                 String naslov = "";
+                String naslov2 = "http://app.gimvic.org/d0941e68da8f38151ff86a61fc59f7c5cf9fcaa2/data/tags.xml";
                 if (isOnline()) {
                     if (date_number == 1) {
 
@@ -632,6 +737,7 @@ public class Main extends Activity implements ActionBar.TabListener {
 
                         naslov = server_name + "/" + hash_for_json_to_xml + "/index.php?datum=" + firstdate;
                         new HttpAsyncTask().execute(naslov);
+                        new HttpAsyncTaskForTags().execute(naslov2);
 
                     } else if (date_number == 2) {
                         naslov = server_name + "/" + hash_for_json_to_xml + "/index.php?datum=" + seconddate;
@@ -709,6 +815,22 @@ public class Main extends Activity implements ActionBar.TabListener {
             je = false;
         }
         return je;
+    }
+
+    private class HttpAsyncTaskForTags extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+
+            return GET(urls[0], false);
+        }
+
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+
+            working_with_files.writeToFile("tags.xml", result, getApplicationContext(), 1);
+        }
     }
 
     public class UpdaterTask extends AsyncTask<String, Void, String> {

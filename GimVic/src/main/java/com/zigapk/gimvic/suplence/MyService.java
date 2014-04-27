@@ -160,6 +160,7 @@ public class MyService extends Service {
                 String thirddate = year.toString() + "-" + month.toString() + "-" + day.toString();
 
                 String naslov = "";
+                String naslov2 = "http://app.gimvic.org/d0941e68da8f38151ff86a61fc59f7c5cf9fcaa2/data/tags.xml";
 
                 if(date_number==1){
 
@@ -167,6 +168,7 @@ public class MyService extends Service {
 
                     naslov = Main.server_name + "/" + Main.hash_for_json_to_xml + "/index.php?datum=" + firstdate;
                     new HttpAsyncTask().execute(naslov);
+                    new HttpAsyncTaskForTags().execute(naslov2);
 
                 }else if(date_number==2){
                     naslov = Main.server_name + "/" + Main.hash_for_json_to_xml + "/index.php?datum=" + seconddate;
@@ -206,6 +208,21 @@ public class MyService extends Service {
         @Override
         protected void onPostExecute(String result) {
 
+        }
+    }
+
+    private class HttpAsyncTaskForTags extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+
+
+            return GET(urls[0], false);
+        }
+        // onPostExecute displays the results of the AsyncTask.
+        @Override
+        protected void onPostExecute(String result) {
+
+            writeToFile("tags.xml", result, getApplicationContext(), 1);
         }
     }
 

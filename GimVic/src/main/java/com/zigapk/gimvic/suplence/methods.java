@@ -2,6 +2,7 @@ package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by ziga on 29.3.2014.
@@ -106,5 +108,84 @@ public class methods {
             }
         }
         return result;
+    }
+
+    public static String getTagForDay(String tags_xml, String day){
+        String tag = "";
+        try {
+            tags_xml = tags_xml.substring(tags_xml.indexOf("<tags>"), tags_xml.length());
+            if(tags_xml.contains(day)){
+                int date = tags_xml.indexOf(day);
+                int start = tags_xml.indexOf("<tag>", date) + "<tag>".length();
+                int stop = tags_xml.indexOf("</tag>", date);
+                tag = tags_xml.substring(start, stop);
+
+            }else {
+                return tag;
+            }
+
+        }catch (Exception e){}
+
+        return tag;
+    }
+
+    public static String getTextForDay(String tags_xml, String day){
+        String tag = "";
+        tags_xml = tags_xml.substring(tags_xml.indexOf("<tags>"), tags_xml.length());
+        try {
+            if(tags_xml.contains(day)){
+                int date = tags_xml.indexOf(day);
+                int start = tags_xml.indexOf("<text>", date) + "<text>".length();
+                int stop = tags_xml.indexOf("</text>", date);
+                tag = tags_xml.substring(start, stop);
+
+            }else {
+                return tag;
+            }
+
+        }catch (Exception e){}
+
+        return tag;
+    }
+
+
+    public static String randomTextForNoData(){
+        ArrayList<String> texts = new ArrayList<String>();
+
+        texts.add("Nič posebnega danes");
+        texts.add("Vse po urniku");
+        texts.add("Nič novega");
+        texts.add("Ni sprememb");
+        texts.add("Ni nadomeščanj");
+
+        Random randomGenerator = new Random();
+        int randomInt = randomGenerator.nextInt(texts.size());
+
+        return texts.get(randomInt);
+    }
+
+    public static Boolean allEmpty(ArrayList<TextView> tvji, int page){
+        Boolean bool = true;
+        int i;
+        int x;
+        if(page==1){
+            i = 0;
+            x = 4;
+        }else if(page==2){
+            i = 4;
+            x = 8;
+        }else{
+            i = 8;
+            x = 12;
+
+        }
+        for (int j = i;j<x;j++){
+            try {
+                if(tvji.get(j).getText()!="Ni podatkov"){
+                    bool = false;
+                }
+            }catch (Exception e){}
+        }
+        return bool;
     }
 }
