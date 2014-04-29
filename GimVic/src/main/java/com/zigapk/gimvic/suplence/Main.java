@@ -45,7 +45,7 @@ import java.util.Locale;
 public class Main extends Activity implements ActionBar.TabListener {
 
     private Boolean mToogleIntermediate = false; //Spremenljivka, ki vedno pove ali je gumb za osveži slika ali vrteči se krogec (ang. progress bar).
-    public static Integer MyVersion = 5; //Zaporedna številka verzije (posodobitve).
+    public static Integer MyVersion = 6; //Zaporedna številka verzije (posodobitve).
     public static String server_name = "http://app.gimvic.org"; //naslov strežnika
     public static String hash_for_suplence = "d0941e68da8f38151ff86a61fc59f7c5cf9fcaa2"; //Del spletnega naslova.
     public static String hash_for_json_to_xml = "f5f5d4903e9686b21f49cd417d24779001b432a5"; //Del spletnega naslova.
