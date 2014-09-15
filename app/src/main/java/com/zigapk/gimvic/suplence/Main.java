@@ -7,6 +7,9 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -50,8 +53,10 @@ public class Main extends Activity implements ActionBar.TabListener {
         setContentView(R.layout.activity_main);
 
         // Set up the action bar.
-        final ActionBar actionBar = getActionBar();
-        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        ActionBar actionBar = getActionBar();
+
+
+        actionBar.setBackgroundDrawable(new ColorDrawable(0x259b24));
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -60,6 +65,12 @@ public class Main extends Activity implements ActionBar.TabListener {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+
+        //scrool to today's tab
+        Calendar cal = Calendar.getInstance();
+        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 2;
+        mViewPager.setCurrentItem(dayOfWeek, true);
 
         // For each of the sections in the app, add a tab to the action bar.
         for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -143,141 +154,20 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             switch (position) {
                 case 0:
-                    switch (day){
-                        case 1:
-                            return getString(R.string.sunday).toUpperCase();
-                        case 2:
-                            return getString(R.string.monday).toUpperCase();
-                        case 3:
-                            return getString(R.string.tuesday).toUpperCase();
-                        case 4:
-                            return getString(R.string.wednesday).toUpperCase();
-                        case 5:
-                            return getString(R.string.thursday).toUpperCase();
-                        case 6:
-                            return getString(R.string.friday).toUpperCase();
-                        case 7:
-                            return getString(R.string.saturday).toUpperCase();
-                    }
+                    return getString(R.string.monday).toUpperCase();
                 case 1:
-                    switch (day){
-                        case 1:
-                            return getString(R.string.monday).toUpperCase();
-                        case 2:
-                            return getString(R.string.tuesday).toUpperCase();
-                        case 3:
-                            return getString(R.string.wednesday).toUpperCase();
-                        case 4:
-                            return getString(R.string.thursday).toUpperCase();
-                        case 5:
-                            return getString(R.string.friday).toUpperCase();
-                        case 6:
-                            return getString(R.string.saturday).toUpperCase();
-                        case 7:
-                            return getString(R.string.sunday).toUpperCase();
-                    }
+                    return getString(R.string.tuesday).toUpperCase();
                 case 2:
-                    switch (day){
-                        case 1:
-                            return getString(R.string.tuesday).toUpperCase();
-                        case 2:
-                            return getString(R.string.wednesday).toUpperCase();
-                        case 3:
-                            return getString(R.string.thursday).toUpperCase();
-                        case 4:
-                            return getString(R.string.friday).toUpperCase();
-                        case 5:
-                            return getString(R.string.saturday).toUpperCase();
-                        case 6:
-                            return getString(R.string.sunday).toUpperCase();
-                        case 7:
-                            return getString(R.string.monday).toUpperCase();
-                    }
+                    return getString(R.string.wednesday).toUpperCase();
                 case 3:
-                    switch (day){
-                        case 1:
-                            return getString(R.string.wednesday).toUpperCase();
-                        case 2:
-                            return getString(R.string.thursday).toUpperCase();
-                        case 3:
-                            return getString(R.string.friday).toUpperCase();
-                        case 4:
-                            return getString(R.string.saturday).toUpperCase();
-                        case 5:
-                            return getString(R.string.sunday).toUpperCase();
-                        case 6:
-                            return getString(R.string.monday).toUpperCase();
-                        case 7:
-                            return getString(R.string.tuesday).toUpperCase();
-                    }
+                    return getString(R.string.thursday).toUpperCase();
                 case 4:
-                    switch (day){
-                        case 1:
-                            return getString(R.string.thursday).toUpperCase();
-                        case 2:
-                            return getString(R.string.friday).toUpperCase();
-                        case 3:
-                            return getString(R.string.saturday).toUpperCase();
-                        case 4:
-                            return getString(R.string.sunday).toUpperCase();
-                        case 5:
-                            return getString(R.string.monday).toUpperCase();
-                        case 6:
-                            return getString(R.string.tuesday).toUpperCase();
-                        case 7:
-                            return getString(R.string.wednesday).toUpperCase();
-                    }
+                    return getString(R.string.friday).toUpperCase();
                 case 5:
-                    switch (day){
-                        case 1:
-                            return getString(R.string.friday).toUpperCase();
-                        case 2:
-                            return getString(R.string.saturday).toUpperCase();
-                        case 3:
-                            return getString(R.string.sunday).toUpperCase();
-                        case 4:
-                            return getString(R.string.monday).toUpperCase();
-                        case 5:
-                            return getString(R.string.tuesday).toUpperCase();
-                        case 6:
-                            return getString(R.string.wednesday).toUpperCase();
-                        case 7:
-                            return getString(R.string.thursday).toUpperCase();
-                    }
+                    return getString(R.string.saturday).toUpperCase();
                 case 6:
-                    switch (day){
-                        case 1:
-                            return getString(R.string.saturday).toUpperCase();
-                        case 2:
-                            return getString(R.string.sunday).toUpperCase();
-                        case 3:
-                            return getString(R.string.monday).toUpperCase();
-                        case 4:
-                            return getString(R.string.tuesday).toUpperCase();
-                        case 5:
-                            return getString(R.string.wednesday).toUpperCase();
-                        case 6:
-                            return getString(R.string.thursday).toUpperCase();
-                        case 7:
-                            return getString(R.string.friday).toUpperCase();
-                    }
-                case 7:
-                    switch (day){
-                        case 1:
-                            return getString(R.string.sunday).toUpperCase();
-                        case 2:
-                            return getString(R.string.monday).toUpperCase();
-                        case 3:
-                            return getString(R.string.tuesday).toUpperCase();
-                        case 4:
-                            return getString(R.string.wednesday).toUpperCase();
-                        case 5:
-                            return getString(R.string.thursday).toUpperCase();
-                        case 6:
-                            return getString(R.string.friday).toUpperCase();
-                        case 7:
-                            return getString(R.string.saturday).toUpperCase();
-                    }
+                    return getString(R.string.sunday).toUpperCase();
+
             }
             return null;
         }
