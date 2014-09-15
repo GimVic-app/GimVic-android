@@ -2,10 +2,17 @@
 <resources>
 
     <string name="app_name">GimVic</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="monday">Ponedeljek</string>
+    <string name="tuesday">Torek</string>
+    <string name="wednesday">Sreda</string>
+    <string name="thursday">Četrtek</string>
+    <string name="friday">Petek</string>
+    <string name="saturday">Sobota</string>
+    <string name="sunday">Nedelja</string>
+    <string name="predmet_default">SLO</string>
+    <string name="profesor_default">Ocvirk Zelič</string>
+    <string name="ucilnica_default">37</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

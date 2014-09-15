@@ -1,0 +1,582 @@
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:animateLayoutChanges="true"
+        tools:context="com.zigapk.gimvic.suplence.MainActivity$PlaceholderFragment">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <!-- 1 -->
+            <LinearLayout
+                android:id="@+id/dan3ura1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="1."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica1"
+                        android:layout_toStartOf="@+id/dan3ucilnica1"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!-- 2 -->
+            <LinearLayout
+                android:id="@+id/dan3ura2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="2."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica2"
+                        android:layout_toStartOf="@+id/dan3ucilnica2"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!-- 3 -->
+            <LinearLayout
+                android:id="@+id/dan3ura3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="3."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica3"
+                        android:layout_toStartOf="@+id/dan3ucilnica3"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!-- 4 -->
+            <LinearLayout
+                android:id="@+id/dan3ura4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="4."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica4"
+                        android:layout_toStartOf="@+id/dan3ucilnica4"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!-- 5 -->
+            <LinearLayout
+                android:id="@+id/dan3ura5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="5."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica5"
+                        android:layout_toStartOf="@+id/dan3ucilnica5"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!-- 6 -->
+            <LinearLayout
+                android:id="@+id/dan3ura6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="6."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica6"
+                        android:layout_toStartOf="@+id/dan3ucilnica6"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!-- 7 -->
+            <LinearLayout
+                android:id="@+id/dan3ura7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="7."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor7"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica7"
+                        android:layout_toStartOf="@+id/dan3ucilnica7"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!-- 8 -->
+            <LinearLayout
+                android:id="@+id/dan3ura8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="8."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor8"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica8"
+                        android:layout_toStartOf="@+id/dan3ucilnica8"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <!-- 9 -->
+            <LinearLayout
+                android:id="@+id/dan3ura9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/bg_card">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="8dp"
+                    android:text="9."
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <TextView
+                    android:id="@+id/dan3predmet9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/predmet_default"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textSize="28dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:gravity="center">
+
+
+                    <TextView
+                        android:id="@+id/dan3profesor9"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_toLeftOf="@+id/dan3ucilnica9"
+                        android:layout_toStartOf="@+id/dan3ucilnica9"
+                        android:gravity="center"
+                        android:text="@string/profesor_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/dan3ucilnica9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/ucilnica_default"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textSize="28dp" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</android.support.v4.widget.SwipeRefreshLayout>
