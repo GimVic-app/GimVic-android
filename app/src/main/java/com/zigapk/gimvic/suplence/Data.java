@@ -1,26 +1,38 @@
 package com.zigapk.gimvic.suplence;
 
+import android.content.Context;
+import android.os.AsyncTask;
+
 /**
  * Created by ziga on 9/15/14.
  */
 public class Data {
 
-    public static void refresh(){
+    public static void refresh(Context context, boolean GUI){
 
-        setRefreshingGuiState(true);
+        if(GUI) setRefreshingGuiState(true);
 
-        new Thread()
-        {
-            public void run() {
-                try {
-                    Thread.currentThread().sleep(1500);
-                }catch (Exception e){}
-
-                setRefreshingGuiState(false);
-            }
-        }.start();
+        if(Internet.isOnline(context)){
+            new refreshAsyncTask().execute(context);
+        }else {
+            setRefreshingGuiState(false);
+        }
 
     }
+
+
+    private static class refreshAsyncTask extends AsyncTask<Context, String, String> {
+        protected String doInBackground(Context... context) {
+
+            downloadData(context[0]);
+            return null;
+        }
+
+        protected void onPostExecute(String result) {
+            renderData();
+        }
+    }
+
 
     public static void setRefreshingGuiState(Boolean refreshing){
 
@@ -43,4 +55,18 @@ public class Data {
         }
 
     }
+
+    private static void renderData(){
+
+    }
+
+    public static void downloadData(Context context){
+        Urnik.downloadUrnik(context);
+        Urnik.parseUrnik(context);
+        Suplence.downloadSuplence();
+
+
+    }
+
+
 }

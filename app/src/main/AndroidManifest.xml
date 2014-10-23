@@ -16,6 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FirstActivity"
+            android:label="@string/title_activity_first" >
+        </activity>
+        <activity
+            android:name=".SummerActivity"
+            android:label=""
+            android:icon="@color/transparent">
+        </activity>
     </application>
 
 </manifest>

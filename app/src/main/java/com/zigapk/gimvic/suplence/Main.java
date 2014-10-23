@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,10 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Set;
 
 
 public class Main extends Activity implements ActionBar.TabListener {
 
+    public static Context context;
     public static Boolean mRefreshing = false;
     public static SwipeRefreshLayout mSwipeRefreshLayout1;
     public static SwipeRefreshLayout mSwipeRefreshLayout2;
@@ -40,79 +45,7 @@ public class Main extends Activity implements ActionBar.TabListener {
      */
     ViewPager mViewPager;
 
-    //sets onRefreshListeners and color schemes for swipe to refresh
-    public static void setOnRefreshListeners(int position, View rootView) {
 
-
-        if (position == 1) {
-            Main.mSwipeRefreshLayout1 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container1);
-
-            Main.mSwipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh();
-                }
-            });
-            Main.mSwipeRefreshLayout1.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-
-        } else if (position == 2) {
-            Main.mSwipeRefreshLayout2 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container2);
-
-            Main.mSwipeRefreshLayout2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh();
-                }
-            });
-            Main.mSwipeRefreshLayout2.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-        } else if (position == 3) {
-            Main.mSwipeRefreshLayout3 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container3);
-
-            Main.mSwipeRefreshLayout3.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh();
-                }
-            });
-            Main.mSwipeRefreshLayout3.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-        } else if (position == 4) {
-            Main.mSwipeRefreshLayout4 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container4);
-
-            Main.mSwipeRefreshLayout4.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh();
-                }
-            });
-            Main.mSwipeRefreshLayout4.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-        } else if (position == 5) {
-            Main.mSwipeRefreshLayout5 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container5);
-
-            Main.mSwipeRefreshLayout5.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh();
-                }
-            });
-            Main.mSwipeRefreshLayout5.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-        }
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +54,9 @@ public class Main extends Activity implements ActionBar.TabListener {
 
         // Set up the action bar.
         ActionBar actionBar = getActionBar();
+
+        //set context
+        context = getApplicationContext();
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -149,6 +85,8 @@ public class Main extends Activity implements ActionBar.TabListener {
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+        initializeContent();
     }
 
     @Override
@@ -290,6 +228,118 @@ public class Main extends Activity implements ActionBar.TabListener {
             return null;
         }
     }
+
+    public void initializeContent(){
+
+        Date date = new Date();
+        if(6<=date.getMonth() || date.getMonth()<=8) {
+
+            if(date.getMonth() == 6){
+                if(date.getDay() >= 25){
+                    Settings.resetSafetyCounter();
+                    startActivity(new Intent(context, SummerActivity.class));
+                    Main.this.finish();
+                    return;
+                }
+            }else if(date.getMonth() == 8){
+                if(date.getDay() <= 20){
+                    Settings.resetSafetyCounter();
+                    startActivity(new Intent(context, SummerActivity.class));
+                    Main.this.finish();
+                    return;
+                }
+            }else if(date.getMonth() == 7){
+                Settings.resetSafetyCounter();
+                startActivity(new Intent(context, SummerActivity.class));
+                Main.this.finish();
+                return;
+            }
+
+        }else {
+            //TODO: refresh and so on
+            Data.refresh(context, true);
+
+        }
+
+    }
+
+
+
+
+    //sets onRefreshListeners and color schemes for swipe to refresh
+    public static void setOnRefreshListeners(int position, View rootView) {
+
+
+        if (position == 1) {
+            Main.mSwipeRefreshLayout1 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container1);
+
+            Main.mSwipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout1.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+
+        } else if (position == 2) {
+            Main.mSwipeRefreshLayout2 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container2);
+
+            Main.mSwipeRefreshLayout2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout2.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+        } else if (position == 3) {
+            Main.mSwipeRefreshLayout3 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container3);
+
+            Main.mSwipeRefreshLayout3.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout3.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+        } else if (position == 4) {
+            Main.mSwipeRefreshLayout4 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container4);
+
+            Main.mSwipeRefreshLayout4.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout4.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+        } else if (position == 5) {
+            Main.mSwipeRefreshLayout5 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container5);
+
+            Main.mSwipeRefreshLayout5.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout5.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+        }
+
+    }
+
 
 
 }

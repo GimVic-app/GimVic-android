@@ -11,6 +11,8 @@
     <color name="greenTwo">#ff83ba00</color>
     <color name="greenThree">#ffa0d100</color>
     <color name="greenFour">#ff87cb04</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00ffffff</color>
 
 
 </resources>
