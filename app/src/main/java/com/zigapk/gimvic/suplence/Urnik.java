@@ -27,8 +27,8 @@ public class Urnik {
     public static void parseUrnik(Context context){
         String rawData = Files.getFileValue("Urnik.js", context);
 
-        String razrediData = rawData.substring(rawData.indexOf("razredi = new Array("), rawData.indexOf("\nucitelji = new Array("));
-        String uciteljiData = rawData.substring(rawData.indexOf("ucitelji = new Array("), rawData.indexOf("\nucilnice = new Array("));
+        String razrediData = rawData.substring(rawData.indexOf("razredi = new Array("), rawData.indexOf("ucitelji = new Array("));
+        String uciteljiData = rawData.substring(rawData.indexOf("ucitelji = new Array("), rawData.indexOf("ucilnice = new Array("));
 
         String array[] = rawData.split("podatki");
         ArrayList<String> dataArray = new ArrayList<String>();
@@ -107,16 +107,60 @@ public class Urnik {
     }
 
     private static Razredi parseRazredi(String razrediData){
-        String temp = "razredi[";
-        int start = razrediData.lastIndexOf(temp) + temp.length();
-        int stop = razrediData.indexOf("] = \"", start);
+
+        Razredi result = new Razredi();
+
+        String temp = "razredi = new Array(";
+        int start = razrediData.indexOf(temp) + temp.length();
+        int stop = razrediData.indexOf(");", start);
 
         int number = Integer.parseInt(razrediData.substring(start, stop));
 
-        //TODO: finish
+        result.razredi = new String[number];
+
+        for(int i = 0; i < number; i++){
+            String before = "razredi[" + i + "] = \"";
+            String after = "\";";
+
+            int zacetek = razrediData.indexOf(before) + before.length();
+            int konec = razrediData.indexOf(after, zacetek);
+
+            result.razredi[i] = razrediData.substring(zacetek, konec);
+        }
+
+        return result;
     }
 
     private static Ucitelji parseUcitelji(String uciteljiData){
+        Ucitelji result = new Ucitelji();
+
+        String temp = "ucitelji = new Array(";
+        int start = uciteljiData.indexOf(temp) + temp.length();
+        int stop = uciteljiData.indexOf(");", start);
+
+        int number = Integer.parseInt(uciteljiData.substring(start, stop));
+
+        result.ucitelji = new String[number];
+
+        for(int i = 0; i < number; i++){
+            String before = "razredi[" + i + "] = \"";
+            String after = "\";";
+
+            int zacetek = uciteljiData.indexOf(before) + before.length();
+            int konec = uciteljiData.indexOf(after, zacetek);
+
+            result.ucitelji[i] = uciteljiData.substring(zacetek, konec);
+        }
+
+        return result;
+    }
+
+    public static void renderUrnik(Context context){
+        Gson gson = new Gson();
+        Urnik urnik = gson.fromJson(Files.getFileValue("Urnik.json", context), Urnik.class);
+
+        String mami = "";
+
 
     }
 

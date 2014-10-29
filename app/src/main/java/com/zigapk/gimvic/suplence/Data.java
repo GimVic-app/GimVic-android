@@ -12,24 +12,25 @@ public class Data {
 
         if(GUI) setRefreshingGuiState(true);
 
-        if(Internet.isOnline(context)){
-            new refreshAsyncTask().execute(context);
-        }else {
-            setRefreshingGuiState(false);
-        }
+        new refreshAsyncTask().execute(context);
+
 
     }
 
 
-    private static class refreshAsyncTask extends AsyncTask<Context, String, String> {
-        protected String doInBackground(Context... context) {
+    private static class refreshAsyncTask extends AsyncTask<Context, Context, Context> {
+        protected Context doInBackground(Context... context) {
 
-            downloadData(context[0]);
-            return null;
+            if(Internet.isOnline(context[0])){
+                downloadData(context[0]);
+            }
+
+            return context[0];
         }
 
-        protected void onPostExecute(String result) {
-            renderData();
+        protected void onPostExecute(Context context) {
+            renderData(context);
+            setRefreshingGuiState(false);
         }
     }
 
@@ -56,11 +57,16 @@ public class Data {
 
     }
 
-    private static void renderData(){
+    private static void renderData(Context context){
+
+        Urnik.renderUrnik(context);
+        //TODO: make it do something
 
     }
 
     public static void downloadData(Context context){
+
+        //TODO: make it do so only once per day
         Urnik.downloadUrnik(context);
         Urnik.parseUrnik(context);
         Suplence.downloadSuplence();

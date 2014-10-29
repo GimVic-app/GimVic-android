@@ -1,5 +1,7 @@
 package com.zigapk.gimvic.suplence;
 
+import java.util.Date;
+
 /**
  * Created by ziga on 10/18/14.
  *
@@ -24,6 +26,15 @@ public class Suplence {
 
     public static void downloadSuplence(){
 
+    }
+
+    private static void downloadForDate(Date date){
+        //TODO: make it do something
+    }
+
+    public static void cleanOldFiles(){
+
+        //TODO: finish
     }
 
 }
