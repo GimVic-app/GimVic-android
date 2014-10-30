@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -30,6 +31,24 @@ public class Urnik {
         String razrediData = rawData.substring(rawData.indexOf("razredi = new Array("), rawData.indexOf("ucitelji = new Array("));
         String uciteljiData = rawData.substring(rawData.indexOf("ucitelji = new Array("), rawData.indexOf("ucilnice = new Array("));
 
+
+        Urnik urnik = new Urnik();
+        urnik.urnik = pasreUrnikFromString(rawData);
+
+        Gson gson = new Gson();
+        Files.writeToFile("Urnik.json", gson.toJson(urnik), context);
+
+        Razredi razredi = parseRazredi(razrediData);
+        Files.writeToFile("Razredi.json", gson.toJson(razredi), context);
+
+        Ucitelji ucitelji = parseUcitelji(uciteljiData);
+        Files.writeToFile("Ucitelji.json", gson.toJson(ucitelji), context);
+
+        parsePersonalUrnik(context);
+
+    }
+
+    private static String[][] pasreUrnikFromString(String rawData){
         String array[] = rawData.split("podatki");
         ArrayList<String> dataArray = new ArrayList<String>();
         for (int i = 2; i < array.length; i++)
@@ -88,24 +107,8 @@ public class Urnik {
             else
                 finalData[Integer.parseInt(components[0])][Integer.parseInt(components[1])] = "";
         }
-
-
-
-        Urnik urnik = new Urnik();
-        urnik.urnik = finalData;
-
-        Gson gson = new Gson();
-        Files.writeToFile("Urnik.json", gson.toJson(urnik), context);
-
-        Razredi razredi = parseRazredi(razrediData);
-        Files.writeToFile("Razredi.json", gson.toJson(razredi), context);
-
-        Ucitelji ucitelji = parseUcitelji(uciteljiData);
-        Files.writeToFile("Ucitelji.json", gson.toJson(ucitelji), context);
-
-
+        return finalData;
     }
-
     private static Razredi parseRazredi(String razrediData){
 
         Razredi result = new Razredi();
@@ -155,11 +158,68 @@ public class Urnik {
         return result;
     }
 
-    public static void renderUrnik(Context context){
+    private static void parsePersonalUrnik(Context context){
         Gson gson = new Gson();
         Urnik urnik = gson.fromJson(Files.getFileValue("Urnik.json", context), Urnik.class);
 
-        String mami = "";
+        PersonalUrnik personal = new PersonalUrnik();
+
+
+        int mode = Settings.getUserMode();
+
+        if(mode == UserMode.MODE_UCENEC){
+
+            String razred = Settings.getRazred(context);
+            for(int i = 0; i < urnik.urnik.length; i++){
+                if(urnik.urnik[i][1].equals(razred)){
+                    int ura = Integer.parseInt(urnik.urnik[i][6]);
+                    int dan = Integer.parseInt(urnik.urnik[i][5]);
+                    String profesor = urnik.urnik[i][2];
+                    String predmet = urnik.urnik[i][3];
+                    String ucilnica = urnik.urnik[i][4];
+
+                    personal.days[dan - 1].classes[ura - 1].razred = razred;
+                    personal.days[dan - 1].classes[ura - 1].ura = ura;
+                    personal.days[dan - 1].classes[ura - 1].dan = dan;
+                    personal.days[dan - 1].classes[ura - 1].profesor = profesor;
+                    personal.days[dan - 1].classes[ura - 1].predmet = predmet;
+                    personal.days[dan - 1].classes[ura - 1].ucilnica = ucilnica;
+
+                }
+            }
+
+        }else if(mode == UserMode.MODE_UCITELJ){
+
+            String profesor = Settings.getProfesor(context);
+            for(int i = 0; i < urnik.urnik.length; i++){
+                if(urnik.urnik[i][2].equals(profesor)){
+                    int ura = Integer.parseInt(urnik.urnik[i][6]);
+                    int dan = Integer.parseInt(urnik.urnik[i][5]);
+                    String razred = urnik.urnik[i][1];
+                    String predmet = urnik.urnik[i][3];
+                    String ucilnica = urnik.urnik[i][4];
+
+                    personal.days[dan - 1].classes[ura - 1].razred = razred;
+                    personal.days[dan - 1].classes[ura - 1].ura = ura;
+                    personal.days[dan - 1].classes[ura - 1].dan = dan;
+                    personal.days[dan - 1].classes[ura - 1].profesor = profesor;
+                    personal.days[dan - 1].classes[ura - 1].predmet = predmet;
+                    personal.days[dan - 1].classes[ura - 1].ucilnica = ucilnica;
+
+                }
+            }
+        }
+
+        String json = gson.toJson(personal);
+        Files.writeToFile("Urnik-personal.json", json, context);
+
+    }
+
+    public static void render(Context context){
+        Gson gson = new Gson();
+        PersonalUrnik urnik = gson.fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
+
+        //TODO: DO THIS!!!!
 
 
     }
@@ -172,4 +232,44 @@ class Razredi{
 
 class Ucitelji{
     String[] ucitelji;
+}
+
+class PersonalUrnik{
+    Day[] days;
+
+    public PersonalUrnik(){
+        days = new Day[5];
+        days[0] = new Day();
+        days[1] = new Day();
+        days[2] = new Day();
+        days[3] = new Day();
+        days[4] = new Day();
+    }
+}
+
+class UrnikElement{
+    String razred = "";
+    String profesor = "";
+    String predmet = "";
+    String ucilnica = "";
+    int ura = 1;
+    int dan = 1; // 1 = monday, 5 = friday
+
+}
+
+class Day{
+    UrnikElement[] classes;
+
+    public Day(){
+        classes = new UrnikElement[9];
+        classes[0] = new UrnikElement();
+        classes[1] = new UrnikElement();
+        classes[2] = new UrnikElement();
+        classes[3] = new UrnikElement();
+        classes[4] = new UrnikElement();
+        classes[5] = new UrnikElement();
+        classes[6] = new UrnikElement();
+        classes[7] = new UrnikElement();
+        classes[8] = new UrnikElement();
+    }
 }

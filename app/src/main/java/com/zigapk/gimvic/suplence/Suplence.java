@@ -25,7 +25,7 @@ public class Suplence {
 
 
     public static void downloadSuplence(){
-
+        //TODO: make it do something
     }
 
     private static void downloadForDate(Date date){
@@ -35,6 +35,10 @@ public class Suplence {
     public static void cleanOldFiles(){
 
         //TODO: finish
+    }
+
+    public static void render(){
+
     }
 
 }

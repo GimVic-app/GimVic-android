@@ -59,15 +59,22 @@ public class Data {
 
     private static void renderData(Context context){
 
-        Urnik.renderUrnik(context);
-        //TODO: make it do something
+        int mode = Settings.getMode(context);
+
+        if(mode == Mode.MODE_HYBRID){
+            Urnik.render(context);
+            Suplence.render();
+        }else if (mode == Mode.MODE_SUPLENCE) Suplence.render();
+        else if (mode == Mode.MODE_URNIK) Suplence.render();
+
+        //TODO: should have clean function to hide unused elements???
 
     }
 
     public static void downloadData(Context context){
 
         //TODO: make it do so only once per day
-        Urnik.downloadUrnik(context);
+        //Urnik.downloadUrnik(context);
         Urnik.parseUrnik(context);
         Suplence.downloadSuplence();
 
