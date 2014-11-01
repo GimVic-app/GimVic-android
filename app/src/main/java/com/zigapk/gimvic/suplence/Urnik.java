@@ -1,6 +1,7 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -215,13 +216,8 @@ public class Urnik {
 
     }
 
-    public static void render(Context context){
-        Gson gson = new Gson();
-        PersonalUrnik urnik = gson.fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
-
-        //TODO: DO THIS!!!!
-
-
+    public static PersonalUrnik getPersonalUrnik(Context context){
+        return new Gson().fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
     }
 
 }
@@ -254,6 +250,7 @@ class UrnikElement{
     String ucilnica = "";
     int ura = 1;
     int dan = 1; // 1 = monday, 5 = friday
+    boolean suplenca = false;
 
 }
 

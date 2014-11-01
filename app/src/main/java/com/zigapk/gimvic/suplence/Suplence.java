@@ -41,6 +41,10 @@ public class Suplence {
 
     }
 
+    public static void render(PersonalUrnik urnik){
+
+    }
+
 }
 
 class Nadomescanje {

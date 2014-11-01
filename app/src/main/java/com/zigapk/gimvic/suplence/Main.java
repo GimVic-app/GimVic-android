@@ -16,6 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +47,7 @@ public class Main extends Activity implements ActionBar.TabListener {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    public static View view;
 
 
 
@@ -176,6 +180,41 @@ public class Main extends Activity implements ActionBar.TabListener {
         }
 
     }
+
+    //cuz u can't call findViewById from other classes
+    public void renderUrnik(){
+
+        Gson gson = new Gson();
+        PersonalUrnik urnik = gson.fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
+
+        for(int dan = 1; dan <= 5; dan++){
+            for(int ura = 1; ura <= 10; ura++){
+                UrnikElement current = urnik.days[dan].classes[ura];
+
+
+                //null
+                TextView tv = (TextView) findViewById(R.id.dan1predmet1);
+                TextView predmetTv = (TextView) view.findViewById(getResources().getIdentifier("dan" + dan + "predmet" + ura, "id", getPackageName()));
+                TextView profesorTv = (TextView) view.findViewById(getResources().getIdentifier("dan" + dan + "profesor" + ura, "id", getPackageName()));
+                TextView ucilnicaTv = (TextView) view.findViewById(getResources().getIdentifier("dan" + dan + "ucilnica" + ura, "id", getPackageName()));
+
+                predmetTv.setText(current.predmet);
+                if(Settings.getUserMode() == UserMode.MODE_UCITELJ){
+                    profesorTv.setText(current.razred);
+                }else{
+                    profesorTv.setText(current.profesor);
+                }
+                ucilnicaTv.setText(current.ucilnica);
+
+
+            }
+        }
+
+    }
+
+
+
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -339,7 +378,5 @@ public class Main extends Activity implements ActionBar.TabListener {
         }
 
     }
-
-
 
 }

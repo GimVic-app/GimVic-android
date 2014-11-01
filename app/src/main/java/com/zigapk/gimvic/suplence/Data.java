@@ -62,7 +62,7 @@ public class Data {
         int mode = Settings.getMode(context);
 
         if(mode == Mode.MODE_HYBRID){
-            Urnik.render(context);
+            new Main().renderUrnik();
             Suplence.render();
         }else if (mode == Mode.MODE_SUPLENCE) Suplence.render();
         else if (mode == Mode.MODE_URNIK) Suplence.render();
