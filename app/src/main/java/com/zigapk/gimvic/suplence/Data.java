@@ -62,12 +62,12 @@ public class Data {
         int mode = Settings.getMode(context);
 
         if(mode == Mode.MODE_HYBRID){
-            new Main().renderUrnik();
-            Suplence.render();
+            //TODO: uncomment
+            //Suplence.render(Urnik.getPersonalUrnik(context));
+            //TODO: coment
+            Urnik.render(context);
         }else if (mode == Mode.MODE_SUPLENCE) Suplence.render();
-        else if (mode == Mode.MODE_URNIK) Suplence.render();
-
-        //TODO: should have clean function to hide unused elements???
+        else if (mode == Mode.MODE_URNIK) Urnik.render(context);
 
     }
 
@@ -75,7 +75,7 @@ public class Data {
 
         //TODO: make it do so only once per day
         //Urnik.downloadUrnik(context);
-        Urnik.parseUrnik(context);
+        //Urnik.parseUrnik(context);
         Suplence.downloadSuplence();
 
 

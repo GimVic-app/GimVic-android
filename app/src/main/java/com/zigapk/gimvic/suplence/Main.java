@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,10 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Set;
@@ -34,6 +36,10 @@ public class Main extends Activity implements ActionBar.TabListener {
     public static SwipeRefreshLayout mSwipeRefreshLayout3;
     public static SwipeRefreshLayout mSwipeRefreshLayout4;
     public static SwipeRefreshLayout mSwipeRefreshLayout5;
+
+    //textviews [dan][ura][predmet, profesor, ucilnica]
+    public static TextView[][][] textViews = new TextView[5][9][3];
+    public static String packageName;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -90,7 +96,13 @@ public class Main extends Activity implements ActionBar.TabListener {
                             .setTabListener(this));
         }
 
+        packageName = getPackageName();
+
         initializeContent();
+
+
+
+
     }
 
     @Override
@@ -122,6 +134,22 @@ public class Main extends Activity implements ActionBar.TabListener {
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
+
+    /*private static class refreshAsyncTask extends AsyncTask<Context, Context, Context> {
+        protected Context doInBackground(Context... context) {
+
+            if(Internet.isOnline(context[0])){
+                downloadData(context[0]);
+            }
+
+            return context[0];
+        }
+
+        protected void onPostExecute(Context context) {
+            renderData(context);
+            setRefreshingGuiState(false);
+        }
+    }*/
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
@@ -158,6 +186,8 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             View rootView = inflater.inflate(R.layout.fragment_day1, container, false);
 
+
+
             int position = getArguments().getInt(ARG_SECTION_NUMBER);
 
             if (position == 2) {
@@ -176,44 +206,19 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             setOnRefreshListeners(position, rootView);
 
+            if(position <= 5){
+                for(int i = 1; i <= 9; i++){
+                    textViews[position - 1][i - 1][0] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "predmet" + i, "id", packageName));
+                    textViews[position - 1][i - 1][1] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "profesor" + i, "id", packageName));
+                    textViews[position - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "ucilnica" + i, "id", packageName));
+                }
+            }
+
+
             return rootView;
         }
 
     }
-
-    //cuz u can't call findViewById from other classes
-    public void renderUrnik(){
-
-        Gson gson = new Gson();
-        PersonalUrnik urnik = gson.fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
-
-        for(int dan = 1; dan <= 5; dan++){
-            for(int ura = 1; ura <= 10; ura++){
-                UrnikElement current = urnik.days[dan].classes[ura];
-
-
-                //null
-                TextView tv = (TextView) findViewById(R.id.dan1predmet1);
-                TextView predmetTv = (TextView) view.findViewById(getResources().getIdentifier("dan" + dan + "predmet" + ura, "id", getPackageName()));
-                TextView profesorTv = (TextView) view.findViewById(getResources().getIdentifier("dan" + dan + "profesor" + ura, "id", getPackageName()));
-                TextView ucilnicaTv = (TextView) view.findViewById(getResources().getIdentifier("dan" + dan + "ucilnica" + ura, "id", getPackageName()));
-
-                predmetTv.setText(current.predmet);
-                if(Settings.getUserMode() == UserMode.MODE_UCITELJ){
-                    profesorTv.setText(current.razred);
-                }else{
-                    profesorTv.setText(current.profesor);
-                }
-                ucilnicaTv.setText(current.ucilnica);
-
-
-            }
-        }
-
-    }
-
-
-
 
 
     /**

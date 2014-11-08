@@ -26,6 +26,36 @@ public class Urnik {
 
     }
 
+    public static void render(Context context){
+
+        Gson gson = new Gson();
+        PersonalUrnik urnik = gson.fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
+
+        for(int dan = 1; dan <= 5; dan++){
+            for(int ura = 1; ura <= 9; ura++){
+                UrnikElement current = urnik.days[dan - 1].classes[ura - 1];
+
+
+
+                TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
+                TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
+                TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
+
+
+                predmetTv.setText(current.predmet);
+                if(Settings.getUserMode() == UserMode.MODE_UCITELJ){
+                    profesorTv.setText(current.razred);
+                }else{
+                    profesorTv.setText(current.profesor);
+                }
+                ucilnicaTv.setText(current.ucilnica);
+
+
+            }
+        }
+
+    }
+
     public static void parseUrnik(Context context){
         String rawData = Files.getFileValue("Urnik.js", context);
 
