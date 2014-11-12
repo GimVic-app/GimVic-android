@@ -2,17 +2,17 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-765f3598188d2248500ea3268c1e2c562f913310.jar"
-        jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
-    <item
         dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-9970601bc9d043e282ee654a3f8c7dd59650db1e.jar"
         jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="e128103d5281ddd26195a7f980b36d0d005a4e56"/>
+    <item
+        dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-765f3598188d2248500ea3268c1e2c562f913310.jar"
+        jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
     <item
         dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-8c8a729f03e57d83061498acbf9239b3efba244c.jar"
         jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/libs/internal_impl-20.0.0.jar"
