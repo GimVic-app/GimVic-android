@@ -19,5 +19,7 @@
     <string name="title_activity_summer">SummerActivity</string>
     <string name="pocitnice">Vesele počitnice!</string>
     <string name="pocinice_explanation">Aplikacije GimVic žal ni mogoče uporablatji med poletnimi počitnicami.</string>
+    <string name="gimvic">GimVic</string>
+    <string name="donloading">Prenašanje podatkov</string>
 
 </resources>

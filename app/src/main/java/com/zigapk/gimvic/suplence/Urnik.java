@@ -22,6 +22,8 @@ public class Urnik {
 
         if(rawData.contains("podatki = new Array(")){
             Files.writeToFile("Urnik.js", rawData, context);
+            Settings.setUrnikDownloaded(true, context);
+            parseUrnik(context);
         }
 
     }
@@ -43,7 +45,7 @@ public class Urnik {
 
 
                 predmetTv.setText(current.predmet);
-                if(Settings.getUserMode() == UserMode.MODE_UCITELJ){
+                if(Settings.getUserMode(context) == UserMode.MODE_UCITELJ){
                     profesorTv.setText(current.razred);
                 }else{
                     profesorTv.setText(current.profesor);
@@ -58,8 +60,6 @@ public class Urnik {
 
     public static void parseUrnik(Context context){
         String rawData = Files.getFileValue("Urnik.js", context);
-
-        String razrediData = rawData.substring(rawData.indexOf("razredi = new Array("), rawData.indexOf("ucitelji = new Array("));
         String uciteljiData = rawData.substring(rawData.indexOf("ucitelji = new Array("), rawData.indexOf("ucilnice = new Array("));
 
 
@@ -68,12 +68,6 @@ public class Urnik {
 
         Gson gson = new Gson();
         Files.writeToFile("Urnik.json", gson.toJson(urnik), context);
-
-        Razredi razredi = parseRazredi(razrediData);
-        Files.writeToFile("Razredi.json", gson.toJson(razredi), context);
-
-        Ucitelji ucitelji = parseUcitelji(uciteljiData);
-        Files.writeToFile("Ucitelji.json", gson.toJson(ucitelji), context);
 
         parsePersonalUrnik(context);
 
@@ -140,7 +134,11 @@ public class Urnik {
         }
         return finalData;
     }
-    private static Razredi parseRazredi(String razrediData){
+    private static Razredi parseRazredi(Context context){
+
+        String rawData = Files.getFileValue("Urnik.js", context);
+
+        String razrediData = rawData.substring(rawData.indexOf("razredi = new Array("), rawData.indexOf("ucitelji = new Array("));
 
         Razredi result = new Razredi();
 
@@ -165,7 +163,12 @@ public class Urnik {
         return result;
     }
 
-    private static Ucitelji parseUcitelji(String uciteljiData){
+    private static Ucitelji parseUcitelji(Context context){
+
+
+        String rawData = Files.getFileValue("Urnik.js", context);
+        String uciteljiData = rawData.substring(rawData.indexOf("ucitelji = new Array("), rawData.indexOf("ucilnice = new Array("));
+
         Ucitelji result = new Ucitelji();
 
         String temp = "ucitelji = new Array(";
@@ -196,7 +199,7 @@ public class Urnik {
         PersonalUrnik personal = new PersonalUrnik();
 
 
-        int mode = Settings.getUserMode();
+        int mode = Settings.getUserMode(context);
 
         if(mode == UserMode.MODE_UCENEC){
 
@@ -243,6 +246,8 @@ public class Urnik {
 
         String json = gson.toJson(personal);
         Files.writeToFile("Urnik-personal.json", json, context);
+
+        Settings.setUrnikParsed(true, context);
 
     }
 

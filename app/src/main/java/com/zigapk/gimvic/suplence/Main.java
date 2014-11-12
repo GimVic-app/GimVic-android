@@ -68,6 +68,12 @@ public class Main extends Activity implements ActionBar.TabListener {
         //set context
         context = getApplicationContext();
 
+        if(Settings.isFirstOpened(context)){
+            Intent intent = new Intent(this, FirstActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -100,7 +106,7 @@ public class Main extends Activity implements ActionBar.TabListener {
 
         initializeContent();
 
-
+        new renderAsyncTask().execute("");
 
 
     }
@@ -135,21 +141,19 @@ public class Main extends Activity implements ActionBar.TabListener {
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
-    /*private static class refreshAsyncTask extends AsyncTask<Context, Context, Context> {
-        protected Context doInBackground(Context... context) {
+    private static class renderAsyncTask extends AsyncTask<String, String, String> {
+        protected String doInBackground(String... strings) {
 
-            if(Internet.isOnline(context[0])){
-                downloadData(context[0]);
-            }
+            while (!Settings.isUrnikParsed(context)){}
 
-            return context[0];
+            return null;
         }
 
-        protected void onPostExecute(Context context) {
-            renderData(context);
-            setRefreshingGuiState(false);
+        protected void onPostExecute(String string) {
+            Data.renderData(context);
+            Data.refresh(context, true);
         }
-    }*/
+    }
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {

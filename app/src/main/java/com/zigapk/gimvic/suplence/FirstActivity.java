@@ -1,17 +1,27 @@
 package com.zigapk.gimvic.suplence;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 
 
 public class FirstActivity extends Activity {
 
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getActionBar().hide();
         setContentView(R.layout.activity_first);
+
+        context = getApplicationContext();
+
+        Data.clearAllData(context);
     }
 
 
