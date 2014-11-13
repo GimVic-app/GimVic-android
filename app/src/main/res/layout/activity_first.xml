@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/donloading"
-        android:id="@+id/textView4"
+        android:id="@+id/downloadingData"
         android:layout_alignTop="@+id/firstScroll"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="72dp"

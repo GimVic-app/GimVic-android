@@ -29,7 +29,7 @@ public class Settings {
     public static int getMode(Context context){
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String mode = prefs.getString("mode", "");
+        String mode = prefs.getString("mode", "0");
 
         int parsed = Integer.parseInt(mode);
         if(parsed == Mode.MODE_SUPLENCE){
@@ -49,7 +49,7 @@ public class Settings {
 
     public static int getUserMode(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String mode = prefs.getString("userMode", "");
+        String mode = prefs.getString("userMode", "1");
 
         int parsed = Integer.parseInt(mode);
 

@@ -2,15 +2,19 @@ package com.zigapk.gimvic.suplence;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 
 public class FirstActivity extends Activity {
 
-    Context context;
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,25 +26,47 @@ public class FirstActivity extends Activity {
         context = getApplicationContext();
 
         Data.clearAllData(context);
-    }
+
+        if(Internet.isOnline(context)){
+            Thread download = new Thread()
+            {
+                @Override
+                public void run() {
+                    Data.downloadData(context);
+                }
+            };
+
+            download.start();
+
+            Thread wait = new Thread()
+            {
+                @Override
+                public void run() {
+                    while (!Settings.isUrnikDownloaded(context)){
+                        try {
+                            Thread.sleep(30);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.first, menu);
-        return true;
-    }
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ProgressBar progressBar = (ProgressBar) findViewById(R.id.firstProgressBar);
+                            progressBar.setVisibility(View.GONE);
+                            TextView downloadingData = (TextView) findViewById(R.id.downloadingData);
+                            downloadingData.setVisibility(View.GONE);
+                        }
+                    });
+                }
+            };
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+            wait.start();
+        }else{
+
         }
-        return super.onOptionsItemSelected(item);
     }
+
 }

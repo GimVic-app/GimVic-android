@@ -23,7 +23,6 @@ public class Urnik {
         if(rawData.contains("podatki = new Array(")){
             Files.writeToFile("Urnik.js", rawData, context);
             Settings.setUrnikDownloaded(true, context);
-            parseUrnik(context);
         }
 
     }
