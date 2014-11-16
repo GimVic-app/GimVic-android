@@ -133,7 +133,7 @@ public class Urnik {
         }
         return finalData;
     }
-    private static Razredi parseRazredi(Context context){
+    public static Razredi parseRazredi(Context context){
 
         String rawData = Files.getFileValue("Urnik.js", context);
 
@@ -162,7 +162,7 @@ public class Urnik {
         return result;
     }
 
-    private static Ucitelji parseUcitelji(Context context){
+    public static Ucitelji parseUcitelji(Context context){
 
 
         String rawData = Files.getFileValue("Urnik.js", context);

@@ -72,43 +72,41 @@ public class Main extends Activity implements ActionBar.TabListener {
             Intent intent = new Intent(this, FirstActivity.class);
             startActivity(intent);
             finish();
+        }else{
+            // Create the adapter that will return a fragment for each of the three
+            // primary sections of the activity.
+            mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+
+            // Set up the ViewPager with the sections adapter.
+            mViewPager = (ViewPager) findViewById(R.id.pager);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+            mViewPager.setOffscreenPageLimit(7);
+
+
+            //go to today's tab
+            Calendar cal = Calendar.getInstance();
+            int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 2;
+
+            mViewPager.setCurrentItem(dayOfWeek, false);
+
+            // For each of the sections in the app, add a tab to the action bar.
+            for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
+                // Create a tab with text corresponding to the page title defined by
+                // the adapter. Also specify this Activity object, which implements
+                // the TabListener interface, as the callback (listener) for when
+                // this tab is selected.
+                actionBar.addTab(
+                        actionBar.newTab()
+                                .setText(mSectionsPagerAdapter.getPageTitle(i))
+                                .setTabListener(this));
+            }
+
+            packageName = getPackageName();
+
+            initializeContent();
+
+            new renderAsyncTask().execute("");
         }
-
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setOffscreenPageLimit(7);
-
-
-        //go to today's tab
-        Calendar cal = Calendar.getInstance();
-        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 2;
-
-        mViewPager.setCurrentItem(dayOfWeek, false);
-
-        // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-            actionBar.addTab(
-                    actionBar.newTab()
-                            .setText(mSectionsPagerAdapter.getPageTitle(i))
-                            .setTabListener(this));
-        }
-
-        packageName = getPackageName();
-
-        initializeContent();
-
-        new renderAsyncTask().execute("");
-
-
     }
 
     @Override
@@ -144,7 +142,13 @@ public class Main extends Activity implements ActionBar.TabListener {
     private static class renderAsyncTask extends AsyncTask<String, String, String> {
         protected String doInBackground(String... strings) {
 
-            while (!Settings.isUrnikParsed(context)){}
+            while (!Settings.isUrnikParsed(context)){
+                try {
+                    Thread.sleep(30);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
 
             return null;
         }

@@ -44,16 +44,87 @@
         android:layout_below="@+id/logoView"
         android:layout_marginTop="32dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/firstRelativeView"
+            android:gravity="center"
+            android:animateLayoutChanges="true">
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/firstProgressBar"
-            android:layout_gravity="center"/>
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/firstProgressBar"
+                android:layout_gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:animateLayoutChanges="true"
+                android:layout_marginTop="64dp"
+                android:id="@+id/firstLinearLayout"
+                android:visibility="gone">
+
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dijak"
+                    android:id="@+id/firstDijakiButton"
+                    android:layout_weight="0.95"
+                    android:background="@color/green700"
+                    android:textColor="@color/white"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:layout_weight="0.1"></View>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profesor"
+                    android:id="@+id/firstProfesorjiButton"
+                    android:layout_weight="0.95"
+                    android:background="@color/green700"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/firstChoose"
+                android:id="@+id/firstChoose"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/firstListView"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/firstChooseItem"
+                android:textColor="@color/white"
+                android:layout_above="@+id/firstListView"
+                android:layout_marginBottom="16dp"/>
+
+        </RelativeLayout>
+
 
 
     </ScrollView>
+
+
 
     <TextView
         android:layout_width="wrap_content"

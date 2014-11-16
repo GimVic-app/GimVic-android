@@ -1,6 +1,7 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -91,23 +92,12 @@ public class Data {
             String[] children = appDir.list();
             for (String s : children) {
                 if (!s.equals("lib")) {
-                    deleteDir(new File(appDir, s));
+                    Files.deleteDir(new File(appDir, s));
                 }
             }
         }
-    }
 
-    private static boolean deleteDir(File dir) {
-        if (dir != null && dir.isDirectory()) {
-            String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
-                if (!success) {
-                    return false;
-                }
-            }
-        }
-        return dir.delete();
+        Settings.clearSharedPrefs(context);
     }
 
 }

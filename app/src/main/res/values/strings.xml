@@ -21,5 +21,8 @@
     <string name="pocinice_explanation">Aplikacije GimVic žal ni mogoče uporablatji med poletnimi počitnicami.</string>
     <string name="gimvic">GimVic</string>
     <string name="donloading">Prenašanje podatkov</string>
+    <string name="dijak">DIJAK</string>
+    <string name="profesor">PROFESOR</string>
+    <string name="firstChoose">Dijak ali profesor?</string>
 
 </resources>

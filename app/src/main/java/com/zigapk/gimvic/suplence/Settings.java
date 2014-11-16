@@ -10,10 +10,17 @@ import android.text.Editable;
  */
 public class Settings {
 
-
-    //TODO: make it read real data
     public static String getRazred(Context context){
-        return "2B";
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString("razred", "1A");
+    }
+
+    public static void setRazred(String razred, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("razred", razred);
+        editor.commit();
     }
 
     //TODO: make it return real data
@@ -102,6 +109,13 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putBoolean("alreadyOpened", value);
+        editor.commit();
+    }
+
+    public static void clearSharedPrefs(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
         editor.commit();
     }
 }
