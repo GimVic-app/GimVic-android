@@ -10,10 +10,9 @@
     <string name="friday">Petek</string>
     <string name="saturday">Sobota</string>
     <string name="sunday">Nedelja</string>
-    <string name="predmet_default">SLO</string>
-    <string name="profesor_default">Ocvirk Zelič</string>
-    <string name="ucilnica_default">37</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="predmet_default"></string>
+    <string name="profesor_default"></string>
+    <string name="ucilnica_default"></string>
     <string name="title_activity_first">FirstActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_summer">SummerActivity</string>
@@ -24,5 +23,13 @@
     <string name="dijak">DIJAK</string>
     <string name="profesor">PROFESOR</string>
     <string name="firstChoose">Dijak ali profesor?</string>
+    <string name="offline">Ni internetne povezave</string>
+    <string name="offline_explanation">Vključite prenos podatkov ali omrežja wifi.</string>
+    <string name="ok">Ok</string>
+    <string name="setIzbirni">Izberite izbirne predmete</string>
+    <string name="inputPassword">Vpišite geslo:</string>
+    <string name="password">GimVicProfesorji</string>
+    <string name="passwordHash">c00c09606b70d76cd018a432116c3c91ef683d9756eaae7f93574c5789cdcacb</string>
+    <string name="wrongPass">Napačno geslo</string>
 
 </resources>

@@ -7,11 +7,14 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +42,7 @@ public class Main extends Activity implements ActionBar.TabListener {
 
     //textviews [dan][ura][predmet, profesor, ucilnica]
     public static TextView[][][] textViews = new TextView[5][9][3];
+    public static LinearLayout[][] classItems = new LinearLayout[5][9];
     public static String packageName;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -60,6 +64,11 @@ public class Main extends Activity implements ActionBar.TabListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar bar = getActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#43A047")));
+        bar.setIcon(R.drawable.ic_logo_white);
+        //ugly :(
+        bar.setTitle(Html.fromHtml("<font color='#ffffff'>" + getString(R.string.gimvic) + "</font>"));
         setContentView(R.layout.activity_main);
 
         // Set up the action bar.
@@ -150,6 +159,9 @@ public class Main extends Activity implements ActionBar.TabListener {
                 }
             }
 
+            //to prevent null
+            while (Main.classItems[4][8] == null){}
+
             return null;
         }
 
@@ -219,6 +231,8 @@ public class Main extends Activity implements ActionBar.TabListener {
                     textViews[position - 1][i - 1][0] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "predmet" + i, "id", packageName));
                     textViews[position - 1][i - 1][1] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "profesor" + i, "id", packageName));
                     textViews[position - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "ucilnica" + i, "id", packageName));
+
+                    classItems[position - 1][i - 1] = (LinearLayout) rootView.findViewById(getResources().getIdentifier("dan" + position + "ura" + i, "id", packageName));
                 }
             }
 

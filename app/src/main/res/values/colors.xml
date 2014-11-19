@@ -5,13 +5,14 @@
     <color name="green">#4CAF50</color>
     <color name="green_light">#81C784</color>
     <color name="green700">#388E3C</color>
+    <color name="green800">#2E7D32</color>
 
 
     <!-- colors for swipe to refresh -->
-    <color name="greenOne">#ff8dc600</color>
-    <color name="greenTwo">#ff83ba00</color>
-    <color name="greenThree">#ffa0d100</color>
-    <color name="greenFour">#ff87cb04</color>
+    <color name="greenOne">#4CAF50</color>
+    <color name="greenTwo">#81C784</color>
+    <color name="greenThree">#43A047</color>
+    <color name="greenFour">#A5D6A7</color>
     <color name="white">#ffffff</color>
     <color name="transparent">#00ffffff</color>
 

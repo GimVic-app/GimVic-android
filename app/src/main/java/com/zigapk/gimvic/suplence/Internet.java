@@ -16,58 +16,62 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Created by ziga on 10/18/14.
  */
 public class Internet {
 
-    public static String getTextFromUrl(String url) {
-        InputStream inputStream = null;
-        String result = "";
-
+    public static String getTextFromUrl(String url){
         try {
+            URLConnection feedUrl = new URL(url).openConnection();
 
-            // create HttpClient
-            HttpClient httpclient = new DefaultHttpClient();
+            try {
+                InputStream in = feedUrl.getInputStream();
+                String result = convertStreamToString(in);
 
+                return result;
+            }catch(Exception e){
+                return "";
+            }
 
-            // make GET request to the given URL
-            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-
-
-            // receive response as inputStream
-            inputStream = httpResponse.getEntity().getContent();
-
-
-            // convert inputstream to string
-            if (inputStream != null)
-                result = convertInputStreamToString(inputStream);
-            else
-                result = "null";
-
-        } catch (Exception e) {
-            Log.d("InputStream", e.getLocalizedMessage());
+        } catch (MalformedURLException e) {
+            Log.v("ERROR","MALFORMED URL EXCEPTION");
+            return "";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
         }
 
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
-
-        inputStream.close();
-        return result;
-
     }
 
 
-    public static boolean isOnline(Context context)
-    {
+    private static String convertStreamToString(InputStream is) throws UnsupportedEncodingException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
+
+
+    public static boolean isOnline(Context context) {
         try
         {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

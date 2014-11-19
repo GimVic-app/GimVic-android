@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/bg_card_green">
+                android:background="@drawable/bg_card">
 
                 <TextView
                     android:layout_width="wrap_content"

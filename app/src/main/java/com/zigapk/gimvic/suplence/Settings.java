@@ -22,10 +22,17 @@ public class Settings {
         editor.putString("razred", razred);
         editor.commit();
     }
-
-    //TODO: make it return real data
     public static String getProfesor(Context context){
-        return "Rudolf";
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString("ucitelj", "Rudolf");
+    }
+
+    public static void setUcitelj(String ucitelj, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("ucitelj", ucitelj);
+        editor.commit();
     }
 
     //TODO: make it work
@@ -56,13 +63,7 @@ public class Settings {
 
     public static int getUserMode(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String mode = prefs.getString("userMode", "1");
-
-        int parsed = Integer.parseInt(mode);
-
-        if(parsed == UserMode.MODE_UCITELJ){
-            return UserMode.MODE_UCITELJ;
-        }else return UserMode.MODE_UCENEC;
+        return prefs.getInt("userMode", 1);
     }
 
     public static void setUserMode(int mode, Context context){

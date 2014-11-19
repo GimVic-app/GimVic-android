@@ -1,6 +1,8 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -36,22 +38,26 @@ public class Urnik {
             for(int ura = 1; ura <= 9; ura++){
                 UrnikElement current = urnik.days[dan - 1].classes[ura - 1];
 
+                if(current.empty){
+                    LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
+                    currentClass.setVisibility(View.GONE);
+                }else {
+                    LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
+                    currentClass.setVisibility(View.VISIBLE);
+                    TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
+                    TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
+                    TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
 
 
-                TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
-                TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
-                TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
+                    predmetTv.setText(current.predmet);
+                    if(Settings.getUserMode(context) == UserMode.MODE_UCITELJ){
+                        profesorTv.setText(current.razred);
+                    }else{
+                        profesorTv.setText(current.profesor);
+                    }
+                    ucilnicaTv.setText(current.ucilnica);
 
-
-                predmetTv.setText(current.predmet);
-                if(Settings.getUserMode(context) == UserMode.MODE_UCITELJ){
-                    profesorTv.setText(current.razred);
-                }else{
-                    profesorTv.setText(current.profesor);
                 }
-                ucilnicaTv.setText(current.ucilnica);
-
-
             }
         }
 
@@ -179,7 +185,7 @@ public class Urnik {
         result.ucitelji = new String[number];
 
         for(int i = 0; i < number; i++){
-            String before = "razredi[" + i + "] = \"";
+            String before = "ucitelji[" + i + "] = \"";
             String after = "\";";
 
             int zacetek = uciteljiData.indexOf(before) + before.length();
@@ -217,6 +223,7 @@ public class Urnik {
                     personal.days[dan - 1].classes[ura - 1].profesor = profesor;
                     personal.days[dan - 1].classes[ura - 1].predmet = predmet;
                     personal.days[dan - 1].classes[ura - 1].ucilnica = ucilnica;
+                    personal.days[dan - 1].classes[ura - 1].empty = false;
 
                 }
             }
@@ -238,6 +245,7 @@ public class Urnik {
                     personal.days[dan - 1].classes[ura - 1].profesor = profesor;
                     personal.days[dan - 1].classes[ura - 1].predmet = predmet;
                     personal.days[dan - 1].classes[ura - 1].ucilnica = ucilnica;
+                    personal.days[dan - 1].classes[ura - 1].empty = false;
 
                 }
             }
@@ -285,6 +293,7 @@ class UrnikElement{
     int ura = 1;
     int dan = 1; // 1 = monday, 5 = friday
     boolean suplenca = false;
+    boolean empty = true;
 
 }
 
