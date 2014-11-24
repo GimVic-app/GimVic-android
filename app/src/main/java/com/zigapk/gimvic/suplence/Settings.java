@@ -84,6 +84,11 @@ public class Settings {
         return  prefs.getBoolean("isDataDownloaded", false);
     }
 
+    public static boolean areSuplenceDownloaded(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return  prefs.getBoolean("areSuplenceDownloaded", false);
+    }
+
     public static boolean isFirstOpened(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return  prefs.getBoolean("alreadyOpened", true);
@@ -102,6 +107,14 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putBoolean("isDataDownloaded", value);
+        editor.commit();
+    }
+
+    public static void setSuplenceDownloaded(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("areSuplenceDownloaded", value);
         editor.commit();
     }
 

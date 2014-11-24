@@ -78,9 +78,9 @@ public class Data {
     public static void downloadData(Context context){
 
         //TODO: make it do so only once per day
-        Urnik.downloadUrnik(context);
-        Urnik.parseUrnik(context);
-        Suplence.downloadSuplence();
+        /*Urnik.downloadUrnik(context);
+        Urnik.parseUrnik(context);*/
+        Suplence.downloadSuplence(context);
 
 
     }

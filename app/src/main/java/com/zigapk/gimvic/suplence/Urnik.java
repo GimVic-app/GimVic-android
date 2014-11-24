@@ -34,6 +34,13 @@ public class Urnik {
         Gson gson = new Gson();
         PersonalUrnik urnik = gson.fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
 
+        renderPersonalUrnik(urnik, context);
+
+    }
+
+    public static void renderPersonalUrnik(PersonalUrnik urnik, Context context){
+
+
         for(int dan = 1; dan <= 5; dan++){
             for(int ura = 1; ura <= 9; ura++){
                 UrnikElement current = urnik.days[dan - 1].classes[ura - 1];
@@ -44,6 +51,12 @@ public class Urnik {
                 }else {
                     LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
                     currentClass.setVisibility(View.VISIBLE);
+                    if(current.suplenca) {
+                        currentClass.setbackgroungDrawable(R.drawable.bg_card_green);
+                    } else {
+                        currentClass.setbackgroungDrawable(R.drawable.bg_card);
+                    }
+
                     TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
                     TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
                     TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
