@@ -59,7 +59,7 @@ public class FirstActivity extends Activity {
             {
                 @Override
                 public void run() {
-                    Data.downloadData(context);
+                    Data.downloadData(context, true);
                 }
             };
 

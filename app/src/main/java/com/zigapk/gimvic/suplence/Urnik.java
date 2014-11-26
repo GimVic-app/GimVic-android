@@ -52,9 +52,9 @@ public class Urnik {
                     LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
                     currentClass.setVisibility(View.VISIBLE);
                     if(current.suplenca) {
-                        currentClass.setbackgroungDrawable(R.drawable.bg_card_green);
+                        currentClass.setBackground(context.getResources().getDrawable(R.drawable.bg_card_green));
                     } else {
-                        currentClass.setbackgroungDrawable(R.drawable.bg_card);
+                        currentClass.setBackground(context.getResources().getDrawable(R.drawable.bg_card));
                     }
 
                     TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
@@ -78,8 +78,6 @@ public class Urnik {
 
     public static void parseUrnik(Context context){
         String rawData = Files.getFileValue("Urnik.js", context);
-        String uciteljiData = rawData.substring(rawData.indexOf("ucitelji = new Array("), rawData.indexOf("ucilnice = new Array("));
-
 
         Urnik urnik = new Urnik();
         urnik.urnik = pasreUrnikFromString(rawData);

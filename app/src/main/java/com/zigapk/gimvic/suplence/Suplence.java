@@ -20,7 +20,6 @@ import java.util.Date;
 
 
 public class Suplence {
-    private static Date tempDate;
     private static int suplenceCounter = 0;
     String datum;
     Nadomescanje[] nadomescanja;
@@ -28,23 +27,77 @@ public class Suplence {
     MenjavaUre[] menjava_ur;
     MenjavaUcilnice[] menjava_ucilnic;
 
+
+    //for tempDates
+    public static final Date tempDate0 = new Date();
+    public static final Date tempDate1 = plus1Day(tempDate0);
+    public static final Date tempDate2 = plus1Day(tempDate1);
+    public static final Date tempDate3 = plus1Day(tempDate2);
+    public static final Date tempDate4 = plus1Day(tempDate3);
+    public static final Date tempDate5 = plus1Day(tempDate4);
+    public static final Date tempDate6 = plus1Day(tempDate5);
+
+
     public static void downloadSuplence(Context context) {
         Date date = new Date();
         final Context ctx = context;
         Settings.setSuplenceDownloaded(false, context);
 
-        for (int i = 0; i < 7; i++) {
-            tempDate = date;
+        new Thread() {
+            @Override
+            public void run() {
+                downloadForDate(tempDate0, ctx);
+            }
+        }.start();
+        date = plus1Day(date);
 
-            //start downloading
-            new Thread() {
-                @Override
-                public void run() {
-                    downloadForDate(tempDate, ctx);
-                }
-            }.start();
-            date = plus1Day(date);
-        }
+        new Thread() {
+            @Override
+            public void run() {
+                downloadForDate(tempDate1, ctx);
+            }
+        }.start();
+        date = plus1Day(date);
+
+        new Thread() {
+            @Override
+            public void run() {
+                downloadForDate(tempDate2, ctx);
+            }
+        }.start();
+        date = plus1Day(date);
+
+        new Thread() {
+            @Override
+            public void run() {
+                downloadForDate(tempDate3, ctx);
+            }
+        }.start();
+        date = plus1Day(date);
+
+        new Thread() {
+            @Override
+            public void run() {
+                downloadForDate(tempDate4, ctx);
+            }
+        }.start();
+        date = plus1Day(date);
+
+        new Thread() {
+            @Override
+            public void run() {
+                downloadForDate(tempDate5, ctx);
+            }
+        }.start();
+        date = plus1Day(date);
+
+        new Thread() {
+            @Override
+            public void run() {
+                downloadForDate(tempDate6, ctx);
+            }
+        }.start();
+
 
         //start clean old files
         new Thread() {
@@ -72,7 +125,7 @@ public class Suplence {
         String suplence = Internet.getTextFromUrl(url);
         Files.writeToFile(getFileNameForDate(date), suplence, context);
 
-        if (suplenceCounter == 7) {
+        if (suplenceCounter == 6) {
             Settings.setSuplenceDownloaded(true, context);
         } else suplenceCounter++;
     }
@@ -106,13 +159,17 @@ public class Suplence {
         return addSuplence(urnik, context);
     }
 
-    private static PersonalUrnik addSuplence(PersonalUrnik urnik, Context context){
+    private static PersonalUrnik addSuplence(PersonalUrnik urnik, Context context) {
         Calendar calendar = Calendar.getInstance();
         Date date = new Date();
         int day = calendar.DAY_OF_WEEK - 1;
         int userMode = Settings.getUserMode(context);
 
-        for(int i = day; i <= day+5; day++){
+        if (day > 5) day = 1;
+
+        for (int i = day; i <= day + 5; day++) {
+
+            if (day > 5) day = 1;
 
             Suplence suplence = getSuplenceForDate(date, context);
             urnik = addNadomescanja(urnik, suplence, day, userMode, context);
@@ -121,22 +178,22 @@ public class Suplence {
             urnik = addMenjaveUcilnic(urnik, suplence, day, userMode, context);
 
             date = plus1Day(date);
-            if(day>5)day=1;
+
         }
 
         return urnik;
     }
 
-    private static PersonalUrnik addNadomescanja(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context){
-
+    private static PersonalUrnik addNadomescanja(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
+        return urnik;
     }
 
-    private static PersonalUrnik addMenjavePredmeta(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context){
-        if(userMode == UserMode.MODE_UCENEC){
+    private static PersonalUrnik addMenjavePredmeta(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
+        if (userMode == UserMode.MODE_UCENEC) {
             String razred = Settings.getRazred(context);
 
-            for(MenjavaPredmeta menjava : suplence.menjava_predmeta){
-                if(areSame(razred, menjava.class_name)){
+            for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
+                if (areSame(razred, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -146,13 +203,13 @@ public class Suplence {
             }
 
 
-        }else {
+        } else {
             String profesor = Settings.getProfesor(context);
 
             //TODO: WHY THE FUCK THEY HAVE DIFFERENT NAMES
 
-            for(MenjavaPredmeta menjava : suplence.menjava_predmeta){
-                if(areSame(razred, menjava.class_name)){
+            for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
+                if (areSame(profesor, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -165,26 +222,26 @@ public class Suplence {
         return urnik;
     }
 
-    private static PersonalUrnik addMenjaveUr(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context){
-
+    private static PersonalUrnik addMenjaveUr(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
+        return urnik;
     }
 
-    private static PersonalUrnik addMenjaveUcilnic(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context){
-
+    private static PersonalUrnik addMenjaveUcilnic(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
+        return urnik;
     }
 
-    private static Suplence getSuplenceForDate(Date date, Context context){
+    private static Suplence getSuplenceForDate(Date date, Context context) {
         String json = Files.getFileValue(getFileNameForDate(date), context);
         Gson gson = new Gson();
         return gson.fromJson(json, Suplence.class);
     }
 
-    private static boolean areSame(String razred, String suplenceRazred){
-        if(razred.toLowerCase().equals(suplenceRazred.toLowerCase())){
+    private static boolean areSame(String razred, String suplenceRazred) {
+        if (razred.toLowerCase().equals(suplenceRazred.toLowerCase())) {
             return true;
-        }else if(suplenceRazred.contains(razred.substring(0, 1).toLowerCase()) && suplenceRazred.contains(razred.substring(1, 2).toLowerCase())){
+        } else if (suplenceRazred.contains(razred.substring(0, 1).toLowerCase()) && suplenceRazred.contains(razred.substring(1, 2).toLowerCase())) {
             return true;
-        }else return false;
+        } else return false;
     }
 
 

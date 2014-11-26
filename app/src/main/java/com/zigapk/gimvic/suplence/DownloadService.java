@@ -9,7 +9,7 @@ public class DownloadService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if(Internet.isOnline(getApplicationContext())){
-            Suplence.downloadSuplence();
+            Suplence.downloadSuplence(getApplicationContext());
 
             if(Internet.onWifi(getApplicationContext())){
                 Urnik.downloadUrnik(getApplicationContext());

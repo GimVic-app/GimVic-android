@@ -26,7 +26,10 @@ public class Data {
         protected Context doInBackground(Context... context) {
 
             if(Internet.isOnline(context[0])){
-                downloadData(context[0]);
+                downloadData(context[0], false);
+
+                //TODO: should be only parsed when changed
+                Urnik.parseUrnik(context[0]);
             }
 
             return context[0];
@@ -70,16 +73,19 @@ public class Data {
             //Suplence.render(Urnik.getPersonalUrnik(context));
             //TODO: coment
             Urnik.render(context);
-        }else if (mode == Mode.MODE_SUPLENCE) Suplence.render();
+        }else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
         else if (mode == Mode.MODE_URNIK) Urnik.render(context);
 
     }
 
-    public static void downloadData(Context context){
+    public static void downloadData(Context context, boolean first){
 
         //TODO: make it do so only once per day
-        /*Urnik.downloadUrnik(context);
-        Urnik.parseUrnik(context);*/
+        if(first){
+            Urnik.downloadUrnik(context);
+            Urnik.parseUrnik(context);
+        }
+
         Suplence.downloadSuplence(context);
 
 
