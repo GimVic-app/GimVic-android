@@ -206,10 +206,9 @@ public class Suplence {
         } else {
             String profesor = Settings.getProfesor(context);
 
-            //TODO: WHY THE FUCK THEY HAVE DIFFERENT NAMES
 
             for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
-                if (areSame(profesor, menjava.class_name)) {
+                if (areProfesorsSame(profesor, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -242,6 +241,19 @@ public class Suplence {
         } else if (suplenceRazred.contains(razred.substring(0, 1).toLowerCase()) && suplenceRazred.contains(razred.substring(1, 2).toLowerCase())) {
             return true;
         } else return false;
+    }
+
+    public static boolean areProfesorsSame(String profesor, String suplenceProfesor){
+        profesor = profesor.toLowerCase();
+        suplenceProfesor = suplenceProfesor.toLowerCase();
+
+        profesor = profesor.replaceAll(" ", "");
+        suplenceProfesor = suplenceProfesor.replaceAll(" ", "");
+
+        if(suplenceProfesor.contains(profesor)) return true;
+
+        return false;
+
     }
 
 
