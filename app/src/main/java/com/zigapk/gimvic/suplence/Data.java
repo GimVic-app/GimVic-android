@@ -70,7 +70,7 @@ public class Data {
 
         if(mode == Mode.MODE_HYBRID){
             //TODO: uncomment
-            //Suplence.render(Urnik.getPersonalUrnik(context));
+            Suplence.render(context);
             //TODO: coment
             Urnik.render(context);
         }else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
