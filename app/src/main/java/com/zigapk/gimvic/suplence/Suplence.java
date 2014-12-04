@@ -176,6 +176,7 @@ public class Suplence {
 		String[] files = dir.list();
 		for(String name : files){
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(name.contains("suplence_")){
                 Date today = new Date();
                 Date date = getDateflFromFileName(name);
@@ -188,6 +189,8 @@ public class Suplence {
             }
 
 =======
+=======
+>>>>>>> FETCH_HEAD
 			Date today = new Date();
 			Date date = getDateflFromFileName(name);
 			
@@ -196,6 +199,9 @@ public class Suplence {
 					Files.deleteDir(new File(dir, name));
 				}				
 			}
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
 			
 		}
@@ -204,6 +210,7 @@ public class Suplence {
     public static void render(Context context) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         String json = Files.getFileValue("hybrid.json", context);
         if(json != null){
             Gson gson = new Gson();
@@ -211,6 +218,10 @@ public class Suplence {
             Urnik.renderPersonalUrnik(hybrid, context);
         }
 
+=======
+        //TODO: finish - not gonna work like that, should be prerendered
+		Urnik.renderPersonalUrnik(getHybridUrnik(Urnik.getPersonalUrnik(context), context), context);
+>>>>>>> FETCH_HEAD
     }
 
     public static void parse(final Context context){
@@ -273,6 +284,7 @@ public class Suplence {
             String razred = Settings.getRazred(context);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             try {
                 for (Nadomescanje nadomescanje : suplence.nadomescanja) {
                     for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
@@ -293,6 +305,8 @@ public class Suplence {
 
 
 =======
+=======
+>>>>>>> FETCH_HEAD
             for (Nadomescanje nadomescanje : suplence.nadomescanja) {
 				for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
 					if (areSame(razred, nadomescanjeUra.class_name)) {
@@ -307,6 +321,9 @@ public class Suplence {
             }
 
 
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
         } else {
             String profesor = Settings.getProfesor(context);
@@ -401,7 +418,11 @@ public class Suplence {
         for (MenjavaUcilnice menjava : suplence.menjava_ucilnic){
 			int ura = Integer.parseInt(menjava.ura.substring(0, 1));
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if(areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.class_name)){
+=======
+			if(areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.ucilnica_from)){
+>>>>>>> FETCH_HEAD
 =======
 			if(areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.ucilnica_from)){
 >>>>>>> FETCH_HEAD
