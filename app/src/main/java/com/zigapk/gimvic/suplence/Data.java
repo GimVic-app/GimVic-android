@@ -83,17 +83,10 @@ public class Data {
         int mode = Settings.getMode(context);
 
         if(mode == Mode.MODE_HYBRID){
-<<<<<<< HEAD
             Suplence.render(context);
             if(first){
                 Urnik.render(context);
             }
-=======
-            //TODO: uncomment
-            Suplence.render(context);
-            //TODO: coment
-            Urnik.render(context);
->>>>>>> FETCH_HEAD
         }else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
         else if (mode == Mode.MODE_URNIK) Urnik.render(context);
 

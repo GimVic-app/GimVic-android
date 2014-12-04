@@ -21,7 +21,7 @@ import java.io.File;
  * new Suplence suplence = gson.fromJson(jsonString, Suplence.class);
  */
 
- //TODO: render also opombe
+//TODO: render also opombe
 
 public class Suplence {
     private static int suplenceCounter = 0;
@@ -141,27 +141,27 @@ public class Suplence {
     private static String getFileNameForDate(Date date) {
         return "suplence_" + getStringForDate(date) + ".json";
     }
-	
-	private static String getDateFromStringFileName(String name){
-		name = name.replaceAll("suplence_", "");
-		name = name.replaceAll(".json", "");
-		return name;
-	}
-	
-	private static Date getDateflFromFileName(String name){
-		String dateString = getDateFromStringFileName(name);
-		int minus = dateString.indexOf("-");
-		int minus1 = dateString.lastIndexOf("-");
-		int day = Integer.parseInt(dateString.substring(0, minus));
-		int month = Integer.parseInt(dateString.substring(minus + 1, minus1));
-		int year = Integer.parseInt(dateString.substring(minus1 + 1, dateString.length()));
-		
-		Date date = new Date();
-		date.setDate(day);
-		date.setMonth(month);
-		date.setYear(year);
-		return date;
-	}
+
+    private static String getDateFromStringFileName(String name){
+        name = name.replaceAll("suplence_", "");
+        name = name.replaceAll(".json", "");
+        return name;
+    }
+
+    private static Date getDateflFromFileName(String name){
+        String dateString = getDateFromStringFileName(name);
+        int minus = dateString.indexOf("-");
+        int minus1 = dateString.lastIndexOf("-");
+        int day = Integer.parseInt(dateString.substring(0, minus));
+        int month = Integer.parseInt(dateString.substring(minus + 1, minus1));
+        int year = Integer.parseInt(dateString.substring(minus1 + 1, dateString.length()));
+
+        Date date = new Date();
+        date.setDate(day);
+        date.setMonth(month);
+        date.setYear(year);
+        return date;
+    }
 
     private static Date plus1Day(Date date) {
         Calendar c = Calendar.getInstance();
@@ -173,9 +173,8 @@ public class Suplence {
     public static void cleanOldFiles(Context context) {
 
         File dir = context.getFilesDir();
-		String[] files = dir.list();
-		for(String name : files){
-<<<<<<< HEAD
+        String[] files = dir.list();
+        for(String name : files){
             if(name.contains("suplence_")){
                 Date today = new Date();
                 Date date = getDateflFromFileName(name);
@@ -187,23 +186,10 @@ public class Suplence {
                 }
             }
 
-=======
-			Date today = new Date();
-			Date date = getDateflFromFileName(name);
-			
-			if(dir.exists()){
-				if(date.before(today)){
-					Files.deleteDir(new File(dir, name));
-				}				
-			}
->>>>>>> FETCH_HEAD
-			
-		}
+        }
     }
 
     public static void render(Context context) {
-
-<<<<<<< HEAD
         String json = Files.getFileValue("hybrid.json", context);
         if(json != null){
             Gson gson = new Gson();
@@ -227,11 +213,6 @@ public class Suplence {
                 Data.renderData(context, false);
             }
         });
-
-=======
-        //TODO: finish - not gonna work like that, should be prerendered
-		Urnik.renderPersonalUrnik(getHybridUrnik(Urnik.getPersonalUrnik(context), context), context);
->>>>>>> FETCH_HEAD
     }
 
     private static PersonalUrnik parseHybridUrnik(PersonalUrnik urnik, Context context) {
@@ -243,8 +224,8 @@ public class Suplence {
         Date date = new Date();
         int day = calendar.DAY_OF_WEEK - 1;
         int userMode = Settings.getUserMode(context);
-		
-		if(day == 0) day = 7;
+
+        if(day == 0) day = 7;
         if (day > 5) day = 1;
 
         for (int i = day; i <= day + 5; i++) {
@@ -269,62 +250,39 @@ public class Suplence {
     }
 
     private static PersonalUrnik addNadomescanja(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
-		if (userMode == UserMode.MODE_UCENEC) {
+        if (userMode == UserMode.MODE_UCENEC) {
             String razred = Settings.getRazred(context);
 
-<<<<<<< HEAD
-            try {
-                for (Nadomescanje nadomescanje : suplence.nadomescanja) {
-                    for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
-                        if (areSame(razred, nadomescanjeUra.class_name)) {
-                            int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
-                            urnik.days[day - 1].classes[ura - 1].suplenca = true;
-                            urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
-                            urnik.days[day - 1].classes[ura - 1].profesor = nadomescanjeUra.nadomesca_full_name;
-                            urnik.days[day - 1].classes[ura - 1].ucilnica = nadomescanjeUra.ucilnica;
-                        }
-                    }
 
-                }
-            }catch (Exception e){
-                String neki;
-            }
-
-
-
-=======
             for (Nadomescanje nadomescanje : suplence.nadomescanja) {
-				for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
-					if (areSame(razred, nadomescanjeUra.class_name)) {
-						int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
-						urnik.days[day - 1].classes[ura - 1].suplenca = true;
-						urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
-						urnik.days[day - 1].classes[ura - 1].profesor = nadomescanjeUra.nadomesca_full_name;
-						urnik.days[day - 1].classes[ura - 1].ucilnica = nadomescanjeUra.ucilnica;
-					}
-				}
-                
+                for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
+                    if (areSame(razred, nadomescanjeUra.class_name)) {
+                        int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
+                        urnik.days[day - 1].classes[ura - 1].suplenca = true;
+                        urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
+                        urnik.days[day - 1].classes[ura - 1].profesor = nadomescanjeUra.nadomesca_full_name;
+                        urnik.days[day - 1].classes[ura - 1].ucilnica = nadomescanjeUra.ucilnica;
+                    }
+                }
+
             }
-
-
->>>>>>> FETCH_HEAD
         } else {
             String profesor = Settings.getProfesor(context);
 
-			for (Nadomescanje nadomescanje : suplence.nadomescanja) {
-				for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
-					if (areProfesorsSame(profesor, nadomescanje.odsoten_fullname) || areProfesorsSame(profesor, nadomescanjeUra.nadomesca_full_name)) {
-						int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
-						urnik.days[day - 1].classes[ura - 1].suplenca = true;
-						urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
-						urnik.days[day - 1].classes[ura - 1].profesor = nadomescanjeUra.nadomesca_full_name;
-						urnik.days[day - 1].classes[ura - 1].ucilnica = nadomescanjeUra.ucilnica;
-					}
-				}
+            for (Nadomescanje nadomescanje : suplence.nadomescanja) {
+                for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
+                    if (areProfesorsSame(profesor, nadomescanje.odsoten_fullname) || areProfesorsSame(profesor, nadomescanjeUra.nadomesca_full_name)) {
+                        int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
+                        urnik.days[day - 1].classes[ura - 1].suplenca = true;
+                        urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
+                        urnik.days[day - 1].classes[ura - 1].profesor = nadomescanjeUra.nadomesca_full_name;
+                        urnik.days[day - 1].classes[ura - 1].ucilnica = nadomescanjeUra.ucilnica;
+                    }
+                }
 
             }
         }
-		
+
         return urnik;
     }
 
@@ -334,7 +292,7 @@ public class Suplence {
 
 
             for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
-				
+
                 if (areSame(razred, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
@@ -364,8 +322,8 @@ public class Suplence {
     }
 
     private static PersonalUrnik addMenjaveUr(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
-		
-		if (userMode == UserMode.MODE_UCENEC) {
+
+        if (userMode == UserMode.MODE_UCENEC) {
             String razred = Settings.getRazred(context);
 
             for (MenjavaUre menjava : suplence.menjava_ur) {
@@ -394,23 +352,19 @@ public class Suplence {
                 }
             }
         }
-		return urnik;        
+        return urnik;
     }
 
     private static PersonalUrnik addMenjaveUcilnic(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
         for (MenjavaUcilnice menjava : suplence.menjava_ucilnic){
-			int ura = Integer.parseInt(menjava.ura.substring(0, 1));
-<<<<<<< HEAD
-			if(areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.class_name)){
-=======
-			if(areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.ucilnica_from)){
->>>>>>> FETCH_HEAD
-				urnik.days[day - 1].classes[ura - 1].suplenca = true;
-				urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica_to;
-			}
-		}
-		return urnik;
-    }
+            int ura = Integer.parseInt(menjava.ura.substring(0, 1));
+            if(areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.class_name)){
+                    urnik.days[day - 1].classes[ura - 1].suplenca = true;
+                    urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica_to;
+                }
+            }
+            return urnik;
+        }
 
     private static Suplence getSuplenceForDate(Date date, Context context) {
         String json = Files.getFileValue(getFileNameForDate(date), context);
@@ -494,4 +448,3 @@ class MenjavaUcilnice {
     String ucilnica_to;
     String opomba;
 }
-
