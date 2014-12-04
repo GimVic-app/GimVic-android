@@ -27,16 +27,30 @@ public class Data {
 
             if(Internet.isOnline(context[0])){
                 downloadData(context[0], false);
-
-                //TODO: should be only parsed when changed
-                Urnik.parseUrnik(context[0]);
             }
+
+            final Context tempContext = context[0];
+
+            //TODO: should be only parsed when changed
+            new Thread() {
+                @Override
+                public void run() {
+                    Urnik.parseUrnik(tempContext);
+                }
+            }.start();
+
+            new Thread() {
+                @Override
+                public void run() {
+                    Suplence.parse(tempContext);
+                }
+            }.start();
 
             return context[0];
         }
 
         protected void onPostExecute(Context context) {
-            renderData(context);
+            renderData(context, true);
             setRefreshingGuiState(false);
         }
     }
@@ -64,15 +78,22 @@ public class Data {
 
     }
 
-    public static void renderData(Context context){
+    public static void renderData(Context context, boolean first){
 
         int mode = Settings.getMode(context);
 
         if(mode == Mode.MODE_HYBRID){
+<<<<<<< HEAD
+            Suplence.render(context);
+            if(first){
+                Urnik.render(context);
+            }
+=======
             //TODO: uncomment
-            //Suplence.render(Urnik.getPersonalUrnik(context));
+            Suplence.render(context);
             //TODO: coment
             Urnik.render(context);
+>>>>>>> FETCH_HEAD
         }else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
         else if (mode == Mode.MODE_URNIK) Urnik.render(context);
 

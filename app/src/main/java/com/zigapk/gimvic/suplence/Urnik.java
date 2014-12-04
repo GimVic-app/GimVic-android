@@ -1,6 +1,8 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -86,6 +88,15 @@ public class Urnik {
         Files.writeToFile("Urnik.json", gson.toJson(urnik), context);
 
         parsePersonalUrnik(context);
+
+        final Context tempContext = context;
+        //run on ui thread
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            public void run() {
+                Data.renderData(tempContext, false);
+            }
+        });
 
     }
 

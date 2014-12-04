@@ -166,7 +166,7 @@ public class Main extends Activity implements ActionBar.TabListener {
         }
 
         protected void onPostExecute(String string) {
-            Data.renderData(context);
+            //Data.renderData(context, true);
             Data.refresh(context, true);
         }
     }
