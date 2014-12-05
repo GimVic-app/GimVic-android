@@ -15,6 +15,7 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -88,15 +89,15 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             // Set up the ViewPager with the sections adapter.
             mViewPager = (ViewPager) findViewById(R.id.pager);
-            mViewPager.setAdapter(mSectionsPagerAdapter);
             mViewPager.setOffscreenPageLimit(7);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
             //go to today's tab
-            Calendar cal = Calendar.getInstance();
+            /*Calendar cal = Calendar.getInstance();
             int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 2;
 
-            mViewPager.setCurrentItem(dayOfWeek, false);
+            mViewPager.setCurrentItem(6, false);*/
 
             // For each of the sections in the app, add a tab to the action bar.
             for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
@@ -205,34 +206,40 @@ public class Main extends Activity implements ActionBar.TabListener {
                                  Bundle savedInstanceState) {
 
             View rootView = inflater.inflate(R.layout.fragment_day1, container, false);
-
-
-
             int position = getArguments().getInt(ARG_SECTION_NUMBER);
 
-            if (position == 2) {
+            Calendar calendar = Calendar.getInstance();
+            int day = calendar.DAY_OF_WEEK - 1;
+            day = day - 1;
+            day = day + position - 1;
+            day = day % 7;
+            if(day == 0) day = 7;
+
+
+            if (day == 2) {
                 rootView = inflater.inflate(R.layout.fragment_day2, container, false);
-            } else if (position == 3) {
+            } else if (day == 3) {
                 rootView = inflater.inflate(R.layout.fragment_day3, container, false);
-            } else if (position == 4) {
+            } else if (day == 4) {
                 rootView = inflater.inflate(R.layout.fragment_day4, container, false);
-            } else if (position == 5) {
+            } else if (day == 5) {
                 rootView = inflater.inflate(R.layout.fragment_day5, container, false);
-            } else if (position == 6) {
+            } else if (day == 6) {
                 rootView = inflater.inflate(R.layout.fragment_day6, container, false);
-            } else if (position == 7) {
+            } else if (day == 7) {
                 rootView = inflater.inflate(R.layout.fragment_day7, container, false);
             }
 
-            setOnRefreshListeners(position, rootView);
+            if(day <= 5){
 
-            if(position <= 5){
+                setOnRefreshListeners(day, rootView);
+
                 for(int i = 1; i <= 9; i++){
-                    textViews[position - 1][i - 1][0] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "predmet" + i, "id", packageName));
-                    textViews[position - 1][i - 1][1] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "profesor" + i, "id", packageName));
-                    textViews[position - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + position + "ucilnica" + i, "id", packageName));
+                    textViews[day - 1][i - 1][0] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + day + "predmet" + i, "id", packageName));
+                    textViews[day - 1][i - 1][1] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + day + "profesor" + i, "id", packageName));
+                    textViews[day - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + day + "ucilnica" + i, "id", packageName));
 
-                    classItems[position - 1][i - 1] = (LinearLayout) rootView.findViewById(getResources().getIdentifier("dan" + position + "ura" + i, "id", packageName));
+                    classItems[day - 1][i - 1] = (LinearLayout) rootView.findViewById(getResources().getIdentifier("dan" + day + "ura" + i, "id", packageName));
                 }
             }
 
@@ -271,23 +278,26 @@ public class Main extends Activity implements ActionBar.TabListener {
         public CharSequence getPageTitle(int position) {
 
             Calendar calendar = Calendar.getInstance();
+            int day = calendar.DAY_OF_WEEK - 1;
+            day = day - 1;
+            day = day + position;
+            day = day % 7;
+            if(day == 0) day = 7;
 
-            int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-            switch (position) {
-                case 0:
-                    return getString(R.string.monday).toUpperCase();
+            switch (day) {
                 case 1:
-                    return getString(R.string.tuesday).toUpperCase();
+                    return getString(R.string.monday).toUpperCase();
                 case 2:
-                    return getString(R.string.wednesday).toUpperCase();
+                    return getString(R.string.tuesday).toUpperCase();
                 case 3:
-                    return getString(R.string.thursday).toUpperCase();
+                    return getString(R.string.wednesday).toUpperCase();
                 case 4:
-                    return getString(R.string.friday).toUpperCase();
+                    return getString(R.string.thursday).toUpperCase();
                 case 5:
-                    return getString(R.string.saturday).toUpperCase();
+                    return getString(R.string.friday).toUpperCase();
                 case 6:
+                    return getString(R.string.saturday).toUpperCase();
+                case 7:
                     return getString(R.string.sunday).toUpperCase();
 
             }
@@ -333,10 +343,10 @@ public class Main extends Activity implements ActionBar.TabListener {
 
 
     //sets onRefreshListeners and color schemes for swipe to refresh
-    public static void setOnRefreshListeners(int position, View rootView) {
+    public static void setOnRefreshListeners(int day, View rootView) {
 
 
-        if (position == 1) {
+        if (day == 1) {
             Main.mSwipeRefreshLayout1 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container1);
 
             Main.mSwipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -350,7 +360,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenThree,
                     R.color.greenFour);
 
-        } else if (position == 2) {
+        } else if (day == 2) {
             Main.mSwipeRefreshLayout2 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container2);
 
             Main.mSwipeRefreshLayout2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -363,7 +373,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenTwo,
                     R.color.greenThree,
                     R.color.greenFour);
-        } else if (position == 3) {
+        } else if (day == 3) {
             Main.mSwipeRefreshLayout3 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container3);
 
             Main.mSwipeRefreshLayout3.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -376,7 +386,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenTwo,
                     R.color.greenThree,
                     R.color.greenFour);
-        } else if (position == 4) {
+        } else if (day == 4) {
             Main.mSwipeRefreshLayout4 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container4);
 
             Main.mSwipeRefreshLayout4.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -389,7 +399,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenTwo,
                     R.color.greenThree,
                     R.color.greenFour);
-        } else if (position == 5) {
+        } else if (day == 5) {
             Main.mSwipeRefreshLayout5 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container5);
 
             Main.mSwipeRefreshLayout5.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
