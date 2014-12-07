@@ -135,7 +135,7 @@ public class Suplence {
     }
 
     private static String getStringForDate(Date date) {
-        return date.getDay() + "-" + date.getMonth() + "-" + date.getYear();
+        return date.getDate() + "-" + date.getMonth() + "-" + date.getYear();
     }
 
     private static String getFileNameForDate(Date date) {
@@ -220,30 +220,27 @@ public class Suplence {
     }
 
     private static PersonalUrnik addSuplence(PersonalUrnik urnik, Context context) {
-        Calendar calendar = Calendar.getInstance();
         Date date = new Date();
-        int day = calendar.DAY_OF_WEEK - 1;
         int userMode = Settings.getUserMode(context);
 
-        if(day == 0) day = 7;
-        if (day > 5) day = 1;
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.DAY_OF_WEEK;
 
-        for (int i = day; i <= day + 5; i++) {
 
-            if (day > 5) day = 1;
-
+        for(int i = 0; i < 7; i++){
             Suplence suplence = getSuplenceForDate(date, context);
 
-            if(suplence != null){
+
+            if(day <= 5 && suplence != null){
                 urnik = addNadomescanja(urnik, suplence, day, userMode, context);
                 urnik = addMenjavePredmeta(urnik, suplence, day, userMode, context);
                 urnik = addMenjaveUr(urnik, suplence, day, userMode, context);
                 urnik = addMenjaveUcilnic(urnik, suplence, day, userMode, context);
             }
 
-
             date = plus1Day(date);
-
+            day = day + 1;
+            if(day > 7) day = day % 7;
         }
 
         return urnik;

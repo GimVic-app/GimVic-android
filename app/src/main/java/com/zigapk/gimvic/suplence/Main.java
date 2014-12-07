@@ -209,11 +209,10 @@ public class Main extends Activity implements ActionBar.TabListener {
             int position = getArguments().getInt(ARG_SECTION_NUMBER);
 
             Calendar calendar = Calendar.getInstance();
-            int day = calendar.DAY_OF_WEEK - 1;
-            day = day - 1;
+            int day = calendar.DAY_OF_WEEK;
             day = day + position - 1;
-            day = day % 7;
-            if(day == 0) day = 7;
+
+            if(day > 7) day = day % 7;
 
 
             if (day == 2) {
@@ -278,11 +277,10 @@ public class Main extends Activity implements ActionBar.TabListener {
         public CharSequence getPageTitle(int position) {
 
             Calendar calendar = Calendar.getInstance();
-            int day = calendar.DAY_OF_WEEK - 1;
-            day = day - 1;
+            int day = calendar.DAY_OF_WEEK;
             day = day + position;
-            day = day % 7;
-            if(day == 0) day = 7;
+
+            if(day > 7) day = day % 7;
 
             switch (day) {
                 case 1:
