@@ -25,7 +25,7 @@
         </activity>
         <activity
             android:name="com.zigapk.gimvic.suplence.SummerActivity"
-            android:icon="@color/transparent"
+            android:icon="@drawable/ic_launcher"
             android:label="" >
         </activity>
 
