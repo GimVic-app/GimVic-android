@@ -82,7 +82,12 @@ public class Data {
 
         int mode = Settings.getMode(context);
 
+        //TODO: temp
+        first = true;
+
         if(mode == Mode.MODE_HYBRID){
+
+            //TODO: temp
             Suplence.render(context);
             if(first){
                 Urnik.render(context);
