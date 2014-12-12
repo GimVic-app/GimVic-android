@@ -8,12 +8,11 @@ android {
         applicationId "com.zigapk.gimvic.suplence"
         minSdkVersion 16
         targetSdkVersion 20
-        versionCode 8
-        versionName "0.1.1"
+        versionCode 9
+        versionName "0.1.2"
     }
     buildTypes {
         release {
-            runProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2" >
 
     <item
-        dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-765f3598188d2248500ea3268c1e2c562f913310.jar"
         jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-765f3598188d2248500ea3268c1e2c562f913310.jar" />
+    </item>
     <item
-        dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-9970601bc9d043e282ee654a3f8c7dd59650db1e.jar"
-        jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/classes.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="e128103d5281ddd26195a7f980b36d0d005a4e56"/>
-    <item
-        dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-8c8a729f03e57d83061498acbf9239b3efba244c.jar"
-        jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/libs/internal_impl-20.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="27bbd3982cdfe4468a9bf99c8c773734a9049e33"/>
-    <item
-        dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-17304f64f13ca5901dc4de571b7ecdc4e06d459c.jar"
-        jar="/Users/ziga/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
-    <item
-        dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/gson-2.2.4-06d7ed9764b6d6b2c07157cd9dc5d4314e5c6059.jar"
         jar="/Users/ziga/Desktop/GimVic-suplence-android/app/libs/gson-2.2.4.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8"/>
+        sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8">
+        <dex dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/gson-2.2.4-06d7ed9764b6d6b2c07157cd9dc5d4314e5c6059.jar" />
+    </item>
     <item
-        dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-cbf81318133618cc9920fd7625abb694bf73095e.jar"
         jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
+        <dex dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-cbf81318133618cc9920fd7625abb694bf73095e.jar" />
+    </item>
+    <item
+        jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e128103d5281ddd26195a7f980b36d0d005a4e56">
+        <dex dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-9970601bc9d043e282ee654a3f8c7dd59650db1e.jar" />
+    </item>
+    <item
+        jar="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="27bbd3982cdfe4468a9bf99c8c773734a9049e33">
+        <dex dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-8c8a729f03e57d83061498acbf9239b3efba244c.jar" />
+    </item>
+    <item
+        jar="/Users/ziga/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
+        <dex dex="/Users/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-17304f64f13ca5901dc4de571b7ecdc4e06d459c.jar" />
+    </item>
 
-</pre-dex-items>
+</items>
