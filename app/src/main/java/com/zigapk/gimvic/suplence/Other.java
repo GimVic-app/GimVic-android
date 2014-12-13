@@ -7,14 +7,14 @@ import java.lang.reflect.Field;
  */
 public class Other {
 
-    public static int getResId(String variableName, Class<?> c) {
-
-        try {
-            Field idField = c.getDeclaredField(variableName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
+    public static boolean layoutComponentsReady(){
+        boolean temp = true;
+        for(int i = 0; i < 5; i++){
+            for(int j = 0; j < 8; j++){
+                if(Main.textViews[i][j][2] == null) temp = false;
+            }
         }
+
+        return temp;
     }
 }

@@ -1,6 +1,8 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,32 +45,68 @@ public class Urnik {
 
         for(int dan = 1; dan <= 5; dan++){
             for(int ura = 1; ura <= 9; ura++){
-                UrnikElement current = urnik.days[dan - 1].classes[ura - 1];
+                final UrnikElement current = urnik.days[dan - 1].classes[ura - 1];
 
                 if(current.empty){
-                    LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
-                    currentClass.setVisibility(View.GONE);
+                    final LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
+                    //run on ui thread
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(new Runnable() {
+                        public void run() {
+                            currentClass.setVisibility(View.GONE);
+                        }
+                    });
+
                 }else {
-                    LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
-                    currentClass.setVisibility(View.VISIBLE);
-                    if(current.suplenca) {
-                        currentClass.setBackground(context.getResources().getDrawable(R.drawable.bg_card_green));
-                    } else {
-                        currentClass.setBackground(context.getResources().getDrawable(R.drawable.bg_card));
-                    }
+                    final LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
 
-                    TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
-                    TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
-                    TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
+                    final Context tempContext = context;
+                    //run on ui thread
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(new Runnable() {
+                        public void run() {
+                            currentClass.setVisibility(View.VISIBLE);
+                            if(current.suplenca) {
+                                currentClass.setBackground(tempContext.getResources().getDrawable(R.drawable.bg_card_green));
+                            } else {
+                                currentClass.setBackground(tempContext.getResources().getDrawable(R.drawable.bg_card));
+                            }
+                        }
+                    });
 
 
-                    predmetTv.setText(current.predmet);
+                    final TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
+                    final TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
+                    final TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
+
+
+
                     if(Settings.getUserMode(context) == UserMode.MODE_UCITELJ){
-                        profesorTv.setText(current.razred);
+
+                        //run on ui thread
+                        Handler handler2 = new Handler(Looper.getMainLooper());
+                        handler2.post(new Runnable() {
+                            public void run() {
+                                predmetTv.setText(current.predmet);
+                                profesorTv.setText(current.razred);
+                                ucilnicaTv.setText(current.ucilnica);
+                            }
+                        });
+
                     }else{
-                        profesorTv.setText(current.profesor);
+
+                        //run on ui thread
+                        Handler handler2 = new Handler(Looper.getMainLooper());
+                        handler2.post(new Runnable() {
+                            public void run() {
+                                predmetTv.setText(current.predmet);
+                                profesorTv.setText(current.profesor);
+                                ucilnicaTv.setText(current.ucilnica);
+                            }
+                        });
+
                     }
-                    ucilnicaTv.setText(current.ucilnica);
+
 
                 }
             }

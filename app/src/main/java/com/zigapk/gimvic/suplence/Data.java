@@ -10,7 +10,10 @@ import java.io.File;
 /**
  * Created by ziga on 9/15/14.
  */
+
 public class Data {
+
+    public static boolean refreshing = false;
 
     public static void refresh(Context context, boolean GUI){
 
@@ -25,32 +28,41 @@ public class Data {
     private static class refreshAsyncTask extends AsyncTask<Context, Context, Context> {
         protected Context doInBackground(Context... context) {
 
-            if(Internet.isOnline(context[0])){
-                downloadData(context[0], false);
+            if(!refreshing){
+
+                refreshing = true;
+                if(Internet.isOnline(context[0])){
+                    downloadData(context[0], false);
+                }
+
+                final Context tempContext = context[0];
+
+                while(!Other.layoutComponentsReady()){}
+
+                //TODO: should be only parsed when changed
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Urnik.parseUrnik(tempContext);
+                    }
+                }.start();
+
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Suplence.parse(tempContext);
+                        renderData(tempContext, true);
+                        Data.refreshing = false;
+                    }
+                }.start();
             }
 
-            final Context tempContext = context[0];
-
-            //TODO: should be only parsed when changed
-            new Thread() {
-                @Override
-                public void run() {
-                    Urnik.parseUrnik(tempContext);
-                }
-            }.start();
-
-            new Thread() {
-                @Override
-                public void run() {
-                    Suplence.parse(tempContext);
-                }
-            }.start();
+            while (refreshing){}
 
             return context[0];
         }
 
         protected void onPostExecute(Context context) {
-            renderData(context, true);
             setRefreshingGuiState(false);
         }
     }
@@ -88,7 +100,7 @@ public class Data {
         if(mode == Mode.MODE_HYBRID){
 
             //TODO: temp
-            Suplence.render(context);
+            //Suplence.render(context);
             if(first){
                 Urnik.render(context);
             }

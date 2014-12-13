@@ -206,13 +206,7 @@ public class Suplence {
         String json = gson.toJson(hybrid);
         Files.writeToFile("hybrid.json", json, context);
 
-        //run on ui thread
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            public void run() {
-                Data.renderData(context, false);
-            }
-        });
+        Data.renderData(context, false);
     }
 
     private static PersonalUrnik parseHybridUrnik(PersonalUrnik urnik, Context context) {
