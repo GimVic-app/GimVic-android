@@ -11,6 +11,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -68,7 +70,7 @@ public class Main extends Activity implements ActionBar.TabListener {
         ActionBar bar = getActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#43A047")));
         bar.setIcon(R.drawable.ic_logo_white);
-        //ugly :(
+        //TODO: ugly :(
         bar.setTitle(Html.fromHtml("<font color='#ffffff'>" + getString(R.string.gimvic) + "</font>"));
         setContentView(R.layout.activity_main);
 
@@ -93,12 +95,6 @@ public class Main extends Activity implements ActionBar.TabListener {
             mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
-            //go to today's tab
-            /*Calendar cal = Calendar.getInstance();
-            int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK) - 2;
-
-            mViewPager.setCurrentItem(6, false);*/
-
             // For each of the sections in the app, add a tab to the action bar.
             for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
                 // Create a tab with text corresponding to the page title defined by
@@ -115,7 +111,32 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             initializeContent();
 
-            new renderAsyncTask().execute("");
+            new Thread() {
+                @Override
+                public void run() {
+                    while (!Settings.isUrnikParsed(context)){
+                        try {
+                            Thread.sleep(30);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    //to prevent null
+                    while (!Other.layoutComponentsReady()){}
+
+                    //run on ui thread
+                    Handler handler2 = new Handler(Looper.getMainLooper());
+                    handler2.post(new Runnable() {
+                        public void run() {
+                            Data.refresh(context, true);
+                            Data.renderData(context, false);
+                        }
+                    });
+
+
+                }
+            }.start();
         }
     }
 
@@ -147,29 +168,6 @@ public class Main extends Activity implements ActionBar.TabListener {
 
     @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
-
-    private static class renderAsyncTask extends AsyncTask<String, String, String> {
-        protected String doInBackground(String... strings) {
-
-            while (!Settings.isUrnikParsed(context)){
-                try {
-                    Thread.sleep(30);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            //to prevent null
-            while (Main.classItems[4][8] == null){}
-
-            return null;
-        }
-
-        protected void onPostExecute(String string) {
-            //Data.renderData(context, true);
-            Data.refresh(context, true);
-        }
     }
 
     @Override
@@ -209,7 +207,10 @@ public class Main extends Activity implements ActionBar.TabListener {
             int position = getArguments().getInt(ARG_SECTION_NUMBER);
 
             Calendar calendar = Calendar.getInstance();
-            int day = calendar.DAY_OF_WEEK;
+            int day = calendar.get(Calendar.DAY_OF_WEEK);
+            day = day - 1;
+            if(day==0)day = 7;
+            int realDay = day;
             day = day + position - 1;
 
             if(day > 7) day = day % 7;
@@ -277,7 +278,9 @@ public class Main extends Activity implements ActionBar.TabListener {
         public CharSequence getPageTitle(int position) {
 
             Calendar calendar = Calendar.getInstance();
-            int day = calendar.DAY_OF_WEEK;
+            int day = calendar.get(Calendar.DAY_OF_WEEK);
+            day = day - 1;
+            if(day==0)day = 7;
             day = day + position;
 
             if(day > 7) day = day % 7;

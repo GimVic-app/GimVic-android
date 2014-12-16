@@ -125,6 +125,8 @@ public class Urnik {
 
         parsePersonalUrnik(context);
 
+
+
     }
 
     private static String[][] pasreUrnikFromString(String rawData){
