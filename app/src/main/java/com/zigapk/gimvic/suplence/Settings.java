@@ -79,6 +79,11 @@ public class Settings {
         return  prefs.getBoolean("isDataParsed", false);
     }
 
+    public static boolean isTrueUrnikParsed(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return  prefs.getBoolean("isTrueUrnikParsed", false);
+    }
+
     public static boolean isUrnikDownloaded(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return  prefs.getBoolean("isDataDownloaded", false);
@@ -99,6 +104,14 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putBoolean("isDataParsed", value);
+        editor.commit();
+    }
+
+    public static void setTrueUrnikParsed(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("isTrueUrnikParsed", value);
         editor.commit();
     }
 

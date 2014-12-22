@@ -15,10 +15,6 @@ public class Other {
             }
         }
 
-        if(temp){
-            System.out.print("");
-        }
-
         return temp;
     }
 }

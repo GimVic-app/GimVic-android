@@ -26,7 +26,7 @@ public class Data {
 
 
     private static class refreshAsyncTask extends AsyncTask<Context, Context, Context> {
-        protected Context doInBackground(Context... context) {
+        protected Context doInBackground(final Context... context) {
 
             if(!refreshing){
 
@@ -37,13 +37,12 @@ public class Data {
 
                 final Context tempContext = context[0];
 
-                while(!Other.layoutComponentsReady()){}
-
                 //TODO: should be only parsed when changed
                 new Thread() {
                     @Override
                     public void run() {
                         Urnik.parseUrnik(tempContext);
+                        Settings.setTrueUrnikParsed(true, context[0]);
                     }
                 }.start();
 
@@ -51,11 +50,14 @@ public class Data {
                     @Override
                     public void run() {
                         Suplence.parse(tempContext);
-                        renderData(tempContext, true);
+                        renderData(tempContext, false);
                         Data.refreshing = false;
                     }
                 }.start();
+
             }
+
+            while(!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context[0])){}
 
             while (refreshing){}
 
@@ -94,13 +96,10 @@ public class Data {
 
         int mode = Settings.getMode(context);
 
-        //TODO: temp
-        first = true;
 
         if(mode == Mode.MODE_HYBRID){
 
-            //TODO: temp
-            //Suplence.render(context);
+            Suplence.render(context);
             if(first){
                 Urnik.render(context);
             }

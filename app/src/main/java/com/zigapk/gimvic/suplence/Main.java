@@ -111,7 +111,7 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             initializeContent();
 
-            new Thread() {
+            /*new Thread() {
                 @Override
                 public void run() {
                     while (!Settings.isUrnikParsed(context)){
@@ -123,20 +123,22 @@ public class Main extends Activity implements ActionBar.TabListener {
                     }
 
                     //to prevent null
-                    while (!Other.layoutComponentsReady()){}
+                    while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context)){}
 
                     //run on ui thread
                     Handler handler2 = new Handler(Looper.getMainLooper());
                     handler2.post(new Runnable() {
                         public void run() {
-                            Data.refresh(context, true);
                             Data.renderData(context, false);
+                            Data.refresh(context, true);
                         }
                     });
 
 
                 }
-            }.start();
+            }.start();*/
+
+            Data.refresh(context, true);
         }
     }
 

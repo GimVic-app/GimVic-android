@@ -1,8 +1,6 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 
 import com.google.gson.Gson;
 
@@ -43,7 +41,6 @@ public class Suplence {
 
 
     public static void downloadSuplence(Context context) {
-        Date date = new Date();
         final Context ctx = context;
         Settings.setSuplenceDownloaded(false, context);
 
@@ -53,7 +50,6 @@ public class Suplence {
                 downloadForDate(tempDate0, ctx);
             }
         }.start();
-        date = plus1Day(date);
 
         new Thread() {
             @Override
@@ -61,39 +57,30 @@ public class Suplence {
                 downloadForDate(tempDate1, ctx);
             }
         }.start();
-        date = plus1Day(date);
-
         new Thread() {
             @Override
             public void run() {
                 downloadForDate(tempDate2, ctx);
             }
         }.start();
-        date = plus1Day(date);
-
         new Thread() {
             @Override
             public void run() {
                 downloadForDate(tempDate3, ctx);
             }
         }.start();
-        date = plus1Day(date);
-
         new Thread() {
             @Override
             public void run() {
                 downloadForDate(tempDate4, ctx);
             }
         }.start();
-        date = plus1Day(date);
-
         new Thread() {
             @Override
             public void run() {
                 downloadForDate(tempDate5, ctx);
             }
         }.start();
-        date = plus1Day(date);
 
         new Thread() {
             @Override
@@ -127,15 +114,23 @@ public class Suplence {
         String url = "http://app.gimvic.org/APIv2/suplence_provider.php?datum=" + getStringForDate(date);
 
         String suplence = Internet.getTextFromUrl(url);
+
         Files.writeToFile(getFileNameForDate(date), suplence, context);
 
         if (suplenceCounter == 6) {
             Settings.setSuplenceDownloaded(true, context);
+            suplenceCounter = 0;
         } else suplenceCounter++;
     }
 
     private static String getStringForDate(Date date) {
-        return date.getDate() + "-" + date.getMonth() + "-" + date.getYear();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int year = cal.get(Calendar.YEAR);
+
+        return year + "-" + month + "-" + day;
     }
 
     private static String getFileNameForDate(Date date) {
@@ -214,22 +209,25 @@ public class Suplence {
     }
 
     private static PersonalUrnik addSuplence(PersonalUrnik urnik, Context context) {
-        Date date = new Date();
-        int userMode = Settings.getUserMode(context);
 
         Calendar calendar = Calendar.getInstance();
-        int day = calendar.DAY_OF_WEEK;
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        day = day - 1;
+        if(day==0)day = 7;
 
+        Date date = new Date();
+        int userMode = Settings.getUserMode(context);
 
         for(int i = 0; i < 7; i++){
             Suplence suplence = getSuplenceForDate(date, context);
 
 
             if(day <= 5 && suplence != null){
-                urnik = addNadomescanja(urnik, suplence, day, userMode, context);
+                /*urnik = addNadomescanja(urnik, suplence, day, userMode, context);
                 urnik = addMenjavePredmeta(urnik, suplence, day, userMode, context);
                 urnik = addMenjaveUr(urnik, suplence, day, userMode, context);
-                urnik = addMenjaveUcilnic(urnik, suplence, day, userMode, context);
+                urnik = addMenjaveUcilnic(urnik, suplence, day, userMode, context);*/
+                //TODO: temp
             }
 
             date = plus1Day(date);
@@ -358,7 +356,8 @@ public class Suplence {
         }
 
     private static Suplence getSuplenceForDate(Date date, Context context) {
-        String json = Files.getFileValue(getFileNameForDate(date), context);
+        String name = getFileNameForDate(date);
+        String json = Files.getFileValue(name, context);
         Gson gson = new Gson();
         return gson.fromJson(json, Suplence.class);
     }

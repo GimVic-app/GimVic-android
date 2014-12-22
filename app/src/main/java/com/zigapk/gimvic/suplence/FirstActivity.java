@@ -40,7 +40,7 @@ public class FirstActivity extends Activity {
     private static ArrayList<String> ucitelji = new ArrayList<String>();
     private static ArrayList<String> lepirazredi = new ArrayList<String>();
     private static ArrayList<String> izbirni = new ArrayList<String>();
-    private static ArrayList<String> checkedIzbirni = new ArrayList<String>();
+
 
 
     @Override
@@ -207,6 +207,7 @@ public class FirstActivity extends Activity {
                             ListView lv = (ListView) findViewById(R.id.firstListView);
 
                             ucitelji = new ArrayList<String>(Arrays.asList(Urnik.parseUcitelji(context).ucitelji));
+                            sortUcitelji();
 
                             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                                     context,
@@ -218,7 +219,7 @@ public class FirstActivity extends Activity {
                             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 public void onItemClick(AdapterView<?> parent, View view,
                                                         int position, long id) {
-                                    String chosen = lepirazredi.get(position);
+                                    String chosen = ucitelji.get(position);
 
                                     Settings.setUcitelj(chosen, context);
                                     Settings.setFirstOpened(false, context);
@@ -249,7 +250,7 @@ public class FirstActivity extends Activity {
     }
 
 
-    public static void filterRazredi(){
+    private static void filterRazredi(){
 
         for(String current : razredi){
             if(current.length() == 2){
@@ -273,5 +274,15 @@ public class FirstActivity extends Activity {
             }
         });
     }
+
+    private static void sortUcitelji(){
+        Collections.sort(ucitelji, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+    }
+
 
 }
