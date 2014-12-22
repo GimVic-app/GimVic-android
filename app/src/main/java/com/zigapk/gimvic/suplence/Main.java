@@ -70,7 +70,7 @@ public class Main extends Activity implements ActionBar.TabListener {
         ActionBar bar = getActionBar();
         bar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#43A047")));
         bar.setIcon(R.drawable.ic_logo_white);
-        //TODO: ugly :(
+
         bar.setTitle(Html.fromHtml("<font color='#ffffff'>" + getString(R.string.gimvic) + "</font>"));
         setContentView(R.layout.activity_main);
 
@@ -335,7 +335,6 @@ public class Main extends Activity implements ActionBar.TabListener {
             }
 
         }else {
-            //TODO: refresh and so on
             Data.refresh(context, true);
 
         }
