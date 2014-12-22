@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -200,6 +201,11 @@ public class FirstActivity extends Activity {
                         if(Security.sha256(s.toString()).equals(getString(R.string.passwordHash))){
                             pass.setVisibility(View.GONE);
                             indicator.setVisibility(View.GONE);
+
+                            //hide keyboard
+                            InputMethodManager imm = (InputMethodManager)getSystemService(
+                                    Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(pass.getWindowToken(), 0);
 
                             TextView tv = (TextView) findViewById(R.id.firstChooseItem);
                             tv.setText("Izberite učitelja:");

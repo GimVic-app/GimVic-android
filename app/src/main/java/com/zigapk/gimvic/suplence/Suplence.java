@@ -223,11 +223,10 @@ public class Suplence {
 
 
             if(day <= 5 && suplence != null){
-                /*urnik = addNadomescanja(urnik, suplence, day, userMode, context);
+                urnik = addNadomescanja(urnik, suplence, day, userMode, context);
                 urnik = addMenjavePredmeta(urnik, suplence, day, userMode, context);
                 urnik = addMenjaveUr(urnik, suplence, day, userMode, context);
-                urnik = addMenjaveUcilnic(urnik, suplence, day, userMode, context);*/
-                //TODO: temp
+                urnik = addMenjaveUcilnic(urnik, suplence, day, userMode, context);
             }
 
             date = plus1Day(date);
@@ -245,7 +244,7 @@ public class Suplence {
 
             for (Nadomescanje nadomescanje : suplence.nadomescanja) {
                 for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
-                    if (areSame(razred, nadomescanjeUra.class_name)) {
+                    if (Other.areSame(razred, nadomescanjeUra.class_name)) {
                         int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
                         urnik.days[day - 1].classes[ura - 1].suplenca = true;
                         urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
@@ -260,7 +259,7 @@ public class Suplence {
 
             for (Nadomescanje nadomescanje : suplence.nadomescanja) {
                 for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
-                    if (areProfesorsSame(profesor, nadomescanje.odsoten_fullname) || areProfesorsSame(profesor, nadomescanjeUra.nadomesca_full_name)) {
+                    if (Other.areProfesorsSame(profesor, nadomescanje.odsoten_fullname) || Other.areProfesorsSame(profesor, nadomescanjeUra.nadomesca_full_name)) {
                         int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
                         urnik.days[day - 1].classes[ura - 1].suplenca = true;
                         urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
@@ -282,7 +281,7 @@ public class Suplence {
 
             for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
 
-                if (areSame(razred, menjava.class_name)) {
+                if (Other.areSame(razred, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -297,7 +296,7 @@ public class Suplence {
 
 
             for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
-                if (areProfesorsSame(profesor, menjava.class_name)) {
+                if (Other.areProfesorsSame(profesor, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -317,7 +316,7 @@ public class Suplence {
 
             for (MenjavaUre menjava : suplence.menjava_ur) {
 
-                if (areSame(razred, menjava.class_name)) {
+                if (Other.areSame(razred, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -332,7 +331,7 @@ public class Suplence {
 
 
             for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
-                if (areProfesorsSame(profesor, menjava.class_name)) {
+                if (Other.areProfesorsSame(profesor, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -347,7 +346,7 @@ public class Suplence {
     private static PersonalUrnik addMenjaveUcilnic(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
         for (MenjavaUcilnice menjava : suplence.menjava_ucilnic){
             int ura = Integer.parseInt(menjava.ura.substring(0, 1));
-            if(areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.class_name)){
+            if(Other.areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.class_name)){
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica_to;
                 }
@@ -361,30 +360,6 @@ public class Suplence {
         Gson gson = new Gson();
         return gson.fromJson(json, Suplence.class);
     }
-
-    private static boolean areSame(String razred, String suplenceRazred) {
-        suplenceRazred = suplenceRazred.replace(" ", "");
-        suplenceRazred = suplenceRazred.replace(".", "");
-
-        if (razred.toLowerCase().equals(suplenceRazred.toLowerCase())) {
-            return true;
-        } else return false;
-    }
-
-    //TODO: probably doesnt work
-    public static boolean areProfesorsSame(String profesor, String suplenceProfesor){
-        profesor = profesor.toLowerCase();
-        suplenceProfesor = suplenceProfesor.toLowerCase();
-
-        profesor = profesor.replaceAll(" ", "");
-        suplenceProfesor = suplenceProfesor.replaceAll(" ", "");
-
-        if(suplenceProfesor.contains(profesor)) return true;
-
-        return false;
-
-    }
-
 
 }
 

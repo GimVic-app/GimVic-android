@@ -48,7 +48,7 @@
       <file leaf-file-name="Data.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Data.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="312" max-vertical-offset="2055">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1393" max-vertical-offset="2055">
               <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
               <folding>
                 <element signature="e#943#1193#0" expanded="true" />
@@ -63,34 +63,44 @@
       <file leaf-file-name="FirstActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/FirstActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="3630">
-              <caret line="221" column="60" selection-start-line="221" selection-start-column="60" selection-end-line="221" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2685" max-vertical-offset="3705">
+              <caret line="204" column="43" selection-start-line="204" selection-start-column="43" selection-end-line="204" selection-end-column="43" />
               <folding>
-                <element signature="e#3492#3534#0" expanded="true" />
-                <element signature="e#3610#3664#0" expanded="true" />
-                <element signature="e#3704#3715#0" expanded="true" />
-                <element signature="e#7601#7633#0" expanded="true" />
-                <element signature="e#8301#8309#0" expanded="true" />
-                <element signature="e#8649#9432#0" expanded="true" />
-                <element signature="e#9401#9402#0" expanded="true" />
-                <element signature="e#9543#9576#0" expanded="true" />
-                <element signature="e#9656#9685#0" expanded="true" />
-                <element signature="e#10347#10525#0" expanded="true" />
-                <element signature="e#10514#10515#0" expanded="true" />
-                <element signature="e#10563#10741#0" expanded="true" />
-                <element signature="e#10730#10731#0" expanded="true" />
-                <element signature="e#10826#11004#0" expanded="true" />
-                <element signature="e#10993#10994#0" expanded="true" />
+                <element signature="e#3544#3586#0" expanded="true" />
+                <element signature="e#3662#3716#0" expanded="true" />
+                <element signature="e#3756#3767#0" expanded="true" />
+                <element signature="e#7653#7685#0" expanded="true" />
+                <element signature="e#8639#8647#0" expanded="true" />
+                <element signature="e#8987#9770#0" expanded="true" />
+                <element signature="e#9739#9740#0" expanded="true" />
+                <element signature="e#9881#9914#0" expanded="true" />
+                <element signature="e#9994#10023#0" expanded="true" />
+                <element signature="e#10685#10863#0" expanded="true" />
+                <element signature="e#10852#10853#0" expanded="true" />
+                <element signature="e#10901#11079#0" expanded="true" />
+                <element signature="e#11068#11069#0" expanded="true" />
+                <element signature="e#11164#11342#0" expanded="true" />
+                <element signature="e#11331#11332#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Suplence.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2265861" vertical-offset="0" max-vertical-offset="662">
+              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Suplence.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33226323" vertical-offset="3648" max-vertical-offset="6615">
-              <caret line="262" column="40" selection-start-line="262" selection-start-column="24" selection-end-line="262" selection-end-column="40" />
+            <state vertical-scroll-proportion="-7.423077" vertical-offset="3647" max-vertical-offset="6240">
+              <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1265#1406#0" expanded="true" />
@@ -108,6 +118,29 @@
                 <element signature="e#2221#2362#0" expanded="true" />
                 <element signature="e#2351#2352#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_day1.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_day1.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-33.333332" vertical-offset="330" max-vertical-offset="8895">
+              <caret line="82" column="33" selection-start-line="82" selection-start-column="33" selection-end-line="82" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Other.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Other.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1135" max-vertical-offset="1665">
+              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -948,7 +981,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4247955115000" />
+        <entry key="$PROJECT_DIR$" value="4248490524000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1104,15 +1137,15 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Urnik.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Other.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/bg_card_green.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Settings.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Main.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Data.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/FirstActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Other.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
@@ -1893,15 +1926,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java</url>
-          <line>348</line>
-          <properties />
-          <option name="timeStamp" value="221" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="241" />
+      <option name="time" value="248" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -2147,16 +2172,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_day1.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8294" max-vertical-offset="8895">
-          <caret line="578" column="63" selection-start-line="575" selection-start-column="12" selection-end-line="578" selection-end-column="63" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_day2.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="8330" max-vertical-offset="8895">
@@ -2235,14 +2250,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Other.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Internet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.46421662" vertical-offset="375" max-vertical-offset="1200">
@@ -2255,14 +2262,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9101124" vertical-offset="1053" max-vertical-offset="5700">
           <caret line="138" column="24" selection-start-line="138" selection-start-column="24" selection-end-line="138" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36253777" vertical-offset="0" max-vertical-offset="662">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -2299,9 +2298,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/FirstActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2685" max-vertical-offset="3705">
+          <caret line="204" column="43" selection-start-line="204" selection-start-column="43" selection-end-line="204" selection-end-column="43" />
+          <folding>
+            <element signature="e#3544#3586#0" expanded="true" />
+            <element signature="e#3662#3716#0" expanded="true" />
+            <element signature="e#3756#3767#0" expanded="true" />
+            <element signature="e#7653#7685#0" expanded="true" />
+            <element signature="e#8639#8647#0" expanded="true" />
+            <element signature="e#8987#9770#0" expanded="true" />
+            <element signature="e#9739#9740#0" expanded="true" />
+            <element signature="e#9881#9914#0" expanded="true" />
+            <element signature="e#9994#10023#0" expanded="true" />
+            <element signature="e#10685#10863#0" expanded="true" />
+            <element signature="e#10852#10853#0" expanded="true" />
+            <element signature="e#10901#11079#0" expanded="true" />
+            <element signature="e#11068#11069#0" expanded="true" />
+            <element signature="e#11164#11342#0" expanded="true" />
+            <element signature="e#11331#11332#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Data.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="312" max-vertical-offset="2055">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1393" max-vertical-offset="2055">
           <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
           <folding>
             <element signature="e#943#1193#0" expanded="true" />
@@ -2312,34 +2335,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/FirstActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Other.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="3630">
-          <caret line="221" column="60" selection-start-line="221" selection-start-column="60" selection-end-line="221" selection-end-column="60" />
-          <folding>
-            <element signature="e#3492#3534#0" expanded="true" />
-            <element signature="e#3610#3664#0" expanded="true" />
-            <element signature="e#3704#3715#0" expanded="true" />
-            <element signature="e#7601#7633#0" expanded="true" />
-            <element signature="e#8301#8309#0" expanded="true" />
-            <element signature="e#8649#9432#0" expanded="true" />
-            <element signature="e#9401#9402#0" expanded="true" />
-            <element signature="e#9543#9576#0" expanded="true" />
-            <element signature="e#9656#9685#0" expanded="true" />
-            <element signature="e#10347#10525#0" expanded="true" />
-            <element signature="e#10514#10515#0" expanded="true" />
-            <element signature="e#10563#10741#0" expanded="true" />
-            <element signature="e#10730#10731#0" expanded="true" />
-            <element signature="e#10826#11004#0" expanded="true" />
-            <element signature="e#10993#10994#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="1135" max-vertical-offset="1665">
+          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33226323" vertical-offset="3648" max-vertical-offset="6615">
-          <caret line="262" column="40" selection-start-line="262" selection-start-column="24" selection-end-line="262" selection-end-column="40" />
+        <state vertical-scroll-proportion="-7.423077" vertical-offset="3647" max-vertical-offset="6240">
+          <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1265#1406#0" expanded="true" />
@@ -2357,6 +2364,25 @@
             <element signature="e#2221#2362#0" expanded="true" />
             <element signature="e#2351#2352#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_day1.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.333332" vertical-offset="330" max-vertical-offset="8895">
+          <caret line="82" column="33" selection-start-line="82" selection-start-column="33" selection-end-line="82" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2265861" vertical-offset="0" max-vertical-offset="662">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
