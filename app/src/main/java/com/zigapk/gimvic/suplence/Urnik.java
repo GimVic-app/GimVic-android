@@ -28,7 +28,7 @@ public class Urnik {
         if(!rawData.equals("no_new_data") && rawData.contains("podatki = new Array(")){
             Files.writeToFile("Urnik.js", rawData, context);
             Settings.setUrnikDownloaded(true, context);
-            Settings.setUrnikHash(Other.md5(rawData), context);
+            Settings.setUrnikHash(Security.md5(rawData), context);
         }
 
     }
