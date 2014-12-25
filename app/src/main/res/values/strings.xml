@@ -31,5 +31,6 @@
     <string name="password">GimVicProfesorji</string>
     <string name="passwordHash">c00c09606b70d76cd018a432116c3c91ef683d9756eaae7f93574c5789cdcacb</string>
     <string name="wrongPass">Napačno geslo</string>
+    <string name="opomba">OPOMBA:</string>
 
 </resources>

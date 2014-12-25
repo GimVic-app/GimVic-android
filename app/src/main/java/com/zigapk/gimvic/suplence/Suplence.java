@@ -251,6 +251,7 @@ public class Suplence {
                         urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
                         urnik.days[day - 1].classes[ura - 1].profesor = nadomescanjeUra.nadomesca_full_name;
                         urnik.days[day - 1].classes[ura - 1].ucilnica = nadomescanjeUra.ucilnica;
+                        if(nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
                     }
                 }
 
@@ -266,6 +267,7 @@ public class Suplence {
                         urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
                         urnik.days[day - 1].classes[ura - 1].profesor = nadomescanjeUra.nadomesca_full_name;
                         urnik.days[day - 1].classes[ura - 1].ucilnica = nadomescanjeUra.ucilnica;
+                        if(nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
                     }
                 }
 
@@ -288,6 +290,7 @@ public class Suplence {
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
                     urnik.days[day - 1].classes[ura - 1].profesor = menjava.ucitelj;
                     urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica;
+                    if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
 
@@ -303,6 +306,7 @@ public class Suplence {
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
                     urnik.days[day - 1].classes[ura - 1].profesor = menjava.ucitelj;
                     urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica;
+                    if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
         }
@@ -323,6 +327,7 @@ public class Suplence {
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
                     urnik.days[day - 1].classes[ura - 1].profesor = menjava.zamenjava_uciteljev;
                     urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica;
+                    if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
 
@@ -338,6 +343,7 @@ public class Suplence {
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
                     urnik.days[day - 1].classes[ura - 1].profesor = menjava.ucitelj;
                     urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica;
+                    if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
         }
@@ -350,6 +356,7 @@ public class Suplence {
             if(Other.areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.class_name)){
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica_to;
+                    if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
             return urnik;

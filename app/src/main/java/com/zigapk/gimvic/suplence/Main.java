@@ -44,8 +44,8 @@ public class Main extends Activity implements ActionBar.TabListener {
     public static SwipeRefreshLayout mSwipeRefreshLayout4;
     public static SwipeRefreshLayout mSwipeRefreshLayout5;
 
-    //textviews [dan][ura][predmet, profesor, ucilnica]
-    public static TextView[][][] textViews = new TextView[5][9][3];
+    //textviews [dan][ura][predmet, profesor, ucilnica, opomba]
+    public static TextView[][][] textViews = new TextView[5][9][4];
     public static LinearLayout[][] classItems = new LinearLayout[5][9];
     public static ImageView[] checkmarks = new ImageView[5];
     public static String packageName;
@@ -112,33 +112,6 @@ public class Main extends Activity implements ActionBar.TabListener {
             packageName = getPackageName();
 
             initializeContent();
-
-            /*new Thread() {
-                @Override
-                public void run() {
-                    while (!Settings.isUrnikParsed(context)){
-                        try {
-                            Thread.sleep(30);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    //to prevent null
-                    while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context)){}
-
-                    //run on ui thread
-                    Handler handler2 = new Handler(Looper.getMainLooper());
-                    handler2.post(new Runnable() {
-                        public void run() {
-                            Data.renderData(context, false);
-                            Data.refresh(context, true);
-                        }
-                    });
-
-
-                }
-            }.start();*/
 
             Data.refresh(context, true);
         }
@@ -227,6 +200,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     textViews[day - 1][i - 1][0] = (TextView) rootView.findViewById(getResources().getIdentifier("predmet" + i, "id", packageName));
                     textViews[day - 1][i - 1][1] = (TextView) rootView.findViewById(getResources().getIdentifier("profesor" + i, "id", packageName));
                     textViews[day - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("ucilnica" + i, "id", packageName));
+                    textViews[day - 1][i - 1][3] = (TextView) rootView.findViewById(getResources().getIdentifier("opomba" + i, "id", packageName));
 
                     classItems[day - 1][i - 1] = (LinearLayout) rootView.findViewById(getResources().getIdentifier("ura" + i, "id", packageName));
 

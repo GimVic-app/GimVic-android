@@ -41,7 +41,7 @@ public class Urnik {
 
     }
 
-    public static void renderPersonalUrnik(PersonalUrnik urnik, Context context){
+    public static void renderPersonalUrnik(PersonalUrnik urnik, final Context context){
 
 
         for(int dan = 1; dan <= 5; dan++){
@@ -82,7 +82,7 @@ public class Urnik {
                     final TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
                     final TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
                     final TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
-
+                    final TextView opomba = Main.textViews[dan - 1][ura - 1][2];
 
 
                     if(Settings.getUserMode(context) == UserMode.MODE_UCITELJ){
@@ -94,6 +94,13 @@ public class Urnik {
                                 predmetTv.setText(current.predmet);
                                 profesorTv.setText(current.razred);
                                 ucilnicaTv.setText(current.ucilnica);
+                                if(current.opomba != ""){
+                                    opomba.setVisibility(View.VISIBLE);
+                                    opomba.setText(context.getResources().getString(R.string.opomba) + current.opomba);
+                                }else {
+                                    opomba.setVisibility(View.GONE);
+                                    opomba.setText("");
+                                }
                             }
                         });
 
@@ -366,6 +373,7 @@ class UrnikElement{
     String profesor = "";
     String predmet = "";
     String ucilnica = "";
+    String opomba = "";
     int ura = 1;
     int dan = 1; // 1 = monday, 5 = friday
     boolean suplenca = false;
