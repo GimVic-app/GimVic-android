@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,6 +47,7 @@ public class Main extends Activity implements ActionBar.TabListener {
     //textviews [dan][ura][predmet, profesor, ucilnica]
     public static TextView[][][] textViews = new TextView[5][9][3];
     public static LinearLayout[][] classItems = new LinearLayout[5][9];
+    public static ImageView[] checkmarks = new ImageView[5];
     public static String packageName;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -242,6 +244,8 @@ public class Main extends Activity implements ActionBar.TabListener {
                     textViews[day - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + day + "ucilnica" + i, "id", packageName));
 
                     classItems[day - 1][i - 1] = (LinearLayout) rootView.findViewById(getResources().getIdentifier("dan" + day + "ura" + i, "id", packageName));
+
+                    checkmarks[day - 1] = (ImageView) rootView.findViewById(R.id.checkmark);
                 }
             }
 

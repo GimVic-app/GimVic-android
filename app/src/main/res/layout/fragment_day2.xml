@@ -578,6 +578,13 @@
                 android:layout_height="32dp"
                 android:background="@color/transparent"></View>
 
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_checkmark"
+                android:visibility="gone"
+                android:id="@+id/checkmark"/>
+
         </LinearLayout>
 
 

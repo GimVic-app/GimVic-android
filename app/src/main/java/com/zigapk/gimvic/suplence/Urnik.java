@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -44,6 +45,8 @@ public class Urnik {
 
 
         for(int dan = 1; dan <= 5; dan++){
+            int emptyCounter = 0;
+
             for(int ura = 1; ura <= 9; ura++){
                 final UrnikElement current = urnik.days[dan - 1].classes[ura - 1];
 
@@ -56,6 +59,7 @@ public class Urnik {
                             currentClass.setVisibility(View.GONE);
                         }
                     });
+                    emptyCounter++;
 
                 }else {
                     final LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
@@ -110,6 +114,27 @@ public class Urnik {
 
                 }
             }
+
+            if(emptyCounter == 9){
+                final ImageView checkmark = Main.checkmarks[dan - 1];
+                //run on ui thread
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        checkmark.setVisibility(View.VISIBLE);
+                    }
+                });
+            }else {
+                final ImageView checkmark = Main.checkmarks[dan - 1];
+                //run on ui thread
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        checkmark.setVisibility(View.GONE);
+                    }
+                });
+            }
+
         }
 
     }
