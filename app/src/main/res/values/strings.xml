@@ -10,9 +10,9 @@
     <string name="friday">Petek</string>
     <string name="saturday">Sobota</string>
     <string name="sunday">Nedelja</string>
-    <string name="predmet_default"></string>
-    <string name="profesor_default"></string>
-    <string name="ucilnica_default"></string>
+    <string name="predmet_default">asdf</string>
+    <string name="profesor_default">asdf</string>
+    <string name="ucilnica_default">asfd</string>
     <string name="title_activity_first">FirstActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_summer">SummerActivity</string>

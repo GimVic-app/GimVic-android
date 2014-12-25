@@ -207,7 +207,7 @@ public class Main extends Activity implements ActionBar.TabListener {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            View rootView = inflater.inflate(R.layout.fragment_day1, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_day, container, false);
             int position = getArguments().getInt(ARG_SECTION_NUMBER);
 
             Calendar calendar = Calendar.getInstance();
@@ -219,31 +219,16 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             if(day > 5) day = day % 5;
 
-
-            if (day == 2) {
-                rootView = inflater.inflate(R.layout.fragment_day2, container, false);
-            } else if (day == 3) {
-                rootView = inflater.inflate(R.layout.fragment_day3, container, false);
-            } else if (day == 4) {
-                rootView = inflater.inflate(R.layout.fragment_day4, container, false);
-            } else if (day == 5) {
-                rootView = inflater.inflate(R.layout.fragment_day5, container, false);
-            } else if (day == 6) {
-                rootView = inflater.inflate(R.layout.fragment_day6, container, false);
-            } else if (day == 7) {
-                rootView = inflater.inflate(R.layout.fragment_day7, container, false);
-            }
-
             if(day <= 5){
 
                 setOnRefreshListeners(day, rootView);
 
                 for(int i = 1; i <= 9; i++){
-                    textViews[day - 1][i - 1][0] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + day + "predmet" + i, "id", packageName));
-                    textViews[day - 1][i - 1][1] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + day + "profesor" + i, "id", packageName));
-                    textViews[day - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("dan" + day + "ucilnica" + i, "id", packageName));
+                    textViews[day - 1][i - 1][0] = (TextView) rootView.findViewById(getResources().getIdentifier("predmet" + i, "id", packageName));
+                    textViews[day - 1][i - 1][1] = (TextView) rootView.findViewById(getResources().getIdentifier("profesor" + i, "id", packageName));
+                    textViews[day - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("ucilnica" + i, "id", packageName));
 
-                    classItems[day - 1][i - 1] = (LinearLayout) rootView.findViewById(getResources().getIdentifier("dan" + day + "ura" + i, "id", packageName));
+                    classItems[day - 1][i - 1] = (LinearLayout) rootView.findViewById(getResources().getIdentifier("ura" + i, "id", packageName));
 
                     checkmarks[day - 1] = (ImageView) rootView.findViewById(R.id.checkmark);
                 }
@@ -354,7 +339,7 @@ public class Main extends Activity implements ActionBar.TabListener {
 
 
         if (day == 1) {
-            Main.mSwipeRefreshLayout1 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container1);
+            Main.mSwipeRefreshLayout1 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
 
             Main.mSwipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -368,7 +353,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenFour);
 
         } else if (day == 2) {
-            Main.mSwipeRefreshLayout2 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container2);
+            Main.mSwipeRefreshLayout2 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
 
             Main.mSwipeRefreshLayout2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -381,7 +366,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenThree,
                     R.color.greenFour);
         } else if (day == 3) {
-            Main.mSwipeRefreshLayout3 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container3);
+            Main.mSwipeRefreshLayout3 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
 
             Main.mSwipeRefreshLayout3.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -394,7 +379,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenThree,
                     R.color.greenFour);
         } else if (day == 4) {
-            Main.mSwipeRefreshLayout4 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container4);
+            Main.mSwipeRefreshLayout4 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
 
             Main.mSwipeRefreshLayout4.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -407,7 +392,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenThree,
                     R.color.greenFour);
         } else if (day == 5) {
-            Main.mSwipeRefreshLayout5 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container5);
+            Main.mSwipeRefreshLayout5 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
 
             Main.mSwipeRefreshLayout5.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
