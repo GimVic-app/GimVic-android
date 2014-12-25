@@ -93,7 +93,7 @@ public class Urnik {
                             public void run() {
                                 predmetTv.setText(current.predmet);
                                 if(current.mankajociUcitelj){
-                                    profesorTv.setText(current.profesorhahaha);
+                                    profesorTv.setText(current.profesor);
                                 }else {
                                     profesorTv.setText(current.razred);
                                 }
