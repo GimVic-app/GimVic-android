@@ -186,6 +186,7 @@ public class Suplence {
 
     public static void render(Context context) {
         String json = Files.getFileValue("hybrid.json", context);
+        while (!Other.layoutComponentsReady()){}
         if(json != null){
             Gson gson = new Gson();
             PersonalUrnik hybrid = gson.fromJson(json, PersonalUrnik.class);
