@@ -92,7 +92,11 @@ public class Urnik {
                         handler2.post(new Runnable() {
                             public void run() {
                                 predmetTv.setText(current.predmet);
-                                profesorTv.setText(current.razred);
+                                if(current.mankajociUcitelj){
+                                    profesorTv.setText(current.profesorhahaha);
+                                }else {
+                                    profesorTv.setText(current.razred);
+                                }
                                 ucilnicaTv.setText(current.ucilnica);
                                 if(current.opomba != ""){
                                     opomba.setVisibility(View.VISIBLE);
@@ -377,6 +381,7 @@ class UrnikElement{
     int ura = 1;
     int dan = 1; // 1 = monday, 5 = friday
     boolean suplenca = false;
+    boolean mankajociUcitelj = false;
     boolean empty = true;
 
 }

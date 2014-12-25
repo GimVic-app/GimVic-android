@@ -268,6 +268,8 @@ public class Suplence {
                         urnik.days[day - 1].classes[ura - 1].profesor = nadomescanjeUra.nadomesca_full_name;
                         urnik.days[day - 1].classes[ura - 1].ucilnica = nadomescanjeUra.ucilnica;
                         if(nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
+
+                        if(Other.areProfesorsSame(profesor, nadomescanje.odsoten_fullname)) urnik.days[day - 1].classes[ura - 1].mankajociUcitelj = true;
                     }
                 }
 
