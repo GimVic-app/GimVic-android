@@ -89,6 +89,11 @@ public class Settings {
         return  prefs.getBoolean("isDataDownloaded", false);
     }
 
+    public static String getUrnikHash(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return  prefs.getString("urnikHash", "a");
+    }
+
     public static boolean areSuplenceDownloaded(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return  prefs.getBoolean("areSuplenceDownloaded", false);
@@ -120,6 +125,14 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putBoolean("isDataDownloaded", value);
+        editor.commit();
+    }
+
+    public static void setUrnikHash(String value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("urnikHash", value);
         editor.commit();
     }
 

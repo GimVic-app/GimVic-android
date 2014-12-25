@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -22,12 +23,12 @@ public class Urnik {
 
     public static void downloadUrnik(Context context){
 
-        //TODO: make iti use propper API
-        String rawData = Internet.getTextFromUrl("https://dl.dropboxusercontent.com/u/16258361/urnik/data.js");
+        String rawData = Internet.getTextFromUrl("http://app.gimvic.org/APIv2/urnik_provider.php?hash=" + Settings.getUrnikHash(context));
 
-        if(rawData.contains("podatki = new Array(")){
+        if(!rawData.equals("no_new_data") && rawData.contains("podatki = new Array(")){
             Files.writeToFile("Urnik.js", rawData, context);
             Settings.setUrnikDownloaded(true, context);
+            Settings.setUrnikHash(Other.md5(rawData), context);
         }
 
     }
