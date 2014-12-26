@@ -52,12 +52,14 @@ public class Data {
 
             if (mode == Mode.MODE_HYBRID) {
 
-                Suplence.render(context);
+                Suplence.renderHybrid(context);
                 if (first) {
                     Urnik.render(context);
                 }
             } else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
             else if (mode == Mode.MODE_URNIK) Urnik.render(context);
+
+            Main.isDataRendered = true;
         }
     }
 
@@ -98,15 +100,6 @@ public class Data {
 
                 final Context tempContext = context[0];
 
-                //TODO: should be only parsed when changed
-                new Thread() {
-                    @Override
-                    public void run() {
-                        Urnik.parseUrnik(tempContext);
-                        Settings.setTrueUrnikParsed(true, context[0]);
-                    }
-                }.start();
-
                 new Thread() {
                     @Override
                     public void run() {
@@ -127,6 +120,16 @@ public class Data {
         protected void onPostExecute(Context context) {
             setRefreshingGuiState(false);
         }
+    }
+
+    public static void parseFirstUrnik(final Context context){
+        new Thread() {
+            @Override
+            public void run() {
+                Urnik.parseUrnik(context);
+                Settings.setTrueUrnikParsed(true, context);
+            }
+        }.start();
     }
 
 }

@@ -1,11 +1,13 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
+import android.os.Environment;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -74,4 +76,48 @@ public class Files {
         return dir.delete();
     }
 
+    //Checks if external storage is available for read and write
+    public static boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static void writeToExternalStorage(String fileName, String content){
+        File file;
+        FileOutputStream outputStream;
+        try {
+            file = new File(Environment.getExternalStoragePublicDirectory(fileName), "");
+
+            outputStream = new FileOutputStream(file);
+            outputStream.write(content.getBytes());
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String readFileFromExternalStorage(String fileName){
+        //Read text from file
+        StringBuilder text = new StringBuilder();
+
+        try {
+            File file = new File(Environment.getExternalStoragePublicDirectory(fileName), "");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append('\n');
+            }
+
+            return text.toString();
+        }
+        catch (IOException e) {
+            //You'll need to add proper error handling here
+            return null;
+        }
+    }
 }

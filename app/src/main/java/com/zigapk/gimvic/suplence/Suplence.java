@@ -29,7 +29,6 @@ public class Suplence {
     MenjavaUre[] menjava_ur;
     MenjavaUcilnice[] menjava_ucilnic;
 
-
     //for tempDates
     public static final Date tempDate0 = new Date();
     public static final Date tempDate1 = plus1Day(tempDate0);
@@ -184,7 +183,7 @@ public class Suplence {
         }
     }
 
-    public static void render(Context context) {
+    public static void renderHybrid(Context context) {
         String json = Files.getFileValue("hybrid.json", context);
         while (!Other.layoutComponentsReady()){}
         if(json != null){
@@ -195,12 +194,29 @@ public class Suplence {
 
     }
 
+    public static void render(Context context) {
+        String json = Files.getFileValue("suplence.json", context);
+        while (!Other.layoutComponentsReady()){}
+        if(json != null){
+            Gson gson = new Gson();
+            PersonalUrnik suplence = gson.fromJson(json, PersonalUrnik.class);
+            Urnik.renderPersonalUrnik(suplence, context);
+        }
+
+    }
+
     public static void parse(final Context context){
 
         PersonalUrnik hybrid = parseHybridUrnik(Urnik.getPersonalUrnik(context), context);
         Gson gson = new Gson();
         String json = gson.toJson(hybrid);
         Files.writeToFile("hybrid.json", json, context);
+
+        PersonalUrnik suplence = new PersonalUrnik();
+        suplence = addSuplence(suplence, context);
+        json = gson.toJson(suplence);
+        Files.writeToFile("suplence.json", json, context);
+
 
         Data.renderData(context, false);
     }

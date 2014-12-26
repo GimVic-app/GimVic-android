@@ -49,6 +49,9 @@ public class Main extends Activity implements ActionBar.TabListener {
     public static LinearLayout[][] classItems = new LinearLayout[5][9];
     public static ImageView[] checkmarks = new ImageView[5];
     public static String packageName;
+
+    public static boolean isDataRendered = false;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -112,30 +115,43 @@ public class Main extends Activity implements ActionBar.TabListener {
             packageName = getPackageName();
 
             initializeContent();
-            Data.setRefreshingGuiState(true);
 
             new Thread() {
                 @Override
                 public void run() {
+
+                    ExternalData.syncExternalBackup(context);
                     Handler handler = new Handler(Looper.getMainLooper());
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(30);
                     }catch (Exception e){}
                     handler.post(new Runnable() {
                         public void run() {
+                            Data.setRefreshingGuiState(true);
                             Data.renderData(context, true);
+                            Data.refresh(context, true);
                         }
                     });
                 }
             }.start();
-            Data.refresh(context, true);
+
         }
+    }
+
+    public void onResume() {
+        super.onResume();
+        if(isDataRendered) Data.renderData(context, false);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        if(Settings.getAdmin(context)){
+            MenuItem adminSwitch = menu.findItem(R.id.admin_switch);
+            adminSwitch.setVisible(true);
+        }
         return true;
     }
 
@@ -146,7 +162,11 @@ public class Main extends Activity implements ActionBar.TabListener {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(Main.this, SettingsActivity.class);
+            startActivity(intent);
             return true;
+        }else if(id == R.id.admin_switch){
+            //TODO: launch switcher
         }
         return super.onOptionsItemSelected(item);
     }
@@ -294,20 +314,20 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             if(date.getMonth() == 6){
                 if(date.getDay() >= 25){
-                    Settings.resetSafetyCounter();
+                    Data.clearAllData(context);
                     startActivity(new Intent(context, SummerActivity.class));
                     Main.this.finish();
                     return;
                 }
             }else if(date.getMonth() == 8){
                 if(date.getDay() <= 20){
-                    Settings.resetSafetyCounter();
+                    Data.clearAllData(context);
                     startActivity(new Intent(context, SummerActivity.class));
                     Main.this.finish();
                     return;
                 }
             }else if(date.getMonth() == 7){
-                Settings.resetSafetyCounter();
+                Data.clearAllData(context);
                 startActivity(new Intent(context, SummerActivity.class));
                 Main.this.finish();
                 return;

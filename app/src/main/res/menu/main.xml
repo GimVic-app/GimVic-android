@@ -6,4 +6,11 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@android:drawable/ic_menu_preferences"/>
+
+    <item android:id="@+id/admin_switch"
+        android:title="@string/zamenjaj"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:visible="false"
+        android:icon="@android:drawable/ic_menu_edit"/>
 </menu>

@@ -30,6 +30,8 @@ public class Urnik {
                 Files.writeToFile("Urnik.js", rawData, context);
                 Settings.setUrnikDownloaded(true, context);
                 Settings.setUrnikHash(Internet.getTextFromUrl("http://app.gimvic.org/APIv2/urnik/urnik_hash_provider.php"), context);
+
+                if(Settings.isTrueUrnikParsed(context)) parsePersonalUrnik(context);
             }
         }
     }

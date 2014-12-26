@@ -200,6 +200,7 @@ public class FirstActivity extends Activity {
                                     public void run() {
                                         Intent intent = new Intent(context, Main.class);
                                         startActivity(intent);
+                                        Data.parseFirstUrnik(context);
                                         finish();
                                     }
                                 });

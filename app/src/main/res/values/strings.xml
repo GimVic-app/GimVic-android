@@ -32,5 +32,10 @@
     <string name="passwordHash">c00c09606b70d76cd018a432116c3c91ef683d9756eaae7f93574c5789cdcacb</string>
     <string name="wrongPass">Napačno geslo</string>
     <string name="opomba">OPOMBA:</string>
+    <string name="title_activity_settings">Nastavitve</string>
+    <string name="changeButton">Zamenjaj razred ali učitelja</string>
+    <string name="zamenjaj">Zamenjaj razred ali profesorja</string>
+    <string name="no_more_trys_left">Tega ne morete več zamenjati.</string>
+    <string name="no_more_trys_left_explanation">Porabili ste vseh 5 poskusov.</string>
 
 </resources>

@@ -53,6 +53,11 @@ public class Settings {
         return prefs.getString("ucitelj", "Rudolf");
     }
 
+    public static boolean getAdmin(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("admin", false);
+    }
+
     public static void setUcitelj(String ucitelj, Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
@@ -62,29 +67,36 @@ public class Settings {
     }
 
     public static void resetSafetyCounter(Context context){
+        setSafetyCounter(0, context);
+    }
+
+    public static void setSafetyCounter(int value, Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putInt("safetyCounter", 0);
+        editor.putInt("safetyCounter", value);
         editor.commit();
     }
 
     public static int getMode(Context context){
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String mode = prefs.getString("mode", "0");
+        int mode = prefs.getInt("mode", 0);
 
-        int parsed = Integer.parseInt(mode);
-        if(parsed == Mode.MODE_SUPLENCE){
-            return Mode.MODE_SUPLENCE;
-        }else if(parsed == Mode.MODE_URNIK){
-            return Mode.MODE_URNIK;
-        }else return Mode.MODE_HYBRID;
+        return mode;
     }
 
     public static int getSafetyCounter(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getInt("safetyCounter", 0);
+    }
+
+    public static void setAdmin(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("admin", value);
+        editor.commit();
     }
 
     public static void setMode(int mode, Context context){
