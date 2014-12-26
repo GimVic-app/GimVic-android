@@ -240,12 +240,12 @@ public class Suplence {
 
     private static PersonalUrnik addNadomescanja(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
         if (userMode == UserMode.MODE_UCENEC) {
-            String razred = Settings.getRazred(context);
+            ChosenRazredi razredi = Settings.getRazredi(context);
 
 
             for (Nadomescanje nadomescanje : suplence.nadomescanja) {
                 for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
-                    if (Other.areSame(razred, nadomescanjeUra.class_name)) {
+                    if (Other.areSame(razredi, nadomescanjeUra.class_name)) {
                         int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
                         urnik.days[day - 1].classes[ura - 1].suplenca = true;
                         urnik.days[day - 1].classes[ura - 1].predmet = nadomescanjeUra.predmet;
@@ -281,12 +281,12 @@ public class Suplence {
 
     private static PersonalUrnik addMenjavePredmeta(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
         if (userMode == UserMode.MODE_UCENEC) {
-            String razred = Settings.getRazred(context);
+            ChosenRazredi razredi = Settings.getRazredi(context);
 
 
             for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
 
-                if (Other.areSame(razred, menjava.class_name)) {
+                if (Other.areSame(razredi, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -319,11 +319,11 @@ public class Suplence {
     private static PersonalUrnik addMenjaveUr(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
 
         if (userMode == UserMode.MODE_UCENEC) {
-            String razred = Settings.getRazred(context);
+            ChosenRazredi razredi = Settings.getRazredi(context);
 
             for (MenjavaUre menjava : suplence.menjava_ur) {
 
-                if (Other.areSame(razred, menjava.class_name)) {
+                if (Other.areSame(razredi, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = menjava.predmet;
@@ -353,9 +353,12 @@ public class Suplence {
     }
 
     private static PersonalUrnik addMenjaveUcilnic(PersonalUrnik urnik, Suplence suplence, int day, int userMode, Context context) {
+
+        ChosenRazredi razredi = Settings.getRazredi(context);
+
         for (MenjavaUcilnice menjava : suplence.menjava_ucilnic){
             int ura = Integer.parseInt(menjava.ura.substring(0, 1));
-            if(Other.areSame(urnik.days[day - 1].classes[ura - 1].razred, menjava.class_name)){
+            if(Other.areSame(razredi, menjava.class_name)){
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].ucilnica = menjava.ucilnica_to;
                     if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;

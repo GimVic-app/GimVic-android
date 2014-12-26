@@ -41,6 +41,7 @@ public class FirstActivity extends Activity {
     private static ArrayList<String> ucitelji = new ArrayList<String>();
     private static ArrayList<String> lepirazredi = new ArrayList<String>();
     private static ArrayList<String> izbirni = new ArrayList<String>();
+    private static ChosenRazredi chosenRazredi = new ChosenRazredi();
 
 
 
@@ -154,26 +155,21 @@ public class FirstActivity extends Activity {
                                             int position, long id) {
                         String chosen = lepirazredi.get(position);
 
+                        chosenRazredi.razredi.add(chosen);
+
                         if (chosen.contains("3") || chosen.contains("4")) {
 
                             //TODO: set izbirni
-                            Settings.setRazred(chosen, context);
-                            Settings.setFirstOpened(false, context);
-                            Settings.setUserMode(UserMode.MODE_UCENEC, context);
 
-                            Intent intent = new Intent(context, Main.class);
-                            startActivity(intent);
-                            finish();
-
-                        } else {
-                            Settings.setRazred(chosen, context);
-                            Settings.setFirstOpened(false, context);
-                            Settings.setUserMode(UserMode.MODE_UCENEC, context);
-
-                            Intent intent = new Intent(context, Main.class);
-                            startActivity(intent);
-                            finish();
                         }
+
+                        Settings.setRazredi(chosenRazredi, context);
+                        Settings.setFirstOpened(false, context);
+                        Settings.setUserMode(UserMode.MODE_UCENEC, context);
+
+                        Intent intent = new Intent(context, Main.class);
+                        startActivity(intent);
+                        finish();
                     }
                 });
 

@@ -21,13 +21,15 @@ public class Other {
         return temp;
     }
 
-    public static boolean areSame(String razred, String suplenceRazred) {
+    public static boolean areSame(ChosenRazredi razredi, String suplenceRazred) {
         suplenceRazred = suplenceRazred.replace(" ", "");
         suplenceRazred = suplenceRazred.replace(".", "");
 
-        if (razred.toLowerCase().equals(suplenceRazred.toLowerCase())) {
-            return true;
-        } else return false;
+        for(String razred : razredi.razredi){
+            if (razred.toLowerCase().equals(suplenceRazred.toLowerCase())) return true;
+        }
+
+        return false;
     }
 
     public static boolean areProfesorsSame(String urnikString, String suplenceString) {
@@ -104,5 +106,12 @@ public class Other {
     private static boolean compare3(String urnik, String suplence) {
         if (suplence.contains(urnik)) return true;
         else return false;
+    }
+
+    public static boolean razredEqualsAny(String razred, ChosenRazredi razredi){
+        for(String temp : razredi.razredi){
+            if(temp.equals(razred)) return true;
+        }
+        return false;
     }
 }

@@ -5,21 +5,30 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
 /**
  * Created by ziga on 10/18/14.
  */
 public class Settings {
 
-    public static String getRazred(Context context){
+    public static ChosenRazredi getRazredi(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString("razred", "1A");
+        String json = prefs.getString("razredi", "{}");
+        Gson gson = new Gson();
+        return gson.fromJson(json, ChosenRazredi.class);
+
     }
 
-    public static void setRazred(String razred, Context context){
+    public static void setRazredi(ChosenRazredi razredi, Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
 
-        editor.putString("razred", razred);
+        Gson gson = new Gson();
+        String json = gson.toJson(razredi);
+        editor.putString("razredi", json);
         editor.commit();
     }
     public static String getProfesor(Context context){
@@ -169,4 +178,8 @@ class Mode{
 class UserMode{
     public static int MODE_UCITELJ = 0;
     public static int MODE_UCENEC = 1;
+}
+
+class ChosenRazredi{
+    ArrayList<String> razredi = new ArrayList<String>();
 }

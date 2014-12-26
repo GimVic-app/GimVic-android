@@ -297,16 +297,16 @@ public class Urnik {
 
         if(mode == UserMode.MODE_UCENEC){
 
-            String razred = Settings.getRazred(context);
+            ChosenRazredi razredi = Settings.getRazredi(context);
             for(int i = 0; i < urnik.urnik.length; i++){
-                if(urnik.urnik[i][1].equals(razred)){
+                if(Other.razredEqualsAny(urnik.urnik[i][1], razredi)){
                     int ura = Integer.parseInt(urnik.urnik[i][6]);
                     int dan = Integer.parseInt(urnik.urnik[i][5]);
                     String profesor = urnik.urnik[i][2];
                     String predmet = urnik.urnik[i][3];
                     String ucilnica = urnik.urnik[i][4];
 
-                    personal.days[dan - 1].classes[ura - 1].razred = razred;
+                    personal.days[dan - 1].classes[ura - 1].razred = urnik.urnik[i][1];
                     personal.days[dan - 1].classes[ura - 1].ura = ura;
                     personal.days[dan - 1].classes[ura - 1].dan = dan;
                     personal.days[dan - 1].classes[ura - 1].profesor = profesor;
