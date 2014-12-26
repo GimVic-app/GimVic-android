@@ -61,9 +61,12 @@ public class Settings {
         editor.commit();
     }
 
-    //TODO: make it work
-    public static void resetSafetyCounter(){
+    public static void resetSafetyCounter(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
 
+        editor.putInt("safetyCounter", 0);
+        editor.commit();
     }
 
     public static int getMode(Context context){
