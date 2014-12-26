@@ -47,19 +47,18 @@ public class Data {
     }
 
     public static void renderData(Context context, boolean first) {
+        if(Settings.isTrueUrnikParsed(context)){
+            int mode = Settings.getMode(context);
 
-        int mode = Settings.getMode(context);
+            if (mode == Mode.MODE_HYBRID) {
 
-
-        if (mode == Mode.MODE_HYBRID) {
-
-            Suplence.render(context);
-            if (first) {
-                Urnik.render(context);
-            }
-        } else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
-        else if (mode == Mode.MODE_URNIK) Urnik.render(context);
-
+                Suplence.render(context);
+                if (first) {
+                    Urnik.render(context);
+                }
+            } else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
+            else if (mode == Mode.MODE_URNIK) Urnik.render(context);
+        }
     }
 
     public static void downloadData(Context context, boolean first) {
@@ -67,8 +66,6 @@ public class Data {
         if (first) {
             Urnik.parseUrnik(context);
         }
-
-
         Suplence.downloadSuplence(context);
 
 
@@ -121,11 +118,8 @@ public class Data {
 
             }
 
-            while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context[0])) {
-            }
-
-            while (refreshing) {
-            }
+            while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context[0])) {}
+            while (refreshing) {}
 
             return context[0];
         }

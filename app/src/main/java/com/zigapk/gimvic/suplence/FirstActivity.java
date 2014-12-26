@@ -6,13 +6,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -25,13 +23,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Set;
 
 
 public class FirstActivity extends Activity {
@@ -41,8 +36,10 @@ public class FirstActivity extends Activity {
     private static ArrayList<String> ucitelji = new ArrayList<String>();
     private static ArrayList<String> lepirazredi = new ArrayList<String>();
     private static ArrayList<String> izbirni = new ArrayList<String>();
+    private static CharSequence[] izbirniCharSequences;
     private static ChosenRazredi chosenRazredi = new ChosenRazredi();
-
+    private static boolean[] itemsChecked;
+    private static boolean izbirniFinished = false;
 
 
     @Override
@@ -153,23 +150,61 @@ public class FirstActivity extends Activity {
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                        String chosen = lepirazredi.get(position);
+                        final String chosen = lepirazredi.get(position);
 
                         chosenRazredi.razredi.add(chosen);
+                        izbirniToCharSequences();
 
                         if (chosen.contains("3") || chosen.contains("4")) {
 
-                            //TODO: set izbirni
+                            AlertDialog.Builder builder=new AlertDialog.Builder(FirstActivity.this);
+                            builder.setTitle("Izberite izbirne predmete");
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    for (int i = 0; i < izbirni.size(); i++) {
+                                        if(itemsChecked[i]){
+                                            chosenRazredi.razredi.add(izbirni.get(i));
+                                        }
+                                    }
+                                    izbirniFinished = true;
+                                }
+                            });
+                            builder.setMultiChoiceItems(izbirniCharSequences, whichToBeChecked(), new DialogInterface.OnMultiChoiceClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                    itemsChecked[which]=isChecked;
+                                }
+                            });
+                            builder.show();
+
+                        }else {
+                            izbirniFinished = true;
                         }
 
-                        Settings.setRazredi(chosenRazredi, context);
-                        Settings.setFirstOpened(false, context);
-                        Settings.setUserMode(UserMode.MODE_UCENEC, context);
+                        new Thread() {
+                            @Override
+                            public void run() {
 
-                        Intent intent = new Intent(context, Main.class);
-                        startActivity(intent);
-                        finish();
+                                while(!izbirniFinished){}
+
+
+                                Settings.setRazredi(chosenRazredi, context);
+                                Settings.setFirstOpened(false, context);
+                                Settings.setUserMode(UserMode.MODE_UCENEC, context);
+
+                                //run on ui thread
+                                Handler handler = new Handler(Looper.getMainLooper());
+                                handler.post(new Runnable() {
+                                    public void run() {
+                                        Intent intent = new Intent(context, Main.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
+                            }
+                        }.start();
                     }
                 });
 
@@ -251,6 +286,21 @@ public class FirstActivity extends Activity {
         });
     }
 
+    private static boolean[] whichToBeChecked(){
+        boolean[] result = new boolean[izbirni.size()];
+        for(boolean bool : result){
+            bool = false;
+        }
+        return result;
+
+    }
+
+    private static void izbirniToCharSequences(){
+        izbirniCharSequences = new CharSequence[izbirni.size()];
+        for(int i = 0; i < izbirni.size(); i++){
+            izbirniCharSequences[i] = izbirni.get(i);
+        }
+    }
 
     private static void filterRazredi(){
 
@@ -275,6 +325,15 @@ public class FirstActivity extends Activity {
                 return s1.compareToIgnoreCase(s2);
             }
         });
+
+        Collections.sort(izbirni, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+
+        itemsChecked = new boolean[izbirni.size()];
     }
 
     private static void sortUcitelji(){

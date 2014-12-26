@@ -112,7 +112,22 @@ public class Main extends Activity implements ActionBar.TabListener {
             packageName = getPackageName();
 
             initializeContent();
+            Data.setRefreshingGuiState(true);
 
+            new Thread() {
+                @Override
+                public void run() {
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    try {
+                        Thread.sleep(50);
+                    }catch (Exception e){}
+                    handler.post(new Runnable() {
+                        public void run() {
+                            Data.renderData(context, true);
+                        }
+                    });
+                }
+            }.start();
             Data.refresh(context, true);
         }
     }

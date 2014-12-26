@@ -2,6 +2,8 @@ package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 
@@ -30,6 +32,21 @@ public class Settings {
         String json = gson.toJson(razredi);
         editor.putString("razredi", json);
         editor.commit();
+
+        final Context tempContext = context;
+        new Thread() {
+            @Override
+            public void run() {
+                Urnik.parseUrnik(tempContext);
+                setTrueUrnikParsed(true, tempContext);
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        Data.renderData(tempContext, false);
+                    }
+                });
+            }
+        }.start();
     }
     public static String getProfesor(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
