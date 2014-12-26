@@ -23,14 +23,15 @@ public class Urnik {
 
     public static void downloadUrnik(Context context){
 
-        String rawData = Internet.getTextFromUrl("http://app.gimvic.org/APIv2/urnik_provider.php?hash=" + Settings.getUrnikHash(context));
+        String rawData = Internet.getTextFromUrl("http://app.gimvic.org/APIv2/urnik/urnik_provider.php?hash=" + Settings.getUrnikHash(context));
 
-        if(!rawData.equals("no_new_data") && rawData.contains("podatki = new Array(")){
-            Files.writeToFile("Urnik.js", rawData, context);
-            Settings.setUrnikDownloaded(true, context);
-            Settings.setUrnikHash(Security.md5(rawData), context);
+        if(!rawData.contains("no_new_data")) {
+            if(rawData.contains("podatki = new Array(")){
+                Files.writeToFile("Urnik.js", rawData, context);
+                Settings.setUrnikDownloaded(true, context);
+                Settings.setUrnikHash(Internet.getTextFromUrl("http://app.gimvic.org/APIv2/urnik/urnik_hash_provider.php"), context);
+            }
         }
-
     }
 
     public static void render(Context context){
