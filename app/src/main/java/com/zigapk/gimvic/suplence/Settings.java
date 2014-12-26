@@ -79,11 +79,24 @@ public class Settings {
         }else return Mode.MODE_HYBRID;
     }
 
+    public static int getSafetyCounter(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getInt("safetyCounter", 0);
+    }
+
     public static void setMode(int mode, Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putInt("mode", mode);
+        editor.commit();
+    }
+
+    public static void increaseSafetyCounter(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putInt("safetyCounter", getSafetyCounter(context) + 1);
         editor.commit();
     }
 
