@@ -295,7 +295,7 @@ public class Urnik {
         return result;
     }
 
-    private static void parsePersonalUrnik(Context context){
+    public static void parsePersonalUrnik(Context context){
 
         while (Settings.getRazredi(context).razredi.size() == 0 && Settings.getProfesor(context) == ""){}
 

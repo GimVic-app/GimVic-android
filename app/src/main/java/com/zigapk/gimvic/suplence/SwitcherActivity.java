@@ -124,6 +124,17 @@ public class SwitcherActivity extends Activity {
                                 Settings.setRazredi(chosenRazredi, context);
                                 Settings.setUserMode(UserMode.MODE_UCENEC, context);
 
+                                //clean up and prepare for next time
+                                cleanUp();
+                                razredi = new ArrayList<String>();
+                                ucitelji = new ArrayList<String>();
+                                lepirazredi = new ArrayList<String>();
+                                izbirni = new ArrayList<String>();
+                                izbirniCharSequences = null;
+                                chosenRazredi = new ChosenRazredi();
+                                itemsChecked = null;
+                                izbirniFinished = false;
+
                                 parseEverything(context);
 
                                 //run on ui thread
@@ -145,6 +156,12 @@ public class SwitcherActivity extends Activity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        cleanUp();
     }
 
     private static void filterRazredi(){
@@ -210,7 +227,7 @@ public class SwitcherActivity extends Activity {
         new Thread() {
             @Override
             public void run() {
-                Urnik.parseUrnik(context);
+                Urnik.parsePersonalUrnik(context);
             }
         }.start();
         new Thread() {
@@ -219,5 +236,17 @@ public class SwitcherActivity extends Activity {
                 Suplence.parse(context);
             }
         }.start();
+    }
+
+    //clean up and prepare for next time
+    private static void cleanUp(){
+        razredi.clear();
+        ucitelji.clear();
+        lepirazredi.clear();
+        izbirni.clear();
+        izbirniCharSequences = new CharSequence[0];
+        chosenRazredi = new ChosenRazredi();
+        itemsChecked = new boolean[0];
+        izbirniFinished = false;
     }
 }
