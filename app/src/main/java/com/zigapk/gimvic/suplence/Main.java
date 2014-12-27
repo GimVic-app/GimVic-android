@@ -169,7 +169,8 @@ public class Main extends Activity implements ActionBar.TabListener {
             return true;
         }else if(id == R.id.admin_switch){
             //launch switcher
-            startActivity(new Intent(context, SwitcherActivity.class));
+            startActivity(new Intent(context
+                    , SwitcherActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
