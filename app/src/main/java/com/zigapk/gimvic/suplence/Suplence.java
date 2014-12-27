@@ -19,8 +19,6 @@ import java.io.File;
  * new Suplence suplence = gson.fromJson(jsonString, Suplence.class);
  */
 
-//TODO: render also opombe
-
 public class Suplence {
     private static int suplenceCounter = 0;
     String datum;

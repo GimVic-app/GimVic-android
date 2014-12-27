@@ -23,6 +23,7 @@
     <string name="dijak">DIJAK</string>
     <string name="profesor">PROFESOR</string>
     <string name="firstChoose">Dijak ali profesor?</string>
+    <string name="switcherChoose">Ste dijak ali profesor?</string>
     <string name="offline">Ni internetne povezave</string>
     <string name="offline_explanation">Vključite prenos podatkov ali omrežja wifi.</string>
     <string name="ok">Ok</string>

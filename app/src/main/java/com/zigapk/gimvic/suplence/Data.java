@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Path;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import java.io.File;
@@ -60,8 +62,14 @@ public class Data {
                 } else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
                 else if (mode == Mode.MODE_URNIK) Urnik.render(context);
 
-                Main.isDataRendered = true;
-
+                //run on ui thread
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        setRefreshingGuiState(false);
+                        Main.isDataRendered = true;
+                    }
+                });
             }
         }.start();
     }
@@ -77,18 +85,6 @@ public class Data {
     }
 
     public static void clearAllData(Context context) {
-        /*File cache = context.getCacheDir();
-        File appDir = new File(cache.getParent());
-        if (appDir.exists()) {
-            String[] children = appDir.list();
-            for (String s : children) {
-                if (!s.equals("lib")) {
-                    Files.deleteDir(new File(appDir, s));
-                }
-            }
-        }
-
-        Settings.clearSharedPrefs(context);*/
 
         File cache = context.getCacheDir();
         File appDir = new File(cache.getParent());
@@ -150,9 +146,7 @@ public class Data {
             return context[0];
         }
 
-        protected void onPostExecute(Context context) {
-            setRefreshingGuiState(false);
-        }
+        protected void onPostExecute(Context context) {}
     }
 
 }
