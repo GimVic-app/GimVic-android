@@ -42,5 +42,6 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="adminPasswordHash">269433b0e58e6c074b3b3ef17a343fbe140680f59b7ff991feea55a054175214</string>
+    <string name="title_activity_switcher">SwitcherActivity</string>
 
 </resources>

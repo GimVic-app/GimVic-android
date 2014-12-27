@@ -62,6 +62,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.zigapk.gimvic.suplence.Main" />
         </activity>
+        <activity
+            android:name=".SwitcherActivity"
+            android:label="@string/title_activity_switcher" >
+        </activity>
     </application>
 
 </manifest>

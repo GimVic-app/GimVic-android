@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -52,7 +53,8 @@ public class SettingsActivity extends Activity {
                     View divider = dialog.findViewById(divierId);
                     divider.setBackgroundColor(getResources().getColor(R.color.transparent));
                 }else {
-                    //TODO: make it launch switcher
+                    //launch switcher
+                    startActivity(new Intent(SettingsActivity.this, SwitcherActivity.class));
                 }
             }
         });
