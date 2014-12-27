@@ -50,7 +50,7 @@ public class Settings {
     }
     public static String getProfesor(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString("ucitelj", "Rudolf");
+        return prefs.getString("ucitelj", "");
     }
 
     public static boolean getAdmin(Context context){
@@ -58,11 +58,37 @@ public class Settings {
         return prefs.getBoolean("admin", false);
     }
 
+    public static boolean isHybridParsed(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("isHybridParsed", false);
+    }
+
+    public static boolean areSuplenceParsed(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("areSuplenceParsed", false);
+    }
+
     public static void setUcitelj(String ucitelj, Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putString("ucitelj", ucitelj);
+        editor.commit();
+    }
+
+    public static void setHybridParsed(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("isHybridParsed", value);
+        editor.commit();
+    }
+
+    public static void setSuplenceParsed(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("areSuplenceParsed", value);
         editor.commit();
     }
 

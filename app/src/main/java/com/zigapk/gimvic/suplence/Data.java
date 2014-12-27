@@ -46,21 +46,23 @@ public class Data {
 
     }
 
-    public static void renderData(Context context, boolean first) {
-        if(Settings.isTrueUrnikParsed(context)){
-            int mode = Settings.getMode(context);
+    public static void renderData(final Context context, final boolean first) {
+        new Thread() {
+            @Override
+            public void run() {
+                int mode = Settings.getMode(context);
 
-            if (mode == Mode.MODE_HYBRID) {
+                while (!Settings.isUrnikParsed(context) || !Settings.isTrueUrnikParsed(context) || !Settings.isHybridParsed(context) || !Settings.areSuplenceParsed(context)){}
 
-                Suplence.renderHybrid(context);
-                if (first) {
-                    Urnik.render(context);
-                }
-            } else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
-            else if (mode == Mode.MODE_URNIK) Urnik.render(context);
+                if (mode == Mode.MODE_HYBRID) {
+                    Suplence.renderHybrid(context);
+                } else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
+                else if (mode == Mode.MODE_URNIK) Urnik.render(context);
 
-            Main.isDataRendered = true;
-        }
+                Main.isDataRendered = true;
+
+            }
+        }.start();
     }
 
     public static void downloadData(Context context, boolean first) {
@@ -111,8 +113,10 @@ public class Data {
 
             }
 
-            while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context[0])) {}
-            while (refreshing) {}
+            while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context[0])) {
+            }
+            while (refreshing) {
+            }
 
             return context[0];
         }
@@ -120,16 +124,6 @@ public class Data {
         protected void onPostExecute(Context context) {
             setRefreshingGuiState(false);
         }
-    }
-
-    public static void parseFirstUrnik(final Context context){
-        new Thread() {
-            @Override
-            public void run() {
-                Urnik.parseUrnik(context);
-                Settings.setTrueUrnikParsed(true, context);
-            }
-        }.start();
     }
 
 }

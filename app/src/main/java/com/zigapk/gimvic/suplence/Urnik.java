@@ -37,6 +37,7 @@ public class Urnik {
     }
 
     public static void render(Context context){
+        while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context)){}
 
         Gson gson = new Gson();
         PersonalUrnik urnik = gson.fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
@@ -154,16 +155,22 @@ public class Urnik {
 
     }
 
-    public static void parseUrnik(Context context){
-        String rawData = Files.getFileValue("Urnik.js", context);
+    public static void parseUrnik(final Context context){
 
-        Urnik urnik = new Urnik();
-        urnik.urnik = pasreUrnikFromString(rawData);
+        new Thread() {
+            @Override
+            public void run() {
+                String rawData = Files.getFileValue("Urnik.js", context);
 
-        Gson gson = new Gson();
-        Files.writeToFile("Urnik.json", gson.toJson(urnik), context);
+                Urnik urnik = new Urnik();
+                urnik.urnik = pasreUrnikFromString(rawData);
 
-        parsePersonalUrnik(context);
+                Gson gson = new Gson();
+                Files.writeToFile("Urnik.json", gson.toJson(urnik), context);
+
+                parsePersonalUrnik(context);
+            }
+        }.start();
 
 
 
@@ -289,6 +296,9 @@ public class Urnik {
     }
 
     private static void parsePersonalUrnik(Context context){
+
+        while (Settings.getRazredi(context).razredi.size() == 0 && Settings.getProfesor(context) == ""){}
+
         Gson gson = new Gson();
         Urnik urnik = gson.fromJson(Files.getFileValue("Urnik.json", context), Urnik.class);
 
@@ -346,6 +356,7 @@ public class Urnik {
         Files.writeToFile("Urnik-personal.json", json, context);
 
         Settings.setUrnikParsed(true, context);
+        Settings.setTrueUrnikParsed(true, context);
 
     }
 

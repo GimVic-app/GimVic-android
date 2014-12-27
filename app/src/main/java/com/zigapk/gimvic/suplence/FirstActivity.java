@@ -194,13 +194,15 @@ public class FirstActivity extends Activity {
                                 Settings.setFirstOpened(false, context);
                                 Settings.setUserMode(UserMode.MODE_UCENEC, context);
 
+                                parseEverything(context);
+
                                 //run on ui thread
                                 Handler handler = new Handler(Looper.getMainLooper());
                                 handler.post(new Runnable() {
                                     public void run() {
                                         Intent intent = new Intent(context, Main.class);
                                         startActivity(intent);
-                                        Data.parseFirstUrnik(context);
+                                        Data.renderData(context, true);
                                         finish();
                                     }
                                 });
@@ -263,8 +265,11 @@ public class FirstActivity extends Activity {
                                     Settings.setFirstOpened(false, context);
                                     Settings.setUserMode(UserMode.MODE_UCITELJ, context);
 
+                                    parseEverything(context);
+
                                     Intent intent = new Intent(context, Main.class);
                                     startActivity(intent);
+                                    Data.renderData(context, true);
                                     finish();
                                 }
                             });
@@ -346,5 +351,19 @@ public class FirstActivity extends Activity {
         });
     }
 
+    private static void parseEverything(final Context context){
+        new Thread() {
+            @Override
+            public void run() {
+                Urnik.parseUrnik(context);
+            }
+        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                Suplence.parse(context);
+            }
+        }.start();
+    }
 
 }
