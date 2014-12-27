@@ -12,10 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/changeButton"
-        android:id="@+id/changeButton"
-        android:shadowColor="@color/green800"
-        android:background="@color/green"
-        android:textColor="@color/white"/>
+        android:id="@+id/changeButton"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -30,9 +27,6 @@
         android:layout_height="wrap_content"
         android:text=""
         android:id="@+id/modeButton"
-        android:layout_marginTop="24dp"
-        android:shadowColor="@color/green800"
-        android:background="@color/green"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="32dp"/>
 
 </LinearLayout>

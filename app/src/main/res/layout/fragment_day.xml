@@ -716,7 +716,7 @@
 
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="32dp"
+                android:layout_height="96dp"
                 android:background="@color/transparent"></View>
 
             <ImageView

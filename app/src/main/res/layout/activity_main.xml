@@ -1,17 +1,39 @@
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/pager"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.zigapk.gimvic.suplence.Main">
+    android:layout_height="fill_parent"
+    android:animateLayoutChanges="true">
 
-    <android.support.v4.view.PagerTitleStrip
-        android:id="@+id/pager_title_strip"
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/pager"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.zigapk.gimvic.suplence.Main">
+
+        <android.support.v4.view.PagerTitleStrip
+            android:id="@+id/pager_title_strip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@color/green"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:textColor="#fff" />
+
+    </android.support.v4.view.ViewPager>
+
+    <com.shamanland.fab.FloatingActionButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@color/green"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:textColor="#fff" />
-</android.support.v4.view.ViewPager>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:floatingActionButtonColor="@color/green"
+        android:src="@drawable/ic_food"
+        android:id="@+id/fab_button"/>
+
+
+</RelativeLayout>

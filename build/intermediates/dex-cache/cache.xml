@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.6/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e388595587aab9cb9f919f90de90b1831db908f5">
+        <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-bc250e63eaf14abf178ffb55a742dfd5e10783ab.jar" />
+    </item>
+    <item
         jar="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="20.0.0"

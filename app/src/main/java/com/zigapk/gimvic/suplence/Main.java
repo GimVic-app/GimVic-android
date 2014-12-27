@@ -27,6 +27,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.shamanland.fab.FloatingActionButton;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
@@ -336,11 +338,15 @@ public class Main extends Activity implements ActionBar.TabListener {
         }else {
             Data.refresh(context, true);
 
+            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_button);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
-
     }
-
-
 
 
     //sets onRefreshListeners and color schemes for swipe to refresh
