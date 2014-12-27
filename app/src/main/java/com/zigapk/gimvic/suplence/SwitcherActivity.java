@@ -156,6 +156,11 @@ public class SwitcherActivity extends Activity {
             }
         });
 
+
+        //TODO: set for profesorji
+        //set OnClickListener
+        Button profesorji = (Button) findViewById(R.id.switcherProfesorjiButton);
+
     }
 
     @Override
