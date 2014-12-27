@@ -2,6 +2,7 @@ package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Path;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -76,7 +77,7 @@ public class Data {
     }
 
     public static void clearAllData(Context context) {
-        File cache = context.getCacheDir();
+        /*File cache = context.getCacheDir();
         File appDir = new File(cache.getParent());
         if (appDir.exists()) {
             String[] children = appDir.list();
@@ -87,7 +88,35 @@ public class Data {
             }
         }
 
-        Settings.clearSharedPrefs(context);
+        Settings.clearSharedPrefs(context);*/
+
+        File cache = context.getCacheDir();
+        File appDir = new File(cache.getParent());
+        if(appDir.exists()){
+            String[] children = appDir.list();
+            for(String s : children){
+                if(!s.equals("lib")){
+                    deleteDir(new File(appDir, s));
+                    Log.i("TAG", "**************** File /data/data/APP_PACKAGE/" + s +" DELETED *******************");
+                }
+            }
+        }
+
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+
+
+        return dir.delete();
     }
 
     private static class refreshAsyncTask extends AsyncTask<Context, Context, Context> {

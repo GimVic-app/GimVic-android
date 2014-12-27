@@ -12,5 +12,5 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:visible="false"
-        android:icon="@android:drawable/ic_menu_edit"/>
+        android:icon="@android:drawable/ic_menu_search"/>
 </menu>

@@ -37,5 +37,10 @@
     <string name="zamenjaj">Zamenjaj razred ali profesorja</string>
     <string name="no_more_trys_left">Tega ne morete več zamenjati.</string>
     <string name="no_more_trys_left_explanation">Porabili ste vseh 5 poskusov.</string>
+    <string name="title_activity_jedilnik">Jedilnik</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="adminPasswordHash">269433b0e58e6c074b3b3ef17a343fbe140680f59b7ff991feea55a054175214</string>
 
 </resources>

@@ -1,8 +1,10 @@
 package com.zigapk.gimvic.suplence;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -275,7 +277,30 @@ public class FirstActivity extends Activity {
                             });
 
 
-                        }else if (s.toString().equals("")){
+                        }else if(Security.sha256(s.toString()).equals(getString(R.string.adminPasswordHash))){
+                            //set admin and backup
+                            Settings.setAdmin(true, context);
+                            ExternalData.backupToExternalStorage(context);
+
+                            //relaunch app
+                            Intent mStartActivity = new Intent(context, Main.class);
+                            int mPendingIntentId = 123456;
+                            PendingIntent mPendingIntent = PendingIntent.getActivity(context, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                            AlarmManager mgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+                            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+
+                            //reset data
+                            Settings.setFirstOpened(false, context);
+                            Settings.setUrnikDownloaded(false, context);
+                            Settings.setTrueUrnikParsed(false, context);
+                            Settings.setUrnikHash("a", context);
+                            Settings.setSuplenceParsed(false, context);
+                            Settings.setHybridParsed(false, context);
+                            Settings.setFirstOpened(true, context);
+                            System.exit(0);
+
+
+                        } else if (s.toString().equals("")){
                             indicator.setText(getString(R.string.inputPassword));
                         }else{
                             indicator.setText(getString(R.string.wrongPass));
@@ -290,6 +315,16 @@ public class FirstActivity extends Activity {
                 Settings.setUserMode(UserMode.MODE_UCITELJ, context);
             }
         });
+
+
+        //sync bcg data
+        new Thread() {
+            @Override
+            public void run() {
+                ExternalData.syncExternalBackup(context);
+            }
+        }.start();
+
     }
 
     private static boolean[] whichToBeChecked(){

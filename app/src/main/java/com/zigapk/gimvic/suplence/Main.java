@@ -338,11 +338,12 @@ public class Main extends Activity implements ActionBar.TabListener {
         }else {
             Data.refresh(context, true);
 
+            //TODO: doesn't work
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_button);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    startActivity(new Intent(Main.this, JedilnikActivity.class));
                 }
             });
         }

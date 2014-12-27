@@ -52,7 +52,15 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".Main">
+            android:parentActivityName=".Main" >
+        </activity>
+        <activity
+            android:name=".JedilnikActivity"
+            android:label="@string/title_activity_jedilnik"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zigapk.gimvic.suplence.Main" />
         </activity>
     </application>
 

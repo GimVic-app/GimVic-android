@@ -144,7 +144,7 @@
                 android:id="@+id/passwordIndicator"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </RelativeLayout>
 
