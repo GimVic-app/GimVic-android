@@ -24,16 +24,19 @@
 
     </android.support.v4.view.ViewPager>
 
-    <com.shamanland.fab.FloatingActionButton
+    <com.melnykov.fab.FloatingActionButton
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        fab:fab_colorNormal="@color/green"
+        fab:fab_colorPressed="@color/green700"
+        fab:fab_colorRipple="@color/green200"
+        android:id="@+id/fab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        app:floatingActionButtonColor="@color/green"
+        android:layout_gravity="bottom|right"
         android:src="@drawable/ic_food"
-        android:id="@+id/fab_button"/>
-
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"/>
 
 </RelativeLayout>

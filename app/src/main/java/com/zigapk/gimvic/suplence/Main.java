@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,7 +16,6 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,13 +25,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.shamanland.fab.FloatingActionButton;
+import com.melnykov.fab.FloatingActionButton;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Set;
 
 
 public class Main extends Activity implements ActionBar.TabListener {
@@ -314,8 +309,7 @@ public class Main extends Activity implements ActionBar.TabListener {
     public void initializeContent(){
 
         Date date = new Date();
-        if(6<=date.getMonth() || date.getMonth()<=8) {
-
+        if(6<=date.getMonth() && date.getMonth()<=8) {
             if(date.getMonth() == 6){
                 if(date.getDay() >= 25){
                     Data.clearAllData(context);
@@ -338,9 +332,8 @@ public class Main extends Activity implements ActionBar.TabListener {
             }
 
         }else {
-            Data.refresh(context, true);
 
-            //TODO: doesn't work
+            //setup fab
             FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_button);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -348,6 +341,8 @@ public class Main extends Activity implements ActionBar.TabListener {
                     startActivity(new Intent(Main.this, JedilnikActivity.class));
                 }
             });
+
+            Data.refresh(context, true);
         }
     }
 

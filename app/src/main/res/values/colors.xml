@@ -7,6 +7,8 @@
     <color name="green100">#C8E6C9</color>
     <color name="green700">#388E3C</color>
     <color name="green800">#2E7D32</color>
+    <color name="green300">#81C784</color>
+    <color name="green200">#A5D6A7</color>
 
 
     <!-- colors for swipe to refresh -->
