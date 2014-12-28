@@ -29,6 +29,7 @@ public class SettingsActivity extends Activity {
 
         final int left = 4 - Settings.getSafetyCounter(getApplicationContext());
 
+        
         Button switcher = (Button) findViewById(R.id.changeButton);
         switcher.setOnClickListener(new View.OnClickListener() {
             @Override
