@@ -1,8 +1,6 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Path;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;

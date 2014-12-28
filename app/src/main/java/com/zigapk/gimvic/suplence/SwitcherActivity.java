@@ -8,13 +8,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -156,10 +158,110 @@ public class SwitcherActivity extends Activity {
             }
         });
 
-
-        //TODO: set for profesorji
         //set OnClickListener
         Button profesorji = (Button) findViewById(R.id.switcherProfesorjiButton);
+        profesorji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                buttonLayout.setVisibility(View.GONE);
+                chooseView.setVisibility(View.GONE);
+
+                if(Settings.wasProfesorsPassEntered(context)){
+                    TextView tv = (TextView) findViewById(R.id.switcherChooseItem);
+                    tv.setText("Izberite učitelja:");
+                    tv.setVisibility(View.VISIBLE);
+                    ListView lv = (ListView) findViewById(R.id.switcherListView);
+
+                    ucitelji = new ArrayList<String>(Arrays.asList(Urnik.parseUcitelji(context).ucitelji));
+                    sortUcitelji();
+
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                            context,
+                            android.R.layout.simple_list_item_1,
+                            ucitelji);
+                    lv.setAdapter(arrayAdapter);
+                    lv.setVisibility(View.VISIBLE);
+
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        public void onItemClick(AdapterView<?> parent, View view,
+                                                int position, long id) {
+                            String chosen = ucitelji.get(position);
+
+                            Settings.setUcitelj(chosen, context);
+                            Settings.setFirstOpened(false, context);
+                            Settings.setUserMode(UserMode.MODE_UCITELJ, context);
+                            Settings.setProfesorsPassEntered(true, context);
+
+                            parseEverything(context);
+
+                            Intent intent = new Intent(context, Main.class);
+                            startActivity(intent);
+                            Data.renderData(context, true);
+                            finish();
+                        }
+                    });
+                }else {
+                    final TextView indicator = (TextView) findViewById(R.id.switcherPasswordIndicator);
+                    indicator.setVisibility(View.VISIBLE);
+                    final EditText pass = (EditText) findViewById(R.id.switcherPassword);
+                    pass.setVisibility(View.VISIBLE);
+                    pass.addTextChangedListener(new TextWatcher() {
+                        public void afterTextChanged(Editable s) {
+                            if (Security.sha256(s.toString()).equals(getString(R.string.passwordHash))) {
+                                pass.setVisibility(View.GONE);
+                                indicator.setVisibility(View.GONE);
+
+                                //hide keyboard
+                                InputMethodManager imm = (InputMethodManager) getSystemService(
+                                        Context.INPUT_METHOD_SERVICE);
+                                imm.hideSoftInputFromWindow(pass.getWindowToken(), 0);
+
+                                TextView tv = (TextView) findViewById(R.id.switcherChooseItem);
+                                tv.setText("Izberite učitelja:");
+                                tv.setVisibility(View.VISIBLE);
+                                ListView lv = (ListView) findViewById(R.id.switcherListView);
+
+                                ucitelji = new ArrayList<String>(Arrays.asList(Urnik.parseUcitelji(context).ucitelji));
+                                sortUcitelji();
+
+                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                                        context,
+                                        android.R.layout.simple_list_item_1,
+                                        ucitelji);
+                                lv.setAdapter(arrayAdapter);
+                                lv.setVisibility(View.VISIBLE);
+
+                                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    public void onItemClick(AdapterView<?> parent, View view,
+                                                            int position, long id) {
+                                        String chosen = ucitelji.get(position);
+
+                                        Settings.setUcitelj(chosen, context);
+                                        Settings.setFirstOpened(false, context);
+                                        Settings.setUserMode(UserMode.MODE_UCITELJ, context);
+                                        Settings.setProfesorsPassEntered(true, context);
+
+                                        parseEverything(context);
+
+                                        Intent intent = new Intent(context, Main.class);
+                                        startActivity(intent);
+                                        Data.renderData(context, true);
+                                        finish();
+                                    }
+                                });
+                            } else if (s.toString().equals("")) {
+                                indicator.setText(getString(R.string.inputPassword));
+                            } else {
+                                indicator.setText(getString(R.string.wrongPass));
+                            }
+                        }
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+                        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+                    });
+                }
+            }
+        });
 
     }
 

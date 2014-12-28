@@ -58,6 +58,11 @@ public class Settings {
         return prefs.getBoolean("admin", false);
     }
 
+    public static boolean wasProfesorsPassEntered(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("profesorsPassAlreadyEntered", false);
+    }
+
     public static boolean isHybridParsed(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getBoolean("isHybridParsed", false);
@@ -73,6 +78,14 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putString("ucitelj", ucitelj);
+        editor.commit();
+    }
+
+    public static void setProfesorsPassEntered(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("profesorsPassAlreadyEntered", value);
         editor.commit();
     }
 

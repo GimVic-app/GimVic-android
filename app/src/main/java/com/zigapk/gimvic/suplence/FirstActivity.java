@@ -266,6 +266,7 @@ public class FirstActivity extends Activity {
                                     Settings.setUcitelj(chosen, context);
                                     Settings.setFirstOpened(false, context);
                                     Settings.setUserMode(UserMode.MODE_UCITELJ, context);
+                                    Settings.setProfesorsPassEntered(true, context);
 
                                     parseEverything(context);
 
@@ -297,6 +298,7 @@ public class FirstActivity extends Activity {
                             Settings.setSuplenceParsed(false, context);
                             Settings.setHybridParsed(false, context);
                             Settings.setFirstOpened(true, context);
+                            Settings.setProfesorsPassEntered(true, context);
                             System.exit(0);
 
 
