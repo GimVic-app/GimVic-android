@@ -10,8 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -35,7 +33,7 @@ public class SettingsActivity extends Activity {
         switcher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(left == 0){
+                if(left == 0 && Settings.getAdmin(getApplicationContext()) == false){
                     Dialog dialog = new AlertDialog.Builder(SettingsActivity.this)
                             .setTitle(getResources().getString(R.string.no_more_trys_left))
                             .setCancelable(false)

@@ -125,6 +125,7 @@ public class SwitcherActivity extends Activity {
 
                                 Settings.setRazredi(chosenRazredi, context);
                                 Settings.setUserMode(UserMode.MODE_UCENEC, context);
+                                Settings.increaseSafetyCounter(context);
 
                                 //clean up and prepare for next time
                                 cleanUp();
@@ -191,6 +192,7 @@ public class SwitcherActivity extends Activity {
                             Settings.setUcitelj(chosen, context);
                             Settings.setFirstOpened(false, context);
                             Settings.setUserMode(UserMode.MODE_UCITELJ, context);
+                            Settings.increaseSafetyCounter(context);
                             Settings.setProfesorsPassEntered(true, context);
 
                             parseEverything(context);
