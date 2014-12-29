@@ -117,7 +117,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                 @Override
                 public void run() {
 
-                    ExternalData.syncExternalBackup(context);
+                    ExternalData.syncExternalBackup(context, false);
                     Handler handler = new Handler(Looper.getMainLooper());
                     try {
                         Thread.sleep(30);

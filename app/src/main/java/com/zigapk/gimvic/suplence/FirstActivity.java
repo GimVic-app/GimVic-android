@@ -323,7 +323,7 @@ public class FirstActivity extends Activity {
         new Thread() {
             @Override
             public void run() {
-                ExternalData.syncExternalBackup(context);
+                ExternalData.syncExternalBackup(context, true);
             }
         }.start();
 

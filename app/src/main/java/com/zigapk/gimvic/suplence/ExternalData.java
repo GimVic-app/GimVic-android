@@ -4,8 +4,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
-import java.io.File;
-
 /**
  * Created by ziga on 26.12.2014.
  */
@@ -52,8 +50,14 @@ public class ExternalData {
         }
     }
 
-    public static void syncExternalBackup(Context context){
-        restoreExternalBackup(context);
-        backupToExternalStorage(context);
+    public static void syncExternalBackup(Context context, boolean first){
+        if(first){
+            restoreExternalBackup(context);
+            backupToExternalStorage(context);
+        }else {
+            backupToExternalStorage(context);
+            restoreExternalBackup(context);
+        }
+
     }
 }

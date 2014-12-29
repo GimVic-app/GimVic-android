@@ -66,6 +66,14 @@
             android:name=".SwitcherActivity"
             android:label="@string/title_activity_switcher" >
         </activity>
+        <activity
+            android:name=".JedlinikActivity"
+            android:label="@string/title_activity_jedlinik"
+            android:parentActivityName=".Main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zigapk.gimvic.suplence.Main" />
+        </activity>
     </application>
 
 </manifest>

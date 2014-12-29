@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.text.Editable;
 
 import com.google.gson.Gson;
 
@@ -53,6 +52,31 @@ public class Settings {
         return prefs.getString("ucitelj", "");
     }
 
+    public static String getLastKosiloName(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString("kosiloName", null);
+    }
+
+    public static String getLastMalicaName(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString("malicaName", null);
+    }
+
+    private static boolean isMalicaDownloading(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("malicaDownloading", false);
+    }
+
+    private static boolean isKosiloDownloading(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("kosiloDownloading", false);
+    }
+
+    public static boolean isJedilnikDownloading(Context context){
+        if(isKosiloDownloading(context) || isMalicaDownloading(context)) return true;
+        return false;
+    }
+
     public static boolean getAdmin(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getBoolean("admin", false);
@@ -81,6 +105,22 @@ public class Settings {
         editor.commit();
     }
 
+    public static void setMalicaDownloading(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("malicaDownloading", value);
+        editor.commit();
+    }
+
+    public static void setKosiloDownloading(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("kosiloDownloading", value);
+        editor.commit();
+    }
+
     public static void setProfesorsPassEntered(boolean value, Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
@@ -94,6 +134,22 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putBoolean("isHybridParsed", value);
+        editor.commit();
+    }
+
+    public static void setLastKosiloName(String name, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("kosiloName", name);
+        editor.commit();
+    }
+
+    public static void setLastMalicaName(String name, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("malicaName", name);
         editor.commit();
     }
 

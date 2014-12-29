@@ -1,11 +1,14 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -119,5 +122,29 @@ public class Files {
             //You'll need to add proper error handling here
             return null;
         }
+    }
+
+    public static Bitmap loadBitmap(String name, Context context){
+        Bitmap b = null;
+        FileInputStream fis;
+        try {
+            fis = context.openFileInput(name);
+            b = BitmapFactory.decodeStream(fis);
+            fis.close();
+        }
+        catch (FileNotFoundException e) {}
+        catch (IOException e) {}
+        return b;
+    }
+
+    public static void saveBitmap(Bitmap b, String name, Context context){
+        FileOutputStream fos;
+        try {
+            fos = context.openFileOutput(name, Context.MODE_PRIVATE);
+            b.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.close();
+        }
+        catch (FileNotFoundException e) {}
+        catch (IOException e) {}
     }
 }

@@ -47,7 +47,6 @@ public class Suplence {
                 downloadForDate(tempDate0, ctx);
             }
         }.start();
-
         new Thread() {
             @Override
             public void run() {
@@ -78,14 +77,12 @@ public class Suplence {
                 downloadForDate(tempDate5, ctx);
             }
         }.start();
-
         new Thread() {
             @Override
             public void run() {
                 downloadForDate(tempDate6, ctx);
             }
         }.start();
-
 
         //start clean old files
         new Thread() {
