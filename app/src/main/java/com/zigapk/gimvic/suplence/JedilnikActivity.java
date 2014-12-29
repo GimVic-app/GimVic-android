@@ -5,9 +5,13 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
@@ -17,6 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.Locale;
+
+import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 
 
 public class JedilnikActivity extends Activity implements ActionBar.TabListener {
@@ -36,6 +43,10 @@ public class JedilnikActivity extends Activity implements ActionBar.TabListener 
      */
     ViewPager mViewPager;
 
+    private static ImageViewTouch malicaView;
+    private static ImageViewTouch kosiloView;
+    private static Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +55,7 @@ public class JedilnikActivity extends Activity implements ActionBar.TabListener 
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#43A047")));
         actionBar.setIcon(R.drawable.ic_logo_white);
         actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>" + getString(R.string.gimvic) + "</font>"));
-        
+
         setContentView(R.layout.activity_jedilnik);
 
         // Create the adapter that will return a fragment for each of the three
@@ -67,6 +78,29 @@ public class JedilnikActivity extends Activity implements ActionBar.TabListener 
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+        context = getApplicationContext();
+
+        initializeContent();
+    }
+
+    private static void initializeContent() {
+        new Thread() {
+            @Override
+            public void run() {
+                while (malicaView == null || kosiloView == null){}
+
+                //run on ui thread
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        malicaView.setDisplayType(ImageViewTouchBase.DisplayType.FIT_IF_BIGGER);
+                        Bitmap malica = Jedilnik.getMalica(context);
+                        malicaView.setImageBitmap(malica);
+                    }
+                });
+            }
+        }.start();
     }
 
     @Override
@@ -156,7 +190,15 @@ public class JedilnikActivity extends Activity implements ActionBar.TabListener 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            int position = getArguments().getInt(ARG_SECTION_NUMBER);
             View rootView = inflater.inflate(R.layout.fragment_jedilnik, container, false);
+
+            if(position == 1){
+                malicaView = (ImageViewTouch) rootView.findViewById(R.id.jedilnikImage);
+            }else if(position == 2){
+                kosiloView = (ImageViewTouch) rootView.findViewById(R.id.jedilnikImage);
+            }
+
             return rootView;
         }
     }
