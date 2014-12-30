@@ -134,6 +134,7 @@ public class Files {
         }
         catch (FileNotFoundException e) {}
         catch (IOException e) {}
+        catch (Exception e){}
         return b;
     }
 

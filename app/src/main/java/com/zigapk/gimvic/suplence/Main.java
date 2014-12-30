@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,19 +17,26 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 
 
 public class Main extends Activity implements ActionBar.TabListener {
@@ -48,6 +56,13 @@ public class Main extends Activity implements ActionBar.TabListener {
     public static String packageName;
 
     public static boolean isDataRendered = false;
+
+    public static boolean isJedilnikOpened = false;
+
+    private static View animationView;
+    private static ImageViewTouch jedilnikImage;
+    private static TextView jedilnikIndicator;
+    private static boolean isJedilnikFirstOpened = true;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -183,6 +198,12 @@ public class Main extends Activity implements ActionBar.TabListener {
 
     @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isJedilnikOpened) hideJedilnik(animationView);
+        else super.onBackPressed();
     }
 
     /**
@@ -334,16 +355,185 @@ public class Main extends Activity implements ActionBar.TabListener {
         }else {
 
             //setup fab
-            FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_button);
+            final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_button);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(Main.this, JedilnikActivity.class));
+                public void onClick(final View v) {
+                    if(isJedilnikOpened) hideJedilnik(v);
+                    else showJedilnik(v);
                 }
             });
 
+            final FloatingActionButton malica = (FloatingActionButton) findViewById(R.id.malicaButton);
+            final FloatingActionButton kosilo = (FloatingActionButton) findViewById(R.id.kosiloButton);
+            malica.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    malica.setColorNormal(getResources().getColor(R.color.green800));
+                    kosilo.setColorNormal(getResources().getColor(R.color.green));
+                    renderMalica(false);
+                }
+            });
+            kosilo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    malica.setColorNormal(getResources().getColor(R.color.green));
+                    kosilo.setColorNormal(getResources().getColor(R.color.green800));
+                    renderKosilo();
+                }
+            });
             Data.refresh(context, true);
         }
+    }
+
+    private void showJedilnik(final View v){
+        new Thread() {
+            @Override
+            public void run() {
+                animationView = v;
+                final RelativeLayout jedilnikView = (RelativeLayout) findViewById(R.id.jedilnikView);
+                final Animation food = animShowFood();
+                final FloatingActionButton malicaButton = (FloatingActionButton) findViewById(R.id.malicaButton);
+                final FloatingActionButton kosiloButton = (FloatingActionButton) findViewById(R.id.kosiloButton);
+                //run on ui thread
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        v.startAnimation(food);
+                        jedilnikView.setVisibility(View.VISIBLE);
+                        malicaButton.setVisibility(View.VISIBLE);
+                        kosiloButton.setVisibility(View.VISIBLE);
+
+                    }
+                });
+
+                isJedilnikOpened = true;
+                jedilnikImage = (ImageViewTouch) findViewById(R.id.jedilnikImage);
+                jedilnikIndicator = (TextView) findViewById(R.id.jedilnikIndicator);
+            }
+        }.start();
+    }
+
+    private Animation animShowFood(){
+        final float direction = -1;
+        final float yDelta = getScreenHeight() - (2 * animationView.getHeight());
+        final int layoutTopOrBottomRule = RelativeLayout.ALIGN_PARENT_TOP;
+
+        final RelativeLayout jedilnikView = (RelativeLayout) findViewById(R.id.jedilnikView);
+        final FloatingActionButton jedilnikButton = (FloatingActionButton) findViewById(R.id.fab_button);
+
+        final Animation animation = new TranslateAnimation(0,0,0, yDelta * direction);
+        animation.setDuration(350);
+        animation.setInterpolator(new AccelerateDecelerateInterpolator());
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            public void onAnimationStart(Animation animation) {}
+            public void onAnimationRepeat(Animation animation) {}
+            public void onAnimationEnd(Animation animation) {
+
+
+                TranslateAnimation anim = new TranslateAnimation(0.0f, 0.0f, 0.0f, 0.0f);
+                animationView.startAnimation(anim);
+
+                //set new params
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(animationView.getLayoutParams());
+                params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                params.addRule(layoutTopOrBottomRule);
+                animationView.setLayoutParams(params);
+                jedilnikButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_content_clear));
+                if(isJedilnikFirstOpened){
+                    renderMalica(true);
+                    isJedilnikFirstOpened = false;
+                }
+            }
+        });
+
+        return animation;
+    }
+
+    private static void renderMalica(final boolean wait){
+        new Thread() {
+            @Override
+            public void run() {
+                final Bitmap malica  = Jedilnik.getMalica(context);
+                if(wait){
+                    try {
+                        Thread.sleep(30);
+                    }catch (Exception e){}
+                }
+                //run on ui thread
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        jedilnikImage.setImageBitmap(malica);
+                        jedilnikIndicator.setText(context.getResources().getString(R.string.title_malica));
+                    }
+                });
+            }
+        }.start();
+    }
+
+    private static void renderKosilo(){
+        new Thread() {
+            @Override
+            public void run() {
+                final Bitmap kosilo  = Jedilnik.getKosilo(context);
+                //run on ui thread
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        jedilnikImage.setImageBitmap(kosilo);
+                        jedilnikIndicator.setText(context.getResources().getString(R.string.title_kosilo));
+                    }
+                });
+            }
+        }.start();
+    }
+
+    public void hideJedilnik(final View v){
+        new Thread() {
+            @Override
+            public void run() {
+                final float direction = 1;
+                final float yDelta = getScreenHeight() - (2 * v.getHeight());
+                final int layoutTopOrBottomRule = RelativeLayout.ALIGN_PARENT_BOTTOM;
+
+                final RelativeLayout jedilnikView = (RelativeLayout) findViewById(R.id.jedilnikView);
+                final FloatingActionButton jedilnikButton = (FloatingActionButton) findViewById(R.id.fab_button);
+                final Animation animation = new TranslateAnimation(0,0,0, yDelta * direction);
+                final FloatingActionButton malicaButton = (FloatingActionButton) findViewById(R.id.malicaButton);
+                final FloatingActionButton kosiloButton = (FloatingActionButton) findViewById(R.id.kosiloButton);
+                animation.setDuration(350);
+                animation.setInterpolator(new AccelerateDecelerateInterpolator());
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    public void onAnimationStart(Animation animation) {}
+                    public void onAnimationRepeat(Animation animation) {}
+                    public void onAnimationEnd(Animation animation) {
+                        TranslateAnimation anim = new TranslateAnimation(0.0f, 0.0f, 0.0f, 0.0f);
+                        v.startAnimation(anim);
+
+                        //set new params
+                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(v.getLayoutParams());
+                        params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                        params.addRule(layoutTopOrBottomRule);
+                        v.setLayoutParams(params);
+                        jedilnikButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_food));
+                    }
+                });
+
+                //run on ui thread
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        v.startAnimation(animation);
+                        jedilnikView.setVisibility(View.GONE);
+                        malicaButton.setVisibility(View.GONE);
+                        kosiloButton.setVisibility(View.GONE);
+                    }
+                });
+
+                isJedilnikOpened = false;
+            }
+        }.start();
     }
 
 
@@ -418,7 +608,12 @@ public class Main extends Activity implements ActionBar.TabListener {
                     R.color.greenThree,
                     R.color.greenFour);
         }
+    }
 
+    private float getScreenHeight() {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        return (float) displaymetrics.heightPixels;
     }
 
 }

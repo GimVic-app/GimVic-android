@@ -10,6 +10,8 @@
     <color name="green300">#81C784</color>
     <color name="green200">#A5D6A7</color>
 
+    <color name="white_transparent">#DDFFFFFF</color>
+
 
     <!-- colors for swipe to refresh -->
     <color name="greenOne">#4CAF50</color>
