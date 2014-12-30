@@ -6,7 +6,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.Locale;
 
@@ -43,8 +43,10 @@ public class JedilnikActivity extends Activity implements ActionBar.TabListener 
      */
     ViewPager mViewPager;
 
-    private static ImageViewTouch malicaView;
-    private static ImageViewTouch kosiloView;
+    public static ImageViewTouch malicaView;
+    public static ImageViewTouch kosiloView;
+    public static ProgressBar malicaProgessBar;
+    public static ProgressBar kosiloProgessBar;
     private static Context context;
 
     @Override
@@ -88,15 +90,18 @@ public class JedilnikActivity extends Activity implements ActionBar.TabListener 
         new Thread() {
             @Override
             public void run() {
-                while (malicaView == null || kosiloView == null){}
+                while (malicaView == null || kosiloView == null || malicaProgessBar == null || kosiloProgessBar == null){}
 
                 //run on ui thread
                 Handler handler = new Handler(Looper.getMainLooper());
                 handler.post(new Runnable() {
                     public void run() {
+
                         malicaView.setDisplayType(ImageViewTouchBase.DisplayType.FIT_IF_BIGGER);
-                        Bitmap malica = Jedilnik.getMalica(context);
-                        malicaView.setImageBitmap(malica);
+                        kosiloView.setDisplayType(ImageViewTouchBase.DisplayType.FIT_IF_BIGGER);
+
+                        if(Settings.isJedilnikDownloading(context)) Jedilnik.onJedilnikDownloadStarted(context);
+                        else Jedilnik.onJedilnikReady(context);
                     }
                 });
             }
@@ -195,8 +200,10 @@ public class JedilnikActivity extends Activity implements ActionBar.TabListener 
 
             if(position == 1){
                 malicaView = (ImageViewTouch) rootView.findViewById(R.id.jedilnikImage);
+                malicaProgessBar = (ProgressBar) rootView.findViewById(R.id.jedilnikProgressBar);
             }else if(position == 2){
                 kosiloView = (ImageViewTouch) rootView.findViewById(R.id.jedilnikImage);
+                kosiloProgessBar = (ProgressBar) rootView.findViewById(R.id.jedilnikProgressBar);
             }
 
             return rootView;

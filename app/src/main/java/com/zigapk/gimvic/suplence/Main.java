@@ -126,12 +126,12 @@ public class Main extends Activity implements ActionBar.TabListener {
                         public void run() {
                             Data.setRefreshingGuiState(true);
                             Data.renderData(context, true);
-                            Data.refresh(context, true);
                         }
                     });
                 }
             }.start();
 
+            Data.refresh(context, true);
         }
     }
 

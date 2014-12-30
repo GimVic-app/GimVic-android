@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by ziga on 10/18/14.
@@ -52,24 +53,22 @@ public class Settings {
         return prefs.getString("ucitelj", "");
     }
 
-    public static String getLastKosiloName(Context context){
+    public static Calendar getJedilnikLastDownloadedDate(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString("kosiloName", null);
-    }
-
-    public static String getLastMalicaName(Context context){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString("malicaName", null);
+        Calendar defaultCal = Calendar.getInstance();
+        defaultCal.set(Calendar.YEAR, Calendar.YEAR - 1);
+        String json = prefs.getString("jedilnikLastDownloadedDate", new Gson().toJson(defaultCal));
+        return new Gson().fromJson(json, Calendar.class);
     }
 
     private static boolean isMalicaDownloading(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("malicaDownloading", false);
+        return prefs.getBoolean("malicaDownloading", true);
     }
 
     private static boolean isKosiloDownloading(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("kosiloDownloading", false);
+        return prefs.getBoolean("kosiloDownloading", true);
     }
 
     public static boolean isJedilnikDownloading(Context context){
@@ -121,6 +120,16 @@ public class Settings {
         editor.commit();
     }
 
+    public static void setJedilnikLastDownloadedDate(Calendar calendar, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        String json = new Gson().toJson(calendar);
+
+        editor.putString("jedilnikLastDownloadedDate", json);
+        editor.commit();
+    }
+
     public static void setProfesorsPassEntered(boolean value, Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
@@ -134,22 +143,6 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putBoolean("isHybridParsed", value);
-        editor.commit();
-    }
-
-    public static void setLastKosiloName(String name, Context context){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putString("kosiloName", name);
-        editor.commit();
-    }
-
-    public static void setLastMalicaName(String name, Context context){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putString("malicaName", name);
         editor.commit();
     }
 

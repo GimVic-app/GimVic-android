@@ -12,12 +12,10 @@ public class DownloadService extends Service {
             Suplence.downloadSuplence(getApplicationContext());
 
             if(Internet.onWifi(getApplicationContext())){
-                Urnik.downloadUrnik(getApplicationContext());
+                Data.refresh(getApplicationContext(), false);
             }
         }
-
         return Service.START_NOT_STICKY;
-
     }
 
     @Override

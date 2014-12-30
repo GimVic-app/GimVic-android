@@ -15,14 +15,12 @@ import java.io.File;
 public class Data {
 
     public static boolean refreshing = false;
+    private static boolean onGui = false;
 
     public static void refresh(Context context, boolean GUI) {
-
         if (GUI) setRefreshingGuiState(true);
-
+        onGui = GUI;
         new refreshAsyncTask().execute(context);
-
-
     }
 
     public static void setRefreshingGuiState(Boolean refreshing) {
@@ -73,11 +71,14 @@ public class Data {
     }
 
     public static void downloadData(Context context, boolean first) {
+
+        //TODO: to threads
         Urnik.downloadUrnik(context);
         if (first) {
             Urnik.parseUrnik(context);
         }
         Suplence.downloadSuplence(context);
+        Jedilnik.refresh(context);
 
 
     }
@@ -129,17 +130,18 @@ public class Data {
                     @Override
                     public void run() {
                         Suplence.parse(tempContext);
-                        renderData(tempContext, false);
+                        if(onGui){
+                            renderData(tempContext, false);
+                        }
                         Data.refreshing = false;
                     }
                 }.start();
 
             }
-
-            while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context[0])) {
+            if(onGui){
+                while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context[0])) {}
             }
-            while (refreshing) {
-            }
+            while (refreshing) {}
 
             return context[0];
         }

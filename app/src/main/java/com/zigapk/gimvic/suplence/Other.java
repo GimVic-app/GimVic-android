@@ -1,10 +1,5 @@
 package com.zigapk.gimvic.suplence;
 
-import java.lang.reflect.Field;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 /**
  * Created by ziga on 12/5/14.
  */

@@ -23,6 +23,13 @@
         <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-0a9f149190d72aa44ed001e6d120fe397422947d.jar" />
     </item>
     <item
+        jar="/home/ziga/Desktop/GimVic-suplence-android/app/libs/joda-time-2.6.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="5015880733b0bc0ce813a3ed5601064c1d413671">
+        <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/joda-time-2.6-4348b0d7bcdc47f69e95b907156a956530e58480.jar" />
+    </item>
+    <item
         jar="/home/ziga/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="20.0.0"
