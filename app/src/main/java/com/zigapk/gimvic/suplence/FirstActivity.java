@@ -144,7 +144,7 @@ public class FirstActivity extends Activity {
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                         context,
-                        android.R.layout.simple_list_item_1,
+                        R.layout.list_view_item,
                         lepirazredi );
                 lv.setAdapter(arrayAdapter);
                 lv.setVisibility(View.VISIBLE);
@@ -253,7 +253,7 @@ public class FirstActivity extends Activity {
 
                             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                                     context,
-                                    android.R.layout.simple_list_item_1,
+                                    R.layout.list_view_item,
                                     ucitelji );
                             lv.setAdapter(arrayAdapter);
                             lv.setVisibility(View.VISIBLE);

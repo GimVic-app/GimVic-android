@@ -11,7 +11,7 @@ public class DownloadService extends Service {
         if(Internet.isOnline(getApplicationContext())){
             Suplence.downloadSuplence(getApplicationContext());
 
-            if(Internet.onWifi(getApplicationContext())){
+            if(Internet.onWifi(getApplicationContext())  && !Other.holidays()){
                 Data.refresh(getApplicationContext(), false);
             }
         }

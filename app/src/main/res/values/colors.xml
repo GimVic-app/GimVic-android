@@ -11,6 +11,7 @@
     <color name="green200">#A5D6A7</color>
 
     <color name="white_transparent">#DDFFFFFF</color>
+    <color name="red">#F44336</color>
 
 
     <!-- colors for swipe to refresh -->
@@ -20,6 +21,7 @@
     <color name="greenFour">#A5D6A7</color>
     <color name="white">#ffffff</color>
     <color name="transparent">#00ffffff</color>
+    <color name="black">#000</color>
 
 
 </resources>

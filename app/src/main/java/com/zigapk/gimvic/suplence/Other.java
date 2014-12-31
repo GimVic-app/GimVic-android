@@ -1,5 +1,7 @@
 package com.zigapk.gimvic.suplence;
 
+import java.util.Calendar;
+
 /**
  * Created by ziga on 12/5/14.
  */
@@ -106,6 +108,18 @@ public class Other {
     public static boolean razredEqualsAny(String razred, ChosenRazredi razredi){
         for(String temp : razredi.razredi){
             if(temp.equals(razred)) return true;
+        }
+        return false;
+    }
+
+    public static boolean holidays(){
+        Calendar calendar = Calendar.getInstance();
+        if(6<=calendar.get(Calendar.MONTH) + 1 && calendar.get(Calendar.MONTH)<=8) {
+            if(calendar.get(Calendar.MONTH) + 1 == 6){
+                if(calendar.get(Calendar.DAY_OF_MONTH) >= 25) return true;
+            }else if(calendar.get(Calendar.MONTH) + 1 == 8){
+                if(calendar.get(Calendar.DAY_OF_MONTH) <= 20) return true;
+            }else if(calendar.get(Calendar.MONTH) + 1 == 7) return true;
         }
         return false;
     }

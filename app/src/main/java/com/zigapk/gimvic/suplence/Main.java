@@ -34,7 +34,6 @@ import android.widget.TextView;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 
@@ -329,28 +328,10 @@ public class Main extends Activity implements ActionBar.TabListener {
 
     public void initializeContent(){
 
-        Date date = new Date();
-        if(6<=date.getMonth() && date.getMonth()<=8) {
-            if(date.getMonth() == 6){
-                if(date.getDay() >= 25){
-                    Data.clearAllData(context);
-                    startActivity(new Intent(context, SummerActivity.class));
-                    Main.this.finish();
-                    return;
-                }
-            }else if(date.getMonth() == 8){
-                if(date.getDay() <= 20){
-                    Data.clearAllData(context);
-                    startActivity(new Intent(context, SummerActivity.class));
-                    Main.this.finish();
-                    return;
-                }
-            }else if(date.getMonth() == 7){
-                Data.clearAllData(context);
-                startActivity(new Intent(context, SummerActivity.class));
-                Main.this.finish();
-                return;
-            }
+        if(Other.holidays()) {
+            Data.clearAllData(context);
+            startActivity(new Intent(context, SummerActivity.class));
+            Main.this.finish();
 
         }else {
 

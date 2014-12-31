@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -72,7 +71,7 @@ public class SwitcherActivity extends Activity {
 
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                         context,
-                        android.R.layout.simple_list_item_1,
+                        R.layout.list_view_item,
                         lepirazredi );
                 lv.setAdapter(arrayAdapter);
                 lv.setVisibility(View.VISIBLE);
@@ -180,7 +179,7 @@ public class SwitcherActivity extends Activity {
 
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                             context,
-                            android.R.layout.simple_list_item_1,
+                            R.layout.list_view_item,
                             ucitelji);
                     lv.setAdapter(arrayAdapter);
                     lv.setVisibility(View.VISIBLE);
@@ -195,11 +194,9 @@ public class SwitcherActivity extends Activity {
                             Settings.setUserMode(UserMode.MODE_UCITELJ, context);
                             Settings.increaseSafetyCounter(context);
                             Settings.setProfesorsPassEntered(true, context);
-
+                            ExternalData.syncExternalBackup(context, false);
                             parseEverything(context);
 
-                            Intent intent = new Intent(context, Main.class);
-                            startActivity(intent);
                             Data.renderData(context, true);
                             finish();
                         }
@@ -244,11 +241,9 @@ public class SwitcherActivity extends Activity {
                                         Settings.setFirstOpened(false, context);
                                         Settings.setUserMode(UserMode.MODE_UCITELJ, context);
                                         Settings.setProfesorsPassEntered(true, context);
-
+                                        ExternalData.syncExternalBackup(context, false);
                                         parseEverything(context);
 
-                                        Intent intent = new Intent(context, Main.class);
-                                        startActivity(intent);
                                         Data.renderData(context, true);
                                         finish();
                                     }

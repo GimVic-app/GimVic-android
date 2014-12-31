@@ -103,9 +103,9 @@ public class Jedilnik {
         try {
             Bitmap bitmap = Files.loadBitmap("Kosilo.png", context);
             if(bitmap != null) return bitmap;
-            else return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_web);
+            else return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
         }catch (Exception e){
-            return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_web);
+            return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
         }
     }
 
@@ -116,31 +116,41 @@ public class Jedilnik {
         String json = Internet.getTextFromUrl("http://www.gimvic.org/delovanjesole/solske_sluzbe_in_solski_organi/solska_prehrana/jedilnik_data/");
         JedilnikData data = new Gson().fromJson(json, JedilnikData.class);
 
-        if(data.malica.filename != "" && data.malica.filename != null && data.kosilo.filename != "" && data.kosilo.filename != null){
-            final String malicaUrl = "http://www.gimvic.org/delovanjesole/solske_sluzbe_in_solski_organi/solska_prehrana/files/" + data.malica.filename.replace(".pdf",".png");
-            Settings.setMalicaDownloading(true, context);
-            new Thread() {
-                @Override
-                public void run() {
-                    Bitmap malica = Internet.downloadBitmap(malicaUrl);
-                    Files.saveBitmap(malica, "Malica.png", context);
-                    Settings.setMalicaDownloading(false, context);
-                }
-            }.start();
+        if(data != null){
+            if(data.malica != null && data.kosilo != null){
+                if(data.malica.filename != "" && data.malica.filename != null && data.kosilo.filename != "" && data.kosilo.filename != null){
+                    final String malicaUrl = "http://www.gimvic.org/delovanjesole/solske_sluzbe_in_solski_organi/solska_prehrana/files/" + data.malica.filename.replace(".pdf",".png");
+                    Settings.setMalicaDownloading(true, context);
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            Internet.downloadAndSaveBitmap(malicaUrl, "Malica.png", context);
+                            Settings.setMalicaDownloading(false, context);
+                        }
+                    }.start();
 
-            final String kosiloUrl = "http://www.gimvic.org/delovanjesole/solske_sluzbe_in_solski_organi/solska_prehrana/files/" + data.kosilo.filename.replace(".pdf",".png");
-            Settings.setKosiloDownloading(true, context);
-            new Thread() {
-                @Override
-                public void run() {
-                    Bitmap kosilo = Internet.downloadBitmap(kosiloUrl);
-                    Files.saveBitmap(kosilo, "Kosilo.png", context);
-                    Settings.setKosiloDownloading(false, context);
+                    final String kosiloUrl = "http://www.gimvic.org/delovanjesole/solske_sluzbe_in_solski_organi/solska_prehrana/files/" + data.kosilo.filename.replace(".pdf",".png");
+                    Settings.setKosiloDownloading(true, context);
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            Internet.downloadAndSaveBitmap(kosiloUrl, "Kosilo.png", context);
+                            Settings.setKosiloDownloading(false, context);
+                        }
+                    }.start();
+                }else {
+                    Files.saveBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty), "Malica.png", context);
+                    Files.saveBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty), "Kosilo.png", context);
                 }
-            }.start();
+            }else {
+                Files.saveBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty), "Malica.png", context);
+                Files.saveBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty), "Kosilo.png", context);
+            }
         }else {
-            //TODO: set "ni jedilnika" image
+            Files.saveBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty), "Malica.png", context);
+            Files.saveBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty), "Kosilo.png", context);
         }
+
 
         Files.writeToFile("JedilnikData.json", json, context);
         Settings.setJedilnikLastDownloadedDate(Calendar.getInstance(), context);

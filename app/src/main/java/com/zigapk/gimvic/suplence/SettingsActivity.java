@@ -59,9 +59,6 @@ public class SettingsActivity extends Activity {
             }
         });
 
-        TextView safetySounterIndicator = (TextView) findViewById(R.id.safetyCounterIndicator);
-        safetySounterIndicator.setText("To lahko spremenite še " + left + "-krat.");
-
         Button modeButton = (Button) findViewById(R.id.modeButton);
         modeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +74,19 @@ public class SettingsActivity extends Activity {
         });
         setModeButtonText();
 
+    }
+
+    private void setSafetyIndicatorText(){
+        final int left = 4 - Settings.getSafetyCounter(getApplicationContext());
+        TextView safetyCounterIndicator = (TextView) findViewById(R.id.safetyCounterIndicator);
+        safetyCounterIndicator.setText("To lahko spremenite še " + left + "-krat.");
+        if (left <= 1) safetyCounterIndicator.setTextColor(getResources().getColor(R.color.red));
+        else safetyCounterIndicator.setTextColor(getResources().getColor(R.color.black));
+    }
+
+    public void onResume() {
+        super.onResume();
+        setSafetyIndicatorText();
     }
 
     @Override
