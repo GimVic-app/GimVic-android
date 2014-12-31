@@ -87,18 +87,16 @@ public class Jedilnik {
         return calendar;
     }
 
-    //TODO: make both return something else then ic_launcher
     public static Bitmap getMalica(Context context){
         try {
             Bitmap bitmap = Files.loadBitmap("Malica.png", context);
             if(bitmap != null) return bitmap;
-            else return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_web);
+            else return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
         }catch (Exception e){
-            return BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_web);
+            return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
         }
     }
 
-    //TODO: make both return something else then ic_launcher
     public static Bitmap getKosilo(Context context){
         try {
             Bitmap bitmap = Files.loadBitmap("Kosilo.png", context);
@@ -157,28 +155,19 @@ public class Jedilnik {
     }
 
     public static void onJedilnikReady(final Context context) {
-        new Thread() {
-            @Override
+        //run on ui thread
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
             public void run() {
-                final Bitmap malica = Jedilnik.getMalica(context);
-                final Bitmap kosilo = Jedilnik.getKosilo(context);
+                try {
+                    Main.jedilnikProgressBar.setVisibility(View.GONE);
+                    Main.jedilnikImage.setVisibility(View.VISIBLE);
 
-                //run on ui thread
-                Handler handler = new Handler(Looper.getMainLooper());
-                handler.post(new Runnable() {
-                    public void run() {
-                        try {
-                            JedilnikActivity.malicaView.setImageBitmap(malica);
-                            JedilnikActivity.kosiloView.setImageBitmap(kosilo);
-                            JedilnikActivity.malicaView.setVisibility(View.VISIBLE);
-                            JedilnikActivity.kosiloView.setVisibility(View.VISIBLE);
-                            JedilnikActivity.malicaProgessBar.setVisibility(View.GONE);
-                            JedilnikActivity.kosiloProgessBar.setVisibility(View.GONE);
-                        }catch (Exception e){}
-                    }
-                });
+                    if(Main.malica) Main.renderMalica(false);
+                    else Main.renderKosilo();
+                }catch (Exception e){}
             }
-        }.start();
+        });
     }
 
     public static void onJedilnikDownloadStarted(final Context context) {
@@ -187,10 +176,8 @@ public class Jedilnik {
         handler.post(new Runnable() {
             public void run() {
                 try {
-                    JedilnikActivity.malicaView.setVisibility(View.GONE);
-                    JedilnikActivity.kosiloView.setVisibility(View.GONE);
-                    JedilnikActivity.malicaProgessBar.setVisibility(View.VISIBLE);
-                    JedilnikActivity.kosiloProgessBar.setVisibility(View.VISIBLE);
+                    Main.jedilnikProgressBar.setVisibility(View.VISIBLE);
+                    Main.jedilnikImage.setVisibility(View.GONE);
                 } catch (Exception e) {
                 }
             }

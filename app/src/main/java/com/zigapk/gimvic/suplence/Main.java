@@ -28,6 +28,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ import com.melnykov.fab.FloatingActionButton;
 import java.util.Calendar;
 
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 
 
 public class Main extends Activity implements ActionBar.TabListener {
@@ -58,10 +60,13 @@ public class Main extends Activity implements ActionBar.TabListener {
 
     public static boolean isJedilnikOpened = false;
 
-    private static View animationView;
-    private static ImageViewTouch jedilnikImage;
-    private static TextView jedilnikIndicator;
+    public static View animationView;
+    public static ImageViewTouch jedilnikImage;
+    public static TextView jedilnikIndicator;
+    public static ProgressBar jedilnikProgressBar;
     private static boolean isJedilnikFirstOpened = true;
+
+    public static boolean malica = true;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -335,6 +340,10 @@ public class Main extends Activity implements ActionBar.TabListener {
 
         }else {
 
+            jedilnikIndicator = (TextView) findViewById(R.id.jedilnikIndicator);
+            jedilnikProgressBar = (ProgressBar) findViewById(R.id.jedilnikProgressBar);
+            jedilnikImage = (ImageViewTouch) findViewById(R.id.jedilnikImage);
+
             //setup fab
             final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_button);
             fab.setOnClickListener(new View.OnClickListener() {
@@ -364,6 +373,11 @@ public class Main extends Activity implements ActionBar.TabListener {
                 }
             });
             Data.refresh(context, true);
+
+            //setup jedilnik somponents
+            jedilnikImage.setDisplayType(ImageViewTouchBase.DisplayType.FIT_IF_BIGGER);
+            if(Settings.isJedilnikDownloading(context)) Jedilnik.onJedilnikDownloadStarted(context);
+            else Jedilnik.onJedilnikReady(context);
         }
     }
 
@@ -431,11 +445,11 @@ public class Main extends Activity implements ActionBar.TabListener {
         return animation;
     }
 
-    private static void renderMalica(final boolean wait){
+    public static void renderMalica(final boolean wait){
         new Thread() {
             @Override
             public void run() {
-                final Bitmap malica  = Jedilnik.getMalica(context);
+                final Bitmap malicaImage  = Jedilnik.getMalica(context);
                 if(wait){
                     try {
                         Thread.sleep(30);
@@ -445,15 +459,17 @@ public class Main extends Activity implements ActionBar.TabListener {
                 Handler handler = new Handler(Looper.getMainLooper());
                 handler.post(new Runnable() {
                     public void run() {
-                        jedilnikImage.setImageBitmap(malica);
+                        jedilnikImage.setImageBitmap(malicaImage);
                         jedilnikIndicator.setText(context.getResources().getString(R.string.title_malica));
                     }
                 });
+
+                malica = true;
             }
         }.start();
     }
 
-    private static void renderKosilo(){
+    public static void renderKosilo(){
         new Thread() {
             @Override
             public void run() {
@@ -466,6 +482,8 @@ public class Main extends Activity implements ActionBar.TabListener {
                         jedilnikIndicator.setText(context.getResources().getString(R.string.title_kosilo));
                     }
                 });
+
+                malica = false;
             }
         }.start();
     }

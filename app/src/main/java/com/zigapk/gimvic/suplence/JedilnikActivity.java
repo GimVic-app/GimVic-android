@@ -15,7 +15,6 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -106,14 +105,6 @@ public class JedilnikActivity extends Activity implements ActionBar.TabListener 
                 });
             }
         }.start();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
-            super.onBackPressed();
-        }
-        return true;
     }
 
     @Override
