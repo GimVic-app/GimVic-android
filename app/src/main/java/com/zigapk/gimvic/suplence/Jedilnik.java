@@ -90,7 +90,7 @@ public class Jedilnik {
     public static Bitmap getMalica(Context context){
         try {
             Bitmap bitmap = Files.loadBitmap("Malica.png", context);
-            if(bitmap != null) return bitmap;
+            if(bitmap != null && jedilnikValid(context)) return bitmap;
             else return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
         }catch (Exception e){
             return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
@@ -100,7 +100,7 @@ public class Jedilnik {
     public static Bitmap getKosilo(Context context){
         try {
             Bitmap bitmap = Files.loadBitmap("Kosilo.png", context);
-            if(bitmap != null) return bitmap;
+            if(bitmap != null && jedilnikValid(context)) return bitmap;
             else return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
         }catch (Exception e){
             return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
