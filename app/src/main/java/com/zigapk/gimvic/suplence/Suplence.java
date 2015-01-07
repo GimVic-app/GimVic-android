@@ -261,11 +261,14 @@ public class Suplence {
                 for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
                     if (Other.areSame(razredi, nadomescanjeUra.class_name)) {
                         int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
-                        urnik.days[day - 1].classes[ura - 1].suplenca = true;
-                        urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(nadomescanjeUra.predmet);
-                        urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(nadomescanjeUra.nadomesca_full_name);
-                        urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(nadomescanjeUra.ucilnica);
-                        if(nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
+                        //TODO: If ura=0 then this is predura and we do not need to display it (yet)
+                        if(ura != 0){
+                            urnik.days[day - 1].classes[ura - 1].suplenca = true;
+                            urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(nadomescanjeUra.predmet);
+                            urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(nadomescanjeUra.nadomesca_full_name);
+                            urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(nadomescanjeUra.ucilnica);
+                            if(nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
+                        }
                     }
                 }
 

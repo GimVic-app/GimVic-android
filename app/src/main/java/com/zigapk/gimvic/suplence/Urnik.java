@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 /**
@@ -160,10 +158,16 @@ public class Urnik {
         new Thread() {
             @Override
             public void run() {
+                while (!Settings.isUrnikDownloaded(context)){
+                    try {
+                        Thread.sleep(30);
+                    }catch (Exception e){}
+                }
+
                 String rawData = Files.getFileValue("Urnik.js", context);
 
                 Urnik urnik = new Urnik();
-                urnik.urnik = pasreUrnikFromString(rawData);
+                urnik.urnik = parseUrnikFromString(rawData);
 
                 Gson gson = new Gson();
                 Files.writeToFile("Urnik.json", gson.toJson(urnik), context);
@@ -171,12 +175,9 @@ public class Urnik {
                 parsePersonalUrnik(context);
             }
         }.start();
-
-
-
     }
 
-    private static String[][] pasreUrnikFromString(String rawData){
+    private static String[][] parseUrnikFromString(String rawData){
         String array[] = rawData.split("podatki");
         ArrayList<String> dataArray = new ArrayList<String>();
         for (int i = 2; i < array.length; i++)

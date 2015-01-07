@@ -433,6 +433,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(animationView.getLayoutParams());
                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 params.addRule(layoutTopOrBottomRule);
+                params.setMargins(0, 14, 14, 0);
                 animationView.setLayoutParams(params);
                 jedilnikButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_content_clear));
                 if(isJedilnikFirstOpened){
@@ -514,6 +515,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(v.getLayoutParams());
                         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                         params.addRule(layoutTopOrBottomRule);
+                        params.setMargins(0, 0, 14, 14);
                         v.setLayoutParams(params);
                         jedilnikButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_food));
                     }

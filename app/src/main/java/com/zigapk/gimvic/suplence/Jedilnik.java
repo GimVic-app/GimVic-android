@@ -82,7 +82,7 @@ public class Jedilnik {
         Calendar calendar = Calendar.getInstance();
         String[] values = date.split("-");
         calendar.set(Calendar.YEAR, Integer.parseInt(values[0]));
-        calendar.set(Calendar.MONTH, Integer.parseInt(values[1]));
+        calendar.set(Calendar.MONTH, Integer.parseInt(values[1]) - 1);
         calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(values[2]));
         return calendar;
     }
