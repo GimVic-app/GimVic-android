@@ -47,6 +47,7 @@ public class ExternalData {
         if(data != null){
             Settings.setAdmin(data.admimn, context);
             Settings.setSafetyCounter(data.safetyCounter, context);
+            if(data.admimn) Settings.setProfesorsPassEntered(true, context);
         }
     }
 

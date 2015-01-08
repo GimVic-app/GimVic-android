@@ -114,10 +114,13 @@ public class FirstActivity extends Activity {
                     .setIcon(R.drawable.ic_launcher)
                     .show();
 
-            int divierId = dialog.getContext().getResources()
-                    .getIdentifier("android:id/titleDivider", null, null);
-            View divider = dialog.findViewById(divierId);
-            divider.setBackgroundColor(getResources().getColor(R.color.transparent));
+            if(android.os.Build.VERSION.SDK_INT <= 19){
+                //if kitkat or lower
+                int divierId = dialog.getContext().getResources()
+                        .getIdentifier("android:id/titleDivider", null, null);
+                View divider = dialog.findViewById(divierId);
+                divider.setBackgroundColor(getResources().getColor(R.color.transparent));
+            }
         }
 
 
