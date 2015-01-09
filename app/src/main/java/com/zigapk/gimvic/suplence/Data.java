@@ -70,17 +70,25 @@ public class Data {
         }.start();
     }
 
-    public static void downloadData(Context context, boolean first) {
+    public static void downloadData(final Context context, final boolean first) {
 
-        //TODO: to threads
-        Urnik.downloadUrnik(context);
-        if (first) {
-            Urnik.parseUrnik(context);
-        }
-        Suplence.downloadSuplence(context);
-        Jedilnik.refresh(context);
+        new Thread() {
+            @Override
+            public void run() {
+                Urnik.downloadUrnik(context);
+                if (first) {
+                    Urnik.parseUrnik(context);
+                }
+                Suplence.downloadSuplence(context);
+            }
+        }.start();
 
-
+        new Thread() {
+            @Override
+            public void run() {
+                Jedilnik.refresh(context);
+            }
+        }.start();
     }
 
     public static void clearAllData(Context context) {

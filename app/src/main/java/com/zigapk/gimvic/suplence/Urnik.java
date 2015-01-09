@@ -85,7 +85,7 @@ public class Urnik {
                     final TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
                     final TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
                     final TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
-                    final TextView opomba = Main.textViews[dan - 1][ura - 1][2];
+                    final TextView opomba = Main.textViews[dan - 1][ura - 1][3];
 
 
                     if(Settings.getUserMode(context) == UserMode.MODE_UCITELJ){
@@ -362,7 +362,8 @@ public class Urnik {
     }
 
     public static PersonalUrnik getPersonalUrnik(Context context){
-        return new Gson().fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
+        PersonalUrnik temp = new Gson().fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
+        return temp;
     }
 
 }

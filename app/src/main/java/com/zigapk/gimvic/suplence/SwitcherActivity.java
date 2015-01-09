@@ -189,6 +189,11 @@ public class SwitcherActivity extends Activity {
                                                 int position, long id) {
                             String chosen = ucitelji.get(position);
 
+                            Settings.setTrueUrnikParsed(false, context);
+                            Settings.setUrnikParsed(false, context);
+                            Settings.setSuplenceParsed(false, context);
+                            Settings.setHybridParsed(false, context);
+
                             Settings.setUcitelj(chosen, context);
                             Settings.setFirstOpened(false, context);
                             Settings.setUserMode(UserMode.MODE_UCITELJ, context);
@@ -197,8 +202,17 @@ public class SwitcherActivity extends Activity {
                             ExternalData.syncExternalBackup(context, false);
                             parseEverything(context);
 
-                            Data.renderData(context, true);
-                            finish();
+                            parseEverything(context);
+
+                            //run on ui thread
+                            Handler handler = new Handler(Looper.getMainLooper());
+                            handler.post(new Runnable() {
+                                public void run() {
+                                    finish();
+                                    Data.renderData(context, true);
+                                    Data.setRefreshingGuiState(true);
+                                }
+                            });
                         }
                     });
                 }else {
@@ -237,6 +251,11 @@ public class SwitcherActivity extends Activity {
                                                             int position, long id) {
                                         String chosen = ucitelji.get(position);
 
+                                        Settings.setTrueUrnikParsed(false, context);
+                                        Settings.setUrnikParsed(false, context);
+                                        Settings.setSuplenceParsed(false, context);
+                                        Settings.setHybridParsed(false, context);
+
                                         Settings.setUcitelj(chosen, context);
                                         Settings.setFirstOpened(false, context);
                                         Settings.setUserMode(UserMode.MODE_UCITELJ, context);
@@ -244,8 +263,15 @@ public class SwitcherActivity extends Activity {
                                         ExternalData.syncExternalBackup(context, false);
                                         parseEverything(context);
 
-                                        Data.renderData(context, true);
-                                        finish();
+                                        //run on ui thread
+                                        Handler handler = new Handler(Looper.getMainLooper());
+                                        handler.post(new Runnable() {
+                                            public void run() {
+                                                finish();
+                                                Data.renderData(context, true);
+                                                Data.setRefreshingGuiState(true);
+                                            }
+                                        });
                                     }
                                 });
                             } else if (s.toString().equals("")) {
