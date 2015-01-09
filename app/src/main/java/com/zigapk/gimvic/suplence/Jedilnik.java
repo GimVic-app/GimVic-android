@@ -89,7 +89,16 @@ public class Jedilnik {
 
     public static Bitmap getMalica(Context context){
         try {
-            Bitmap bitmap = Files.loadBitmap("Malica.png", context);
+            Bitmap bitmap = null;
+            long availableMemory = Other.memoryAvailable(context);
+
+            if(availableMemory < 50){
+                bitmap = Files.decodeSampledBitmapFromResource("Malica.png", 499, 705);
+            }else if(availableMemory < 200){
+                bitmap = Files.decodeSampledBitmapFromResource("Malica.png", 998, 1412);
+            }else {
+                bitmap = Files.loadBitmap("Malica.png", context);
+            }
             if(bitmap != null && jedilnikValid(context)) return bitmap;
             else return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
         }catch (Exception e){
@@ -99,7 +108,16 @@ public class Jedilnik {
 
     public static Bitmap getKosilo(Context context){
         try {
-            Bitmap bitmap = Files.loadBitmap("Kosilo.png", context);
+            Bitmap bitmap = null;
+            long availableMemory = Other.memoryAvailable(context);
+
+            if(availableMemory < 50){
+                bitmap = Files.decodeSampledBitmapFromResource("Kosilo.png", 499, 705);
+            }else if(availableMemory < 200){
+                bitmap = Files.decodeSampledBitmapFromResource("Kosilo.png", 998, 1412);
+            }else {
+                bitmap = Files.loadBitmap("Kosilo.png", context);
+            }
             if(bitmap != null && jedilnikValid(context)) return bitmap;
             else return BitmapFactory.decodeResource(context.getResources(), R.drawable.jedilnik_empty);
         }catch (Exception e){

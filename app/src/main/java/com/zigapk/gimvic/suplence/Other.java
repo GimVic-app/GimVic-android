@@ -1,5 +1,8 @@
 package com.zigapk.gimvic.suplence;
 
+import android.app.ActivityManager;
+import android.content.Context;
+
 import java.util.Calendar;
 
 /**
@@ -122,5 +125,12 @@ public class Other {
             }else if(calendar.get(Calendar.MONTH) + 1 == 7) return true;
         }
         return false;
+    }
+
+    public static long memoryAvailable(Context context){
+        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        activityManager.getMemoryInfo(mi);
+        return mi.availMem / 1048576L;
     }
 }
