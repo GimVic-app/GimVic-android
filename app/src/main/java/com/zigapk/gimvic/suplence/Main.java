@@ -414,7 +414,6 @@ public class Main extends Activity implements ActionBar.TabListener {
         final float yDelta = getScreenHeight() - (2 * animationView.getHeight());
         final int layoutTopOrBottomRule = RelativeLayout.ALIGN_PARENT_TOP;
 
-        final RelativeLayout jedilnikView = (RelativeLayout) findViewById(R.id.jedilnikView);
         final FloatingActionButton jedilnikButton = (FloatingActionButton) findViewById(R.id.fab_button);
 
         final Animation animation = new TranslateAnimation(0,0,0, yDelta * direction);
@@ -433,7 +432,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(animationView.getLayoutParams());
                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 params.addRule(layoutTopOrBottomRule);
-                params.setMargins(0, 14, 14, 0);
+                params.setMargins(0, 36, 36, 0);
                 animationView.setLayoutParams(params);
                 jedilnikButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_content_clear));
                 if(isJedilnikFirstOpened){
@@ -515,7 +514,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(v.getLayoutParams());
                         params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                         params.addRule(layoutTopOrBottomRule);
-                        params.setMargins(0, 0, 14, 14);
+                        params.setMargins(0, 0, 36, 36);
                         v.setLayoutParams(params);
                         jedilnikButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_food));
                     }
@@ -525,7 +524,9 @@ public class Main extends Activity implements ActionBar.TabListener {
                 Handler handler = new Handler(Looper.getMainLooper());
                 handler.post(new Runnable() {
                     public void run() {
+
                         v.startAnimation(animation);
+
                         jedilnikView.setVisibility(View.GONE);
                         malicaButton.setVisibility(View.GONE);
                         kosiloButton.setVisibility(View.GONE);
