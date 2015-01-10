@@ -46,7 +46,7 @@ public class Urnik {
 
     public static void renderPersonalUrnik(PersonalUrnik urnik, final Context context){
 
-
+        while (!Other.layoutComponentsReady()){}
         for(int dan = 1; dan <= 5; dan++){
             int emptyCounter = 0;
 
@@ -72,6 +72,7 @@ public class Urnik {
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         public void run() {
+                            //TODO: null pointer exc.
                             currentClass.setVisibility(View.VISIBLE);
                             if(current.suplenca) {
                                 currentClass.setBackground(tempContext.getResources().getDrawable(R.drawable.bg_card_green));

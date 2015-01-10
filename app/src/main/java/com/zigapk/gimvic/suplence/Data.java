@@ -75,6 +75,9 @@ public class Data {
         new Thread() {
             @Override
             public void run() {
+                try {
+                    Thread.sleep(2000);
+                }catch (Exception e){}
                 Urnik.downloadUrnik(context);
                 if (first) {
                     Urnik.parseUrnik(context);
@@ -150,10 +153,8 @@ public class Data {
                 while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context[0])) {}
             }
             while (refreshing) {}
-
             return context[0];
         }
-
         protected void onPostExecute(Context context) {}
     }
 

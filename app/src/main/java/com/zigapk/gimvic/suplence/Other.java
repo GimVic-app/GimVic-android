@@ -14,7 +14,8 @@ public class Other {
         boolean temp = true;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 8; j++) {
-                if (Main.textViews[i][j][2] == null) temp = false;
+                if (Main.textViews[i][j][3] == null) temp = false;
+                if (Main.classItems[i][j] == null) temp = false;
             }
         }
 
