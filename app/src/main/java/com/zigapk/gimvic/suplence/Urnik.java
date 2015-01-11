@@ -104,7 +104,7 @@ public class Urnik {
                                 ucilnicaTv.setText(current.ucilnica);
                                 if(current.opomba != ""){
                                     opomba.setVisibility(View.VISIBLE);
-                                    opomba.setText(context.getResources().getString(R.string.opomba) + current.opomba);
+                                    opomba.setText(context.getResources().getString(R.string.opomba) + " " + current.opomba);
                                 }else {
                                     opomba.setVisibility(View.GONE);
                                     opomba.setText("");

@@ -40,6 +40,9 @@ public class Other {
         urnik = allToLowerCase(urnik);
         suplence = allToLowerCase(suplence);
 
+        if(suplenceString.toLowerCase().contains("baga")){
+            System.out.print("");
+        }
 
         if (suplence.length == 2) return compare2(urnik, suplence);
         else return compare3(urnikString, suplenceString);

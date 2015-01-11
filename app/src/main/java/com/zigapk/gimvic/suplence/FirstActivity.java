@@ -207,7 +207,7 @@ public class FirstActivity extends Activity {
                                     public void run() {
                                         Intent intent = new Intent(context, Main.class);
                                         startActivity(intent);
-                                        Data.renderData(context, true);
+                                        Data.renderData(context);
                                         finish();
                                     }
                                 });
@@ -275,7 +275,7 @@ public class FirstActivity extends Activity {
 
                                     Intent intent = new Intent(context, Main.class);
                                     startActivity(intent);
-                                    Data.renderData(context, true);
+                                    Data.renderData(context);
                                     finish();
                                 }
                             });

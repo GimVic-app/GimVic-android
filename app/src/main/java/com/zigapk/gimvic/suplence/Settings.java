@@ -42,7 +42,7 @@ public class Settings {
                 Handler handler = new Handler(Looper.getMainLooper());
                 handler.post(new Runnable() {
                     public void run() {
-                        Data.renderData(tempContext, false);
+                        Data.renderData(tempContext);
                     }
                 });
             }

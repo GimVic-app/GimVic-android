@@ -45,7 +45,7 @@ public class Data {
 
     }
 
-    public static void renderData(final Context context, final boolean first) {
+    public static void renderData(final Context context) {
         new Thread() {
             @Override
             public void run() {
@@ -139,7 +139,7 @@ public class Data {
                     public void run() {
                         Suplence.parse(tempContext);
                         if(onGui){
-                            renderData(tempContext, false);
+                            renderData(tempContext);
                         }
                         Data.refreshing = false;
                     }

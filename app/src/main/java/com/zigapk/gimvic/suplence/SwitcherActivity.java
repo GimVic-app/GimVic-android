@@ -145,7 +145,7 @@ public class SwitcherActivity extends Activity {
                                 handler.post(new Runnable() {
                                     public void run() {
                                         finish();
-                                        Data.renderData(context, true);
+                                        Data.renderData(context);
                                         Data.setRefreshingGuiState(true);
                                     }
                                 });
@@ -209,7 +209,7 @@ public class SwitcherActivity extends Activity {
                             handler.post(new Runnable() {
                                 public void run() {
                                     finish();
-                                    Data.renderData(context, true);
+                                    Data.renderData(context);
                                     Data.setRefreshingGuiState(true);
                                 }
                             });
@@ -268,7 +268,7 @@ public class SwitcherActivity extends Activity {
                                         handler.post(new Runnable() {
                                             public void run() {
                                                 finish();
-                                                Data.renderData(context, true);
+                                                Data.renderData(context);
                                                 Data.setRefreshingGuiState(true);
                                             }
                                         });

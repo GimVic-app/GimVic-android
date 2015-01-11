@@ -144,7 +144,7 @@ public class Main extends Activity implements ActionBar.TabListener {
                     handler.post(new Runnable() {
                         public void run() {
                             Data.setRefreshingGuiState(true);
-                            Data.renderData(context, true);
+                            Data.renderData(context);
                         }
                     });
                 }
@@ -156,7 +156,7 @@ public class Main extends Activity implements ActionBar.TabListener {
 
     public void onResume() {
         super.onResume();
-        if(isDataRendered) Data.renderData(context, false);
+        if(isDataRendered) Data.renderData(context);
     }
 
     @Override
