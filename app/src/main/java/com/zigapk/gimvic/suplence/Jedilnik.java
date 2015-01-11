@@ -130,7 +130,11 @@ public class Jedilnik {
         Settings.setMalicaDownloading(true, context);
         Settings.setKosiloDownloading(true, context);
         String json = Internet.getTextFromUrl("http://www.gimvic.org/delovanjesole/solske_sluzbe_in_solski_organi/solska_prehrana/jedilnik_data/");
-        JedilnikData data = new Gson().fromJson(json, JedilnikData.class);
+
+        JedilnikData data = null;
+        try {
+            data = new Gson().fromJson(json, JedilnikData.class);
+        }catch (Exception e){}
 
         if(data != null){
             if(data.malica != null && data.kosilo != null){
