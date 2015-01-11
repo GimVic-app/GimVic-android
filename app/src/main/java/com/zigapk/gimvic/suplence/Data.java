@@ -75,9 +75,6 @@ public class Data {
         new Thread() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(2000);
-                }catch (Exception e){}
                 Urnik.downloadUrnik(context);
                 if (first) {
                     Urnik.parseUrnik(context);

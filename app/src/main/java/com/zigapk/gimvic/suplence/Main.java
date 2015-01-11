@@ -245,7 +245,7 @@ public class Main extends Activity implements ActionBar.TabListener {
             Calendar calendar = Calendar.getInstance();
             int day = calendar.get(Calendar.DAY_OF_WEEK);
             day = day - 1;
-            if(day==0)day = 7;
+            if(day==0)day = 1;
             if(day > 5) day = day % 5;
             day = day + position - 1;
 
@@ -304,7 +304,7 @@ public class Main extends Activity implements ActionBar.TabListener {
             Calendar calendar = Calendar.getInstance();
             int day = calendar.get(Calendar.DAY_OF_WEEK);
             day = day - 1;
-            if(day==0)day = 7;
+            if(day==0)day = 1;
             if(day > 5) day = day % 5;
             day = day + position;
 
