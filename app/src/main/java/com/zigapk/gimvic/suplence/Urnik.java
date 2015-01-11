@@ -114,7 +114,6 @@ public class Urnik {
                         });
 
                     }else{
-
                         //run on ui thread
                         Handler handler2 = new Handler(Looper.getMainLooper());
                         handler2.post(new Runnable() {

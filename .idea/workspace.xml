@@ -68,11 +68,11 @@
       <file leaf-file-name="Urnik.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Urnik.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9192825" vertical-offset="1624" max-vertical-offset="7416">
-              <caret line="130" column="33" selection-start-line="130" selection-start-column="33" selection-end-line="130" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.39461884" vertical-offset="1606" max-vertical-offset="7398">
+              <caret line="115" column="26" selection-start-line="115" selection-start-column="26" selection-end-line="115" selection-end-column="26" />
               <folding>
                 <element signature="e#4448#4497#0" expanded="true" />
-                <element signature="e#5450#5499#0" expanded="true" />
+                <element signature="e#5449#5498#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2457,11 +2457,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Urnik.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9192825" vertical-offset="1624" max-vertical-offset="7416">
-          <caret line="130" column="33" selection-start-line="130" selection-start-column="33" selection-end-line="130" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.39461884" vertical-offset="1606" max-vertical-offset="7398">
+          <caret line="115" column="26" selection-start-line="115" selection-start-column="26" selection-end-line="115" selection-end-column="26" />
           <folding>
             <element signature="e#4448#4497#0" expanded="true" />
-            <element signature="e#5450#5499#0" expanded="true" />
+            <element signature="e#5449#5498#0" expanded="true" />
           </folding>
         </state>
       </provider>
