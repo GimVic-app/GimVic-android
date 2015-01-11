@@ -71,6 +71,8 @@ public class Data {
     }
 
     public static void downloadData(final Context context, final boolean first) {
+        Settings.setUrnikDownloaded(false, context);
+        Settings.setSuplenceDownloaded(false, context);
 
         new Thread() {
             @Override
@@ -133,6 +135,9 @@ public class Data {
                 }
 
                 final Context tempContext = context[0];
+
+                while (!Settings.areSuplenceDownloaded(tempContext) || !Settings.isUrnikDownloaded(tempContext)){}
+                while (!Settings.isTrueUrnikParsed(tempContext)){}
 
                 new Thread() {
                     @Override

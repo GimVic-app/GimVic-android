@@ -32,6 +32,8 @@ public class Urnik {
                 if(Settings.isTrueUrnikParsed(context)) parsePersonalUrnik(context);
             }
         }
+
+        Settings.setUrnikDownloaded(true, context);
     }
 
     public static void render(Context context){
@@ -72,7 +74,6 @@ public class Urnik {
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         public void run() {
-                            //TODO: null pointer exc.
                             currentClass.setVisibility(View.VISIBLE);
                             if(current.suplenca) {
                                 currentClass.setBackground(tempContext.getResources().getDrawable(R.drawable.bg_card_green));
@@ -102,7 +103,7 @@ public class Urnik {
                                     profesorTv.setText(current.razred);
                                 }
                                 ucilnicaTv.setText(current.ucilnica);
-                                if(current.opomba != ""){
+                                if(current.opomba != "" || current.opomba == null){
                                     opomba.setVisibility(View.VISIBLE);
                                     opomba.setText(context.getResources().getString(R.string.opomba) + " " + current.opomba);
                                 }else {
@@ -121,6 +122,13 @@ public class Urnik {
                                 predmetTv.setText(current.predmet);
                                 profesorTv.setText(current.profesor);
                                 ucilnicaTv.setText(current.ucilnica);
+                                if(current.opomba != "" || current.opomba == null){
+                                    opomba.setVisibility(View.VISIBLE);
+                                    opomba.setText(context.getResources().getString(R.string.opomba) + " " + current.opomba);
+                                }else {
+                                    opomba.setVisibility(View.GONE);
+                                    opomba.setText("");
+                                }
                             }
                         });
 
@@ -159,6 +167,7 @@ public class Urnik {
         new Thread() {
             @Override
             public void run() {
+                Settings.setTrueUrnikParsed(false, context);
                 while (!Settings.isUrnikDownloaded(context)){
                     try {
                         Thread.sleep(30);
@@ -174,6 +183,7 @@ public class Urnik {
                 Files.writeToFile("Urnik.json", gson.toJson(urnik), context);
 
                 parsePersonalUrnik(context);
+                Settings.setTrueUrnikParsed(true, context);
             }
         }.start();
     }
