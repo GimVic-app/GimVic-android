@@ -65,10 +65,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Urnik.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.05462185" vertical-offset="172" max-vertical-offset="648">
+              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Urnik.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Urnik.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39461884" vertical-offset="1606" max-vertical-offset="7398">
+            <state vertical-scroll-proportion="-5.866667" vertical-offset="1606" max-vertical-offset="7398">
               <caret line="115" column="26" selection-start-line="115" selection-start-column="26" selection-end-line="115" selection-end-column="26" />
               <folding>
                 <element signature="e#4448#4497#0" expanded="true" />
@@ -966,7 +976,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4262211634410" />
+        <entry key="$PROJECT_DIR$" value="4262316225276" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1121,7 +1131,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Files.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Jedilnik.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Other.java" />
@@ -1132,12 +1141,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/SwitcherActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Data.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Urnik.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="-1054" />
+    <option name="y" value="-4" />
     <option name="width" value="1615" />
     <option name="height" value="1054" />
   </component>
@@ -1963,8 +1973,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-1054" width="1615" height="1054" extended-state="6" />
-    <editor active="true" />
+    <frame x="65" y="-4" width="1615" height="1054" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2375,14 +2385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="648">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3503326" vertical-offset="454" max-vertical-offset="1026">
@@ -2457,12 +2459,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Urnik.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39461884" vertical-offset="1606" max-vertical-offset="7398">
+        <state vertical-scroll-proportion="-5.866667" vertical-offset="1606" max-vertical-offset="7398">
           <caret line="115" column="26" selection-start-line="115" selection-start-column="26" selection-end-line="115" selection-end-column="26" />
           <folding>
             <element signature="e#4448#4497#0" expanded="true" />
             <element signature="e#5449#5498#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05462185" vertical-offset="172" max-vertical-offset="648">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
