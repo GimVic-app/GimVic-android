@@ -83,7 +83,7 @@ public class Jedilnik {
         String[] values = date.split("-");
         calendar.set(Calendar.YEAR, Integer.parseInt(values[0]));
         calendar.set(Calendar.MONTH, Integer.parseInt(values[1]) - 1);
-        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(values[2]));
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(values[2]) - 1);
         return calendar;
     }
 
@@ -111,9 +111,9 @@ public class Jedilnik {
             Bitmap bitmap = null;
             long availableMemory = Other.memoryAvailable(context);
 
-            if(availableMemory < 50){
+            if(availableMemory < 100){
                 bitmap = Files.decodeSampledBitmapFromResource("Kosilo.png", 499, 705);
-            }else if(availableMemory < 200){
+            }else if(availableMemory < 300){
                 bitmap = Files.decodeSampledBitmapFromResource("Kosilo.png", 998, 1412);
             }else {
                 bitmap = Files.loadBitmap("Kosilo.png", context);

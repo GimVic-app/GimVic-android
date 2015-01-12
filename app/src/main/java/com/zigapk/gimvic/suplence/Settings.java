@@ -53,6 +53,11 @@ public class Settings {
         return prefs.getString("ucitelj", "");
     }
 
+    public static int getLastAppVersionNumber(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getInt("lastAppVersion", 1);
+    }
+
     public static Calendar getJedilnikLastDownloadedDate(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Calendar defaultCal = Calendar.getInstance();
@@ -109,6 +114,14 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putBoolean("malicaDownloading", value);
+        editor.commit();
+    }
+
+    public static void setlastAppVersion(int version, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putInt("lastAppVersion", version);
         editor.commit();
     }
 

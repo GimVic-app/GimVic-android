@@ -48,6 +48,8 @@ public class Urnik {
 
     public static void renderPersonalUrnik(PersonalUrnik urnik, final Context context){
 
+        final PersonalUrnik originalUrnik = getPersonalUrnik(context);
+
         while (!Other.layoutComponentsReady()){}
         for(int dan = 1; dan <= 5; dan++){
             int emptyCounter = 0;
@@ -56,6 +58,7 @@ public class Urnik {
                 final UrnikElement current = urnik.days[dan - 1].classes[ura - 1];
 
                 if(current.empty){
+                    while (Main.classItems[dan - 1][ura - 1] == null){}
                     final LinearLayout currentClass = Main.classItems[dan - 1][ura - 1];
                     //run on ui thread
                     Handler handler = new Handler(Looper.getMainLooper());
@@ -88,6 +91,8 @@ public class Urnik {
                     final TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
                     final TextView ucilnicaTv = Main.textViews[dan - 1][ura - 1][2];
                     final TextView opomba = Main.textViews[dan - 1][ura - 1][3];
+                    final int tempDan = dan;
+                    final int tempUra = ura;
 
 
                     if(Settings.getUserMode(context) == UserMode.MODE_UCITELJ){
@@ -110,6 +115,23 @@ public class Urnik {
                                     opomba.setVisibility(View.GONE);
                                     opomba.setText("");
                                 }
+
+                                if (current.suplenca){
+                                    final UrnikElement temp = originalUrnik.days[tempDan - 1].classes[tempUra - 1];
+                                    if(!current.predmet.equals(temp.predmet)) predmetTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    else predmetTv.setTextColor(context.getResources().getColor(R.color.black));
+                                    if(current.mankajociUcitelj){
+                                        profesorTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    }else {
+                                        profesorTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    }
+                                    if(!current.ucilnica.equals(temp.ucilnica)) ucilnicaTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    else ucilnicaTv.setTextColor(context.getResources().getColor(R.color.black));
+                                }else {
+                                    predmetTv.setTextColor(context.getResources().getColor(R.color.black));
+                                    ucilnicaTv.setTextColor(context.getResources().getColor(R.color.black));
+                                    profesorTv.setTextColor(context.getResources().getColor(R.color.black));
+                                }
                             }
                         });
 
@@ -127,6 +149,20 @@ public class Urnik {
                                 }else {
                                     opomba.setVisibility(View.GONE);
                                     opomba.setText("");
+                                }
+
+                                if (current.suplenca){
+                                    final UrnikElement temp = originalUrnik.days[tempDan - 1].classes[tempUra - 1];
+                                    if(!current.predmet.equals(temp.predmet)) predmetTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    else predmetTv.setTextColor(context.getResources().getColor(R.color.black));
+                                    if(!current.ucilnica.equals(temp.ucilnica)) ucilnicaTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    else ucilnicaTv.setTextColor(context.getResources().getColor(R.color.black));
+                                    if(!current.profesor.equals(temp.profesor)) profesorTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    else profesorTv.setTextColor(context.getResources().getColor(R.color.black));
+                                }else {
+                                    predmetTv.setTextColor(context.getResources().getColor(R.color.black));
+                                    ucilnicaTv.setTextColor(context.getResources().getColor(R.color.black));
+                                    profesorTv.setTextColor(context.getResources().getColor(R.color.black));
                                 }
                             }
                         });

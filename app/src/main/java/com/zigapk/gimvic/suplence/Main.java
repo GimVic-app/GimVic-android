@@ -42,6 +42,9 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 
 public class Main extends Activity implements ActionBar.TabListener {
 
+    //TODO: UPDATE!!!
+    public static int currentAppVersionNumber = 25;
+
     public static Context context;
     public static Boolean mRefreshing = false;
     public static SwipeRefreshLayout mSwipeRefreshLayout1;
@@ -101,6 +104,10 @@ public class Main extends Activity implements ActionBar.TabListener {
         //set context
         context = getApplicationContext();
 
+        if(Settings.getLastAppVersionNumber(context) < 20){
+            Data.clearAllData(context);
+        }
+
         if(Settings.isFirstOpened(context)){
             Intent intent = new Intent(this, FirstActivity.class);
             startActivity(intent);
@@ -151,6 +158,8 @@ public class Main extends Activity implements ActionBar.TabListener {
             }.start();
 
             Data.refresh(context, true);
+
+            Settings.setlastAppVersion(currentAppVersionNumber, context);
         }
     }
 

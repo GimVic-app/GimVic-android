@@ -198,6 +198,7 @@ public class FirstActivity extends Activity {
                                 Settings.setRazredi(chosenRazredi, context);
                                 Settings.setFirstOpened(false, context);
                                 Settings.setUserMode(UserMode.MODE_UCENEC, context);
+                                Settings.setlastAppVersion(Main.currentAppVersionNumber, context);
 
                                 parseEverything(context);
 
@@ -272,6 +273,8 @@ public class FirstActivity extends Activity {
                                     Settings.setProfesorsPassEntered(true, context);
 
                                     parseEverything(context);
+
+                                    Settings.setlastAppVersion(Main.currentAppVersionNumber, context);
 
                                     Intent intent = new Intent(context, Main.class);
                                     startActivity(intent);

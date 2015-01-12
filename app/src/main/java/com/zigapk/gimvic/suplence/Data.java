@@ -1,10 +1,11 @@
 package com.zigapk.gimvic.suplence;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
+import android.preference.PreferenceManager;
 
 import java.io.File;
 
@@ -102,11 +103,12 @@ public class Data {
             for(String s : children){
                 if(!s.equals("lib")){
                     deleteDir(new File(appDir, s));
-                    Log.i("TAG", "**************** File /data/data/APP_PACKAGE/" + s +" DELETED *******************");
                 }
             }
         }
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        preferences.edit().clear().commit();
     }
 
     public static boolean deleteDir(File dir) {
