@@ -84,9 +84,18 @@ public class SettingsActivity extends Activity {
         else safetyCounterIndicator.setTextColor(getResources().getColor(R.color.black));
     }
 
+    private void setChosenIndiccatorText(){
+        TextView tv = (TextView) findViewById(R.id.settingsChosenItemIndicator);
+        String value = getResources().getString(R.string.chosenString) + " ";
+        if(Settings.getUserMode(getApplicationContext()) == UserMode.MODE_UCENEC) value = value + "razred: " + Settings.getRazredi(getApplicationContext()).razredi.get(0);
+        else value = value + "profesor: " + Settings.getProfesor(getApplicationContext());
+        tv.setText(value);
+    }
+
     public void onResume() {
         super.onResume();
         setSafetyIndicatorText();
+        setChosenIndiccatorText();
     }
 
     @Override

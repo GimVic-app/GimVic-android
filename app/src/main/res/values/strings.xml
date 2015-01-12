@@ -47,5 +47,6 @@
     <string name="title_activity_jedlinik">Jedlinik</string>
     <string name="title_malica">Malica</string>
     <string name="title_kosilo">Kosilo</string>
+    <string name="chosenString">Izbrani</string>
 
 </resources>
