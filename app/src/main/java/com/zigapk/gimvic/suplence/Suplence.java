@@ -283,16 +283,19 @@ public class Suplence {
                         int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
                         if(ura == 6){
                             System.out.print("");
-                        }
-                        urnik.days[day - 1].classes[ura - 1].suplenca = true;
-                        urnik.days[day - 1].classes[ura - 1].empty = false;
-                        urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(nadomescanjeUra.predmet);
-                        urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(nadomescanjeUra.nadomesca_full_name);
-                        urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(nadomescanjeUra.ucilnica);
-                        urnik.days[day - 1].classes[ura - 1].razred = nadomescanjeUra.class_name;
-                        if(nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
+                        }else if(ura != 0) {//TODO: If ura=0 then this is predura and we do not need to display it (yet)
+                            urnik.days[day - 1].classes[ura - 1].suplenca = true;
+                            urnik.days[day - 1].classes[ura - 1].empty = false;
+                            urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(nadomescanjeUra.predmet);
+                            urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(nadomescanjeUra.nadomesca_full_name);
+                            urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(nadomescanjeUra.ucilnica);
+                            urnik.days[day - 1].classes[ura - 1].razred = nadomescanjeUra.class_name;
+                            if (nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "")
+                                urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
 
-                        if(Other.areProfesorsSame(profesor, nadomescanje.odsoten_fullname)) urnik.days[day - 1].classes[ura - 1].mankajociUcitelj = true;
+                            if (Other.areProfesorsSame(profesor, nadomescanje.odsoten_fullname))
+                                urnik.days[day - 1].classes[ura - 1].mankajociUcitelj = true;
+                        }
                     }
                 }
 

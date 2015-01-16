@@ -2,6 +2,7 @@ package com.zigapk.gimvic.suplence;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.os.Build;
 
 import java.util.Calendar;
 
@@ -9,6 +10,10 @@ import java.util.Calendar;
  * Created by ziga on 12/5/14.
  */
 public class Other {
+
+    public static String[][] lowMemoryDevices = {
+            {"serranolte", "S4 mini"}, {"I8190", "S3 mini"}, {"I8190N", "S3 mini NFC"}
+    };
 
     public static boolean layoutComponentsReady() {
         boolean temp = true;
@@ -136,5 +141,13 @@ public class Other {
         ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         activityManager.getMemoryInfo(mi);
         return mi.availMem / 1048576L;
+    }
+
+    public static boolean isDeviceOnLowMemoryList(){
+        String model = Build.MODEL;
+        for(String device : lowMemoryDevices[0]){
+            if (model.toLowerCase().contains(device.toLowerCase())) return true;
+        }
+        return false;
     }
 }

@@ -92,7 +92,7 @@ public class Jedilnik {
             Bitmap bitmap = null;
             long availableMemory = Other.memoryAvailable(context);
 
-            if(availableMemory < 50){
+            if(availableMemory < 50 || Other.isDeviceOnLowMemoryList()){
                 bitmap = Files.decodeSampledBitmapFromResource("Malica.png", 499, 705);
             }else if(availableMemory < 200){
                 bitmap = Files.decodeSampledBitmapFromResource("Malica.png", 998, 1412);
@@ -111,9 +111,9 @@ public class Jedilnik {
             Bitmap bitmap = null;
             long availableMemory = Other.memoryAvailable(context);
 
-            if(availableMemory < 100){
+            if(availableMemory < 50 || Other.isDeviceOnLowMemoryList()){
                 bitmap = Files.decodeSampledBitmapFromResource("Kosilo.png", 499, 705);
-            }else if(availableMemory < 300){
+            }else if(availableMemory < 200){
                 bitmap = Files.decodeSampledBitmapFromResource("Kosilo.png", 998, 1412);
             }else {
                 bitmap = Files.loadBitmap("Kosilo.png", context);
