@@ -43,7 +43,7 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 public class Main extends Activity implements ActionBar.TabListener {
 
     //TODO: UPDATE!!!
-    public static int currentAppVersionNumber = 25;
+    public static int currentAppVersionNumber = 26;
 
     public static Context context;
     public static Boolean mRefreshing = false;
@@ -441,7 +441,6 @@ public class Main extends Activity implements ActionBar.TabListener {
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(animationView.getLayoutParams());
                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 params.addRule(layoutTopOrBottomRule);
-                params.setMargins(0, 36, 36, 0);
                 animationView.setLayoutParams(params);
                 jedilnikButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_action_content_clear));
                 if(isJedilnikFirstOpened){
