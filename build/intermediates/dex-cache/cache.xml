@@ -16,11 +16,11 @@
         <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-b36468fb6f5406d7414a2fa1f68b4bf7871efd65.jar" />
     </item>
     <item
-        jar="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="/home/ziga/Desktop/GimVic-suplence-android/app/libs/gson-2.2.4.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-e8ac7a6aa29c47daa247b153baab0367d2c3aee9.jar" />
+        sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8">
+        <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/gson-2.2.4-47c653f0d4ccdf314bd4b3a2db1b6f3cf4eee9d8.jar" />
     </item>
     <item
         jar="/home/ziga/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
@@ -30,11 +30,11 @@
         <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/library-2.4.0-9352e8f8e4092da2a3c079c00f87e8563ede0d73.jar" />
     </item>
     <item
-        jar="/home/ziga/Desktop/GimVic-suplence-android/app/libs/gson-2.2.4.jar"
+        jar="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8">
-        <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/gson-2.2.4-47c653f0d4ccdf314bd4b3a2db1b6f3cf4eee9d8.jar" />
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/pre-dexed/debug/classes-e8ac7a6aa29c47daa247b153baab0367d2c3aee9.jar" />
     </item>
     <item
         jar="/home/ziga/Desktop/GimVic-suplence-android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"

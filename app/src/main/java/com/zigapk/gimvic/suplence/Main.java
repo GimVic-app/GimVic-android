@@ -43,7 +43,7 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 public class Main extends Activity implements ActionBar.TabListener {
 
     //TODO: UPDATE!!!
-    public static int currentAppVersionNumber = 26;
+    public static int currentAppVersionNumber = 27;
 
     public static Context context;
     public static Boolean mRefreshing = false;
@@ -106,6 +106,12 @@ public class Main extends Activity implements ActionBar.TabListener {
 
         if(Settings.getLastAppVersionNumber(context) < 20){
             Data.clearAllData(context);
+        }
+
+        if(Settings.getLastAppVersionNumber(context) < 27) {
+            Settings.setUrnikParsed(false, context);
+            Settings.setTrueUrnikParsed(false, context);
+            Urnik.parseUrnik(context);
         }
 
         if(Settings.isFirstOpened(context)){

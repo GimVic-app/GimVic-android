@@ -29,7 +29,9 @@ public class Urnik {
                 Settings.setUrnikDownloaded(true, context);
                 Settings.setUrnikHash(Internet.getTextFromUrl("http://app.gimvic.org/APIv2/urnik/urnik_hash_provider.php"), context);
 
-                if(Settings.isTrueUrnikParsed(context)) parsePersonalUrnik(context);
+                Settings.setUrnikParsed(false, context);
+                Settings.setTrueUrnikParsed(false, context);
+                Urnik.parseUrnik(context);
             }
         }
 

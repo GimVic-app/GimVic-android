@@ -12,7 +12,7 @@ import java.util.Calendar;
 public class Other {
 
     public static String[][] lowMemoryDevices = {
-            {"serranolte", "S4 mini"}, {"I8190", "S3 mini"}, {"I8190N", "S3 mini NFC"}
+            {"serranolte", "S4 mini"}, {"I8190", "S3 mini"}, {"I8190N", "S3 mini NFC"}, {"m0", "S3"}, {"g2", "LG G2"}, {"golden", "S3 mini NFC"}, {"arubaslimss", "Galaxy Core Safe"}, {"C2105", "Xperia L"}, {"golden", "S3 mini NFC"}, {"bonsai10", "Slate 7 HD"}, {"rk30sdk", "ITP-R208W"}
     };
 
     public static boolean layoutComponentsReady() {
