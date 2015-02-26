@@ -85,13 +85,6 @@ public class Data {
                 Suplence.downloadSuplence(context);
             }
         }.start();
-
-        new Thread() {
-            @Override
-            public void run() {
-                Jedilnik.refresh(context);
-            }
-        }.start();
     }
 
     public static void clearAllData(Context context) {
