@@ -5,15 +5,12 @@ import android.content.Context;
 import android.os.Build;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by ziga on 12/5/14.
  */
 public class Other {
-
-    public static String[][] lowMemoryDevices = {
-            {"serranolte", "S4 mini"}, {"I8190", "S3 mini"}, {"I8190N", "S3 mini NFC"}, {"m0", "S3"}, {"g2", "LG G2"}, {"golden", "S3 mini NFC"}, {"arubaslimss", "Galaxy Core Safe"}, {"C2105", "Xperia L"}, {"golden", "S3 mini NFC"}, {"bonsai10", "Slate 7 HD"}, {"rk30sdk", "ITP-R208W"}
-    };
 
     public static boolean layoutComponentsReady() {
         boolean temp = true;
@@ -136,18 +133,10 @@ public class Other {
         return false;
     }
 
-    public static long memoryAvailable(Context context){
-        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        activityManager.getMemoryInfo(mi);
-        return mi.availMem / 1048576L;
-    }
-
-    public static boolean isDeviceOnLowMemoryList(){
-        String model = Build.MODEL;
-        for(String device : lowMemoryDevices[0]){
-            if (model.toLowerCase().contains(device.toLowerCase())) return true;
-        }
-        return false;
+    public static Date plus1Day(Date date) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, 1);
+        return c.getTime();
     }
 }

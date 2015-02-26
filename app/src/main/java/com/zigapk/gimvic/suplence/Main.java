@@ -55,13 +55,14 @@ public class Main extends Activity implements ActionBar.TabListener {
 
     //textviews [dan][ura][predmet, profesor, ucilnica, opomba]
     public static TextView[][][] textViews = new TextView[5][9][4];
+    public static TextView[][] jedlinikTextViews = new TextView[5][2]; //jedlinikTextViews[x][0] = malica, jedlinikTextViews[x][1] = kosilo
     public static LinearLayout[][] classItems = new LinearLayout[5][9];
     public static ImageView[] checkmarks = new ImageView[5];
     public static String packageName;
 
     public static boolean isDataRendered = false;
 
-    public static boolean isJedilnikOpened = false;
+
 
 
     /**
@@ -266,13 +267,14 @@ public class Main extends Activity implements ActionBar.TabListener {
                     classItems[day - 1][i - 1] = (LinearLayout) rootView.findViewById(getResources().getIdentifier("ura" + i, "id", packageName));
 
                     checkmarks[day - 1] = (ImageView) rootView.findViewById(R.id.checkmark);
+
+                    jedlinikTextViews[day - 1][0] = (TextView) rootView.findViewById(R.id.malica);
+                    jedlinikTextViews[day - 1][1] = (TextView) rootView.findViewById(R.id.kosilo);
+
                 }
             }
-
-
             return rootView;
         }
-
     }
 
 

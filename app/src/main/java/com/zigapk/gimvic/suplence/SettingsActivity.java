@@ -74,6 +74,62 @@ public class SettingsActivity extends Activity {
         });
         setModeButtonText();
 
+        Button malicaButton = (Button) findViewById(R.id.malicaSettingsButton);
+        malicaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int mode = Settings.getMalicaMode(getApplicationContext());
+                if (mode == 2){
+                    Settings.setMalicaMode(0, getApplicationContext());
+                }else {
+                    Settings.setMalicaMode(mode + 1, getApplicationContext());
+                }
+                setMalicaButtonText();
+            }
+        });
+        setMalicaButtonText();
+
+        Button kosiloButton = (Button) findViewById(R.id.kosiloSettingsButton);
+        kosiloButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int mode = Settings.getKosiloMode(getApplicationContext());
+                if (mode == 1){
+                    Settings.setKosiloMode(0, getApplicationContext());
+                }else {
+                    Settings.setKosiloMode(1, getApplicationContext());
+                }
+                setKosiloButtonText();
+            }
+        });
+        setKosiloButtonText();
+
+    }
+
+    private void setMalicaButtonText() {
+        Button malicaButton = (Button) findViewById(R.id.malicaSettingsButton);
+        String text = "Malica: ";
+        int mode = Settings.getMalicaMode(getApplicationContext());
+        if(mode == JedilnikModes.MALICA_NAVADNA){
+            text += "navadna";
+        }else if(mode == JedilnikModes.MALICA_VEGSPERUTNINO){
+            text += "vegetarianska s perunino";
+        }else {
+            text += "vegetarianska";
+        }
+        malicaButton.setText(text);
+    }
+
+    private void setKosiloButtonText() {
+        Button kosiloButton = (Button) findViewById(R.id.kosiloSettingsButton);
+        String text = "Kosilo: ";
+        int mode = Settings.getKosiloMode(getApplicationContext());
+        if(mode == JedilnikModes.KOSILO_NAVADNO){
+            text += "navadno";
+        }else {
+            text += "vegetariansko";
+        }
+        kosiloButton.setText(text);
     }
 
     private void setSafetyIndicatorText(){

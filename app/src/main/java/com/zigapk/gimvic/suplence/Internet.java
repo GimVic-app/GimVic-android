@@ -82,27 +82,4 @@ public class Internet {
         NetworkInfo mWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         return mWifi.isConnected();
     }
-
-    public static void downloadAndSaveBitmap(String url, String fileName, Context context){
-        try {
-            URL adress = new URL(url);
-            InputStream input = adress.openStream();
-            try {
-                //The sdcard directory e.g. '/sdcard' can be used directly, or
-                //more safely abstracted with getExternalStorageDirectory()
-                FileOutputStream output = context.openFileOutput(fileName, context.MODE_PRIVATE);
-                try {
-                    byte[] buffer = new byte[2048];
-                    int bytesRead = 0;
-                    while ((bytesRead = input.read(buffer, 0, buffer.length)) >= 0) {
-                        output.write(buffer, 0, bytesRead);
-                    }
-                } finally {
-                    output.close();
-                }
-            } finally {
-                input.close();
-            }
-        }catch (Exception e){}
-    }
 }

@@ -58,13 +58,7 @@ public class Settings {
         return prefs.getInt("lastAppVersion", 1);
     }
 
-    public static Calendar getJedilnikLastDownloadedDate(Context context){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        Calendar defaultCal = Calendar.getInstance();
-        defaultCal.set(Calendar.YEAR, Calendar.YEAR - 1);
-        String json = prefs.getString("jedilnikLastDownloadedDate", new Gson().toJson(defaultCal));
-        return new Gson().fromJson(json, Calendar.class);
-    }
+
 
     private static boolean isMalicaDownloading(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -74,11 +68,6 @@ public class Settings {
     private static boolean isKosiloDownloading(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getBoolean("kosiloDownloading", true);
-    }
-
-    public static boolean isJedilnikDownloading(Context context){
-        if(isKosiloDownloading(context) || isMalicaDownloading(context)) return true;
-        return false;
     }
 
     public static boolean getAdmin(Context context){
@@ -122,24 +111,6 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putInt("lastAppVersion", version);
-        editor.commit();
-    }
-
-    public static void setKosiloDownloading(boolean value, Context context){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        editor.putBoolean("kosiloDownloading", value);
-        editor.commit();
-    }
-
-    public static void setJedilnikLastDownloadedDate(Calendar calendar, Context context){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
-
-        String json = new Gson().toJson(calendar);
-
-        editor.putString("jedilnikLastDownloadedDate", json);
         editor.commit();
     }
 
@@ -313,6 +284,32 @@ public class Settings {
         editor.clear();
         editor.commit();
     }
+
+    public static int getMalicaMode(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return  prefs.getInt("malicaMode", JedilnikModes.MALICA_NAVADNA);
+    }
+
+    public static void setMalicaMode(int mode, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putInt("malicaMode", mode);
+        editor.commit();
+    }
+
+    public static int getKosiloMode(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return  prefs.getInt("kosiloMode", JedilnikModes.KOSILO_NAVADNO);
+    }
+
+    public static void setKosiloMode(int mode, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putInt("kosiloMode", mode);
+        editor.commit();
+    }
 }
 
 class Mode{
@@ -324,6 +321,14 @@ class Mode{
 class UserMode{
     public static int MODE_UCITELJ = 0;
     public static int MODE_UCENEC = 1;
+}
+
+class JedilnikModes {
+    public static final int MALICA_NAVADNA = 0;
+    public static final int MALICA_VEGSPERUTNINO = 1;
+    public static final int MALICA_VEGETARIANSKA = 2;
+    public static final int KOSILO_NAVADNO = 0;
+    public static final int KOSILO_VEGETARIANSKO = 2;
 }
 
 class ChosenRazredi{

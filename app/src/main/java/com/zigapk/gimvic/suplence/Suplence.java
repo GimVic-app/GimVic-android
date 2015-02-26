@@ -29,12 +29,12 @@ public class Suplence {
 
     //for tempDates
     public static final Date tempDate0 = new Date();
-    public static final Date tempDate1 = plus1Day(tempDate0);
-    public static final Date tempDate2 = plus1Day(tempDate1);
-    public static final Date tempDate3 = plus1Day(tempDate2);
-    public static final Date tempDate4 = plus1Day(tempDate3);
-    public static final Date tempDate5 = plus1Day(tempDate4);
-    public static final Date tempDate6 = plus1Day(tempDate5);
+    public static final Date tempDate1 = Other.plus1Day(tempDate0);
+    public static final Date tempDate2 = Other.plus1Day(tempDate1);
+    public static final Date tempDate3 = Other.plus1Day(tempDate2);
+    public static final Date tempDate4 = Other.plus1Day(tempDate3);
+    public static final Date tempDate5 = Other.plus1Day(tempDate4);
+    public static final Date tempDate6 = Other.plus1Day(tempDate5);
 
 
     public static void downloadSuplence(Context context) {
@@ -152,13 +152,6 @@ public class Suplence {
         return date;
     }
 
-    private static Date plus1Day(Date date) {
-        Calendar c = Calendar.getInstance();
-        c.setTime(date);
-        c.add(Calendar.DATE, 1);
-        return c.getTime();
-    }
-
     public static void cleanOldFiles(Context context) {
 
         File dir = context.getFilesDir();
@@ -244,7 +237,7 @@ public class Suplence {
                 urnik = addMenjaveUcilnic(urnik, suplence, day, userMode, context);
             }
 
-            date = plus1Day(date);
+            date = Other.plus1Day(date);
             day = day + 1;
             if(day > 7) day = day % 7;
         }

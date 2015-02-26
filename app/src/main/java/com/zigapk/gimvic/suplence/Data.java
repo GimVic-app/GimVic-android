@@ -52,12 +52,14 @@ public class Data {
             public void run() {
                 int mode = Settings.getMode(context);
 
-                while (!Settings.isUrnikParsed(context) || !Settings.isTrueUrnikParsed(context) || !Settings.isHybridParsed(context) || !Settings.areSuplenceParsed(context)){}
+                while (!Settings.isUrnikParsed(context) || !Settings.isTrueUrnikParsed(context) || !Settings.isHybridParsed(context) || !Settings.areSuplenceParsed(context) || Jedilnik.jedilnikDownloading){}
 
                 if (mode == Mode.MODE_HYBRID) {
                     Suplence.renderHybrid(context);
                 } else if (mode == Mode.MODE_SUPLENCE) Suplence.render(context);
                 else if (mode == Mode.MODE_URNIK) Urnik.render(context);
+
+                Jedilnik.render(context);
 
                 //run on ui thread
                 Handler handler = new Handler(Looper.getMainLooper());
@@ -83,6 +85,7 @@ public class Data {
                     Urnik.parseUrnik(context);
                 }
                 Suplence.downloadSuplence(context);
+                Jedilnik.download(context, 1);
             }
         }.start();
     }
