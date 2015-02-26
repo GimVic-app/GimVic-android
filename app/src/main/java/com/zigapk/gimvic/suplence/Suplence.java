@@ -357,12 +357,13 @@ public class Suplence {
             String profesor = Settings.getProfesor(context);
 
 
-            for (MenjavaPredmeta menjava : suplence.menjava_predmeta) {
-                if (Other.areProfesorsSame(profesor, menjava.class_name)) {
+            for (MenjavaUre menjava : suplence.menjava_ur) {
+                String[] devided = devideIfNeeded(menjava.zamenjava_uciteljev);
+                if (Other.areProfesorsSame(profesor, devided[devided.length - 1])) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
                     urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(menjava.predmet);
-                    urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(menjava.ucitelj);
+                    urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(devided[devided.length - 1]);
                     urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(menjava.ucilnica);
                     if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
@@ -396,6 +397,19 @@ public class Suplence {
     private static String filterIfNeeded(String original){
         if(original.contains(" -> ")) return original.replaceFirst(original.substring(0, original.indexOf(" -> ") + 4), "");
         else return original;
+    }
+
+    private static String[] devideIfNeeded(String original){
+        String[] result;
+        if(original.contains("->")){
+            result = new String[2];
+            result[0] = original.substring(0, original.indexOf(" ->"));
+            result[1] = original.substring(original.indexOf("-> ") + 3, original.length());
+        }else {
+            result = new String[1];
+            result[0] = original;
+        };
+        return result;
     }
 
 }
