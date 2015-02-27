@@ -43,7 +43,7 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 public class Main extends Activity implements ActionBar.TabListener {
 
     //TODO: UPDATE!!!
-    public static int currentAppVersionNumber = 27;
+    public static int currentAppVersionNumber = 30;
 
     public static Context context;
     public static Boolean mRefreshing = false;

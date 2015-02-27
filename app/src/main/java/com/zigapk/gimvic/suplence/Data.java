@@ -85,7 +85,7 @@ public class Data {
                     Urnik.parseUrnik(context);
                 }
                 Suplence.downloadSuplence(context);
-                Jedilnik.download(context, 1);
+                Jedilnik.download(context, 10);
             }
         }.start();
     }

@@ -88,7 +88,7 @@ public class Jedilnik {
                         Handler handler = new Handler(Looper.getMainLooper());
                         handler.post(new Runnable() {
                             public void run() {
-                                Main.jedlinikTextViews[tempI - 1][1].setText(convertLinesToString(kosilo.Vegetariansko, context));
+                                Main.jedlinikTextViews[tempI - 1][1].setText(convertLinesToString(kosilo.Vegetarijansko, context));
                             }
                         });
                     }
@@ -152,11 +152,9 @@ public class Jedilnik {
                 public void run() {
 
                     String tempDateString = dateString;
-                    String url = "http://app.gimvic.org/APIv2/jedilnikAPI/getJedilnikForDate.php?date=" + tempDateString + "&malica=true";
+                    String url = "http://app.gimvic.org/APIv2/jedilnikAPI/getJedilnikForDate.php?date=" + tempDateString + "&type=malica";
                     String json = Internet.getTextFromUrl(url);
-                    if (!json.equals("{}")) {
-                        Files.writeToFile("malica_" + tempDateString + ".json", json, context);
-                    }
+                    Files.writeToFile("malica_" + tempDateString + ".json", json, context);
                     downloadedCounter++;
                     if (downloadedCounter == (2 * days)) {
                         jedilnikDownloading = false;
@@ -170,11 +168,9 @@ public class Jedilnik {
                 @Override
                 public void run() {
                     String tempDateString = dateString;
-                    String url = "http://app.gimvic.org/APIv2/jedilnikAPI/getJedilnikForDate.php?date=" + tempDateString + "&malica=false";
+                    String url = "http://app.gimvic.org/APIv2/jedilnikAPI/getJedilnikForDate.php?date=" + tempDateString + "&type=kosilo";
                     String json = Internet.getTextFromUrl(url);
-                    if (!json.equals("{}")) {
-                        Files.writeToFile("kosilo_" + tempDateString + ".json", json, context);
-                    }
+                    Files.writeToFile("kosilo_" + tempDateString + ".json", json, context);
                     downloadedCounter++;
                     if (downloadedCounter == (2 * days)) {
                         jedilnikDownloading = false;
@@ -197,6 +193,6 @@ class Malica {
 
 class Kosilo {
     String[] Navadno;
-    String[] Vegetariansko;
+    String[] Vegetarijansko;
 }
 
