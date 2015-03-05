@@ -27,14 +27,14 @@ public class Jedilnik {
         day = day - 1;
         if (day == 0) day = 7;
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             int sum = i + day;
 
-            if (sum != 6 || sum != 7) {
+            if (sum != 6 && sum != 7) {
 
-                int temp = 0;
-                if (sum > 5) {
-                    temp = sum % 5;
+                int temp;
+                if (sum > 7) {
+                    temp = sum % 7;
                 } else {
                     temp = sum;
                 }
@@ -70,7 +70,6 @@ public class Jedilnik {
                         });
                     }
                 }
-
 
                 final Kosilo kosilo = getKosiloForDate(date, context);
 
