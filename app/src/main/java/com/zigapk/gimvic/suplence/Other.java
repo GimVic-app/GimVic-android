@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Build;
 
+import java.security.MessageDigest;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class Other {
         suplenceRazred = suplenceRazred.replace(".", "");
 
         for(String razred : razredi.razredi){
-            if (razred.toLowerCase().equals(suplenceRazred.toLowerCase())) return true;
+            if (razred.toLowerCase().equals(suplenceRazred.toLowerCase()) || suplenceRazred.toLowerCase().contains(razred.toLowerCase())) return true;
         }
 
         return false;
@@ -138,5 +139,23 @@ public class Other {
         c.setTime(date);
         c.add(Calendar.DATE, 1);
         return c.getTime();
+    }
+
+    public static String sha256(String base) {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 }

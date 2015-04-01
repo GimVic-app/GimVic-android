@@ -238,7 +238,7 @@ public class FirstActivity extends Activity {
                 pass.setVisibility(View.VISIBLE);
                 pass.addTextChangedListener(new TextWatcher() {
                     public void afterTextChanged(Editable s) {
-                        if(Security.sha256(s.toString()).equals(getString(R.string.passwordHash))){
+                        if(Other.sha256(s.toString()).equals(getString(R.string.passwordHash))){
                             pass.setVisibility(View.GONE);
                             indicator.setVisibility(View.GONE);
 
@@ -284,7 +284,7 @@ public class FirstActivity extends Activity {
                             });
 
 
-                        }else if(Security.sha256(s.toString()).equals(getString(R.string.adminPasswordHash))){
+                        }else if(Other.sha256(s.toString()).equals(getString(R.string.adminPasswordHash))){
                             //set admin and backup
                             Settings.setAdmin(true, context);
                             ExternalData.backupToExternalStorage(context);

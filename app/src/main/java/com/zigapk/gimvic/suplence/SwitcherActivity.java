@@ -222,7 +222,7 @@ public class SwitcherActivity extends Activity {
                     pass.setVisibility(View.VISIBLE);
                     pass.addTextChangedListener(new TextWatcher() {
                         public void afterTextChanged(Editable s) {
-                            if (Security.sha256(s.toString()).equals(getString(R.string.passwordHash))) {
+                            if (Other.sha256(s.toString()).equals(getString(R.string.passwordHash))) {
                                 pass.setVisibility(View.GONE);
                                 indicator.setVisibility(View.GONE);
 
