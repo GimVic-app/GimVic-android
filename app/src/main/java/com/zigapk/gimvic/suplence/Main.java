@@ -2,14 +2,17 @@ package com.zigapk.gimvic.suplence;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -35,6 +38,7 @@ import android.widget.TextView;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
@@ -43,7 +47,7 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 public class Main extends Activity implements ActionBar.TabListener {
 
     //TODO: UPDATE!!!
-    public static int currentAppVersionNumber = 30;
+    public static int currentAppVersionNumber = 37;
 
     public static Context context;
     public static Boolean mRefreshing = false;
@@ -63,8 +67,6 @@ public class Main extends Activity implements ActionBar.TabListener {
     public static boolean isDataRendered = false;
 
 
-
-
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -79,7 +81,6 @@ public class Main extends Activity implements ActionBar.TabListener {
      */
     ViewPager mViewPager;
     public static View view;
-
 
 
     @Override
@@ -98,21 +99,21 @@ public class Main extends Activity implements ActionBar.TabListener {
         //set context
         context = getApplicationContext();
 
-        if(Settings.getLastAppVersionNumber(context) < 20){
+        if (Settings.getLastAppVersionNumber(context) < 20) {
             Data.clearAllData(context);
         }
 
-        if(Settings.getLastAppVersionNumber(context) < 27) {
+        if (Settings.getLastAppVersionNumber(context) < 27) {
             Settings.setUrnikParsed(false, context);
             Settings.setTrueUrnikParsed(false, context);
             Urnik.parseUrnik(context);
         }
 
-        if(Settings.isFirstOpened(context)){
+        if (Settings.isFirstOpened(context)) {
             Intent intent = new Intent(this, FirstActivity.class);
             startActivity(intent);
             finish();
-        }else{
+        } else {
             // Create the adapter that will return a fragment for each of the three
             // primary sections of the activity.
             mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -147,7 +148,8 @@ public class Main extends Activity implements ActionBar.TabListener {
                     Handler handler = new Handler(Looper.getMainLooper());
                     try {
                         Thread.sleep(30);
-                    }catch (Exception e){}
+                    } catch (Exception e) {
+                    }
                     handler.post(new Runnable() {
                         public void run() {
                             Data.setRefreshingGuiState(true);
@@ -159,13 +161,46 @@ public class Main extends Activity implements ActionBar.TabListener {
 
             Data.refresh(context, true);
 
+            //TODO: remove in next version
+            showAnketa();
+
             Settings.setlastAppVersion(currentAppVersionNumber, context);
+        }
+    }
+
+    private void showAnketa() {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        Date today = c.getTime();
+        c.set(Calendar.YEAR, 2015);
+        c.set(Calendar.MONTH, 5);
+        c.set(Calendar.DAY_OF_MONTH, 19);
+        Date dateSpecified = c.getTime();
+
+
+        if (!Settings.getAnketa2015Done(getApplicationContext()) && today.before(dateSpecified)) {
+            new AlertDialog.Builder(this)
+                    .setMessage("Prosimo, rešite anketo o šolski prehrani do 18. 6. 2015.")
+                    .setPositiveButton("Anketa", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.1ka.si/a/68175"));
+                            startActivity(browserIntent);
+                            Settings.setAnketa2015Done(true, getApplicationContext());
+                        }
+                    })
+                    .setNegativeButton("Prekliči", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    }).create().show();
         }
     }
 
     public void onResume() {
         super.onResume();
-        if(isDataRendered) Data.renderData(context);
+        if (isDataRendered) Data.renderData(context);
     }
 
     @Override
@@ -173,7 +208,7 @@ public class Main extends Activity implements ActionBar.TabListener {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
-        if(Settings.getAdmin(context)){
+        if (Settings.getAdmin(context)) {
             MenuItem adminSwitch = menu.findItem(R.id.admin_switch);
             adminSwitch.setVisible(true);
         }
@@ -190,7 +225,7 @@ public class Main extends Activity implements ActionBar.TabListener {
             Intent intent = new Intent(Main.this, SettingsActivity.class);
             startActivity(intent);
             return true;
-        }else if(id == R.id.admin_switch){
+        } else if (id == R.id.admin_switch) {
             //launch switcher
             startActivity(new Intent(context
                     , SwitcherActivity.class));
@@ -248,17 +283,17 @@ public class Main extends Activity implements ActionBar.TabListener {
             Calendar calendar = Calendar.getInstance();
             int day = calendar.get(Calendar.DAY_OF_WEEK);
             day = day - 1;
-            if(day==0)day = 1;
-            if(day > 5) day = day % 5;
+            if (day == 0) day = 1;
+            if (day > 5) day = day % 5;
             day = day + position - 1;
 
-            if(day > 5) day = day % 5;
+            if (day > 5) day = day % 5;
 
-            if(day <= 5){
+            if (day <= 5) {
 
                 setOnRefreshListeners(day, rootView);
 
-                for(int i = 1; i <= 9; i++){
+                for (int i = 1; i <= 9; i++) {
                     textViews[day - 1][i - 1][0] = (TextView) rootView.findViewById(getResources().getIdentifier("predmet" + i, "id", packageName));
                     textViews[day - 1][i - 1][1] = (TextView) rootView.findViewById(getResources().getIdentifier("profesor" + i, "id", packageName));
                     textViews[day - 1][i - 1][2] = (TextView) rootView.findViewById(getResources().getIdentifier("ucilnica" + i, "id", packageName));
@@ -308,11 +343,11 @@ public class Main extends Activity implements ActionBar.TabListener {
             Calendar calendar = Calendar.getInstance();
             int day = calendar.get(Calendar.DAY_OF_WEEK);
             day = day - 1;
-            if(day==0)day = 1;
-            if(day > 5) day = day % 5;
+            if (day == 0) day = 1;
+            if (day > 5) day = day % 5;
             day = day + position;
 
-            if(day > 5) day = day % 5;
+            if (day > 5) day = day % 5;
 
             switch (day) {
                 case 1:
@@ -335,14 +370,14 @@ public class Main extends Activity implements ActionBar.TabListener {
         }
     }
 
-    public void initializeContent(){
+    public void initializeContent() {
 
-        if(Other.holidays()) {
+        if (Other.holidays()) {
             Data.clearAllData(context);
             startActivity(new Intent(context, SummerActivity.class));
             Main.this.finish();
 
-        }else {
+        } else {
             Data.refresh(context, true);
         }
     }

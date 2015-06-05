@@ -58,16 +58,9 @@ public class Settings {
         return prefs.getInt("lastAppVersion", 1);
     }
 
-
-
-    private static boolean isMalicaDownloading(Context context){
+    public static boolean getAnketa2015Done(Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("malicaDownloading", true);
-    }
-
-    private static boolean isKosiloDownloading(Context context){
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("kosiloDownloading", true);
+        return prefs.getBoolean("anketa-2015-done", false);
     }
 
     public static boolean getAdmin(Context context){
@@ -235,6 +228,14 @@ public class Settings {
         SharedPreferences.Editor editor = prefs.edit();
 
         editor.putBoolean("isDataParsed", value);
+        editor.commit();
+    }
+
+    public static void setAnketa2015Done(boolean value, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("anketa-2015-done", value);
         editor.commit();
     }
 
