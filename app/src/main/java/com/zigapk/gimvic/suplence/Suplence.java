@@ -21,7 +21,6 @@ import java.io.File;
 
 public class Suplence {
     private static int suplenceCounter = 0;
-    String datum;
     Nadomescanje[] nadomescanja;
     MenjavaPredmeta[] menjava_predmeta;
     MenjavaUre[] menjava_ur;

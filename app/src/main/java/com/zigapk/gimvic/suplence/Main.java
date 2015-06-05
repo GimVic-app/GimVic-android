@@ -182,7 +182,7 @@ public class Main extends Activity implements ActionBar.TabListener {
 
         if (!Settings.getAnketa2015Done(getApplicationContext()) && today.before(dateSpecified)) {
             new AlertDialog.Builder(this)
-                    .setMessage("Prosimo, rešite anketo o šolski prehrani do 18. 6. 2015.")
+                    .setMessage("Lepo prosimo, da rešite anketo o šolski prehrani do 18. 6. 2015. Hvala za sodelovanje.")
                     .setPositiveButton("Anketa", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.1ka.si/a/68175"));

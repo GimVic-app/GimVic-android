@@ -14,16 +14,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Main.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Settings.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Settings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/cardview_v7_22_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/cardview_v7_22_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/floatingactionbutton_1_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/floatingactionbutton_1_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_21_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_21_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v13_21_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v13_21_0_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_3.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="GimVic-suplence-android.iws" />
@@ -54,55 +48,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-              <folding>
-                <element signature="e#499#517#0" expanded="true" />
-                <element signature="e#637#655#0" expanded="true" />
-                <element signature="e#968#998#0" expanded="true" />
-                <element signature="e#1919#1952#0" expanded="true" />
-                <element signature="e#2111#2144#0" expanded="true" />
-                <element signature="e#2456#2489#0" expanded="true" />
-                <element signature="e#2601#2634#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46478873">
-              <caret line="177" column="31" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Urnik.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Urnik.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.36">
-              <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.12676056">
+              <caret line="184" column="50" selection-start-line="184" selection-start-column="50" selection-end-line="184" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="$USER_HOME$/Downloads/keystore_gimvic.jks" />
+    <option name="KEY_ALIAS" value="gimvic" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -1224,6 +1185,7 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Settings.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Main.java" />
       </list>
     </option>
@@ -1233,7 +1195,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="-744" />
+    <option name="y" value="24" />
     <option name="width" value="1301" />
     <option name="height" value="744" />
   </component>
@@ -1283,6 +1245,38 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GimVic-suplence-android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GimVic-suplence-android" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="suplence" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="ProjectPane" />
@@ -1296,6 +1290,10 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="5c3e4c4b" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22_x86" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/.." />
+    <property name="ExportApk.Flavors" value="" />
+    <property name="ExportApk.BuildType" value="release" />
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1454,7 +1452,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-744" width="1301" height="744" extended-state="6" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972136" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1469,7 +1467,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29411766" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29411766" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24541833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1493,30 +1491,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-          <folding>
-            <element signature="e#499#517#0" expanded="true" />
-            <element signature="e#637#655#0" expanded="true" />
-            <element signature="e#968#998#0" expanded="true" />
-            <element signature="e#1919#1952#0" expanded="true" />
-            <element signature="e#2111#2144#0" expanded="true" />
-            <element signature="e#2456#2489#0" expanded="true" />
-            <element signature="e#2601#2634#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3325062">
-          <caret line="256" column="26" selection-start-line="256" selection-start-column="26" selection-end-line="256" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41935483">
@@ -1538,7 +1512,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.36">
+        <state vertical-scroll-proportion="0.49061033">
           <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
           <folding />
         </state>
@@ -1546,16 +1520,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Urnik.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.58685446">
           <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Suplence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8591549">
+          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Data.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37558687">
+          <caret line="57" column="37" selection-start-line="57" selection-start-column="37" selection-end-line="57" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2112676">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <folding>
+            <element signature="e#499#517#0" expanded="true" />
+            <element signature="e#637#655#0" expanded="true" />
+            <element signature="e#968#998#0" expanded="true" />
+            <element signature="e#1919#1952#0" expanded="true" />
+            <element signature="e#2111#2144#0" expanded="true" />
+            <element signature="e#2456#2489#0" expanded="true" />
+            <element signature="e#2601#2634#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/zigapk/gimvic/suplence/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46478873">
-          <caret line="177" column="31" selection-start-line="177" selection-start-column="31" selection-end-line="177" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.12676056">
+          <caret line="184" column="50" selection-start-line="184" selection-start-column="50" selection-end-line="184" selection-end-column="50" />
           <folding />
         </state>
       </provider>
