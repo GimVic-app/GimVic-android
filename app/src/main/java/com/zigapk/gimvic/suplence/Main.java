@@ -9,7 +9,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -26,22 +25,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.melnykov.fab.FloatingActionButton;
 
 import java.util.Calendar;
 import java.util.Date;
-
-import it.sephiroth.android.library.imagezoom.ImageViewTouch;
-import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
 
 
 public class Main extends Activity implements ActionBar.TabListener {
@@ -160,9 +149,6 @@ public class Main extends Activity implements ActionBar.TabListener {
             }.start();
 
             Data.refresh(context, true);
-
-            //TODO: remove in next version
-            showAnketa();
 
             Settings.setlastAppVersion(currentAppVersionNumber, context);
         }
