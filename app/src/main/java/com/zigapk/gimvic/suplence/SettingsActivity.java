@@ -79,7 +79,7 @@ public class SettingsActivity extends Activity {
             @Override
             public void onClick(View view) {
                 int mode = Settings.getMalicaMode(getApplicationContext());
-                if (mode == 2){
+                if (mode == 3){
                     Settings.setMalicaMode(0, getApplicationContext());
                 }else {
                     Settings.setMalicaMode(mode + 1, getApplicationContext());
@@ -113,9 +113,11 @@ public class SettingsActivity extends Activity {
         if(mode == JedilnikModes.MALICA_NAVADNA){
             text += "navadna";
         }else if(mode == JedilnikModes.MALICA_VEGSPERUTNINO){
-            text += "vegetarianska s perunino";
+            text += "vegetarijanska s perunino";
+        }else if(mode == JedilnikModes.MALICA_VEGETARIJANSKA){
+            text += "vegetarijanska";
         }else {
-            text += "vegetarianska";
+            text += "sadno-zelenjavna";
         }
         malicaButton.setText(text);
     }
@@ -127,7 +129,7 @@ public class SettingsActivity extends Activity {
         if(mode == JedilnikModes.KOSILO_NAVADNO){
             text += "navadno";
         }else {
-            text += "vegetariansko";
+            text += "vegetarijansko";
         }
         kosiloButton.setText(text);
     }

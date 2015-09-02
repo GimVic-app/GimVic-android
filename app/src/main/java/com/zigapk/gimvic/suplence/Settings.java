@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * Created by ziga on 10/18/14.
@@ -327,9 +326,10 @@ class UserMode{
 class JedilnikModes {
     public static final int MALICA_NAVADNA = 0;
     public static final int MALICA_VEGSPERUTNINO = 1;
-    public static final int MALICA_VEGETARIANSKA = 2;
+    public static final int MALICA_VEGETARIJANSKA = 2;
+    public static final int MALICA_SADNOZELENJAVNA = 3;
     public static final int KOSILO_NAVADNO = 0;
-    public static final int KOSILO_VEGETARIANSKO = 2;
+    public static final int KOSILO_VEGETARIJANSKO = 2;
 }
 
 class ChosenRazredi{

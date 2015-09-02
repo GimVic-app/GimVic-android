@@ -3,7 +3,6 @@ package com.zigapk.gimvic.suplence;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.view.View;
 
 import com.google.gson.Gson;
 
@@ -49,7 +48,9 @@ public class Jedilnik {
                         Handler handler = new Handler(Looper.getMainLooper());
                         handler.post(new Runnable() {
                             public void run() {
-                                Main.jedlinikTextViews[tempI - 1][0].setText(convertLinesToString(malica.Navadna, context));
+                                try {
+                                    Main.jedlinikTextViews[tempI - 1][0].setText(convertLinesToString(malica.Navadna, context));
+                                }catch (Exception e){}
                             }
                         });
                     } else if (Settings.getMalicaMode(context) == JedilnikModes.MALICA_VEGSPERUTNINO) {
@@ -57,15 +58,29 @@ public class Jedilnik {
                         Handler handler = new Handler(Looper.getMainLooper());
                         handler.post(new Runnable() {
                             public void run() {
-                                Main.jedlinikTextViews[tempI - 1][0].setText(convertLinesToString(malica.VegSPerutnino, context));
+                                try {
+                                    Main.jedlinikTextViews[tempI - 1][0].setText(convertLinesToString(malica.VegSPerutnino, context));
+                                }catch (Exception e){}
                             }
                         });
-                    } else {
+                    } else if (Settings.getMalicaMode(context) == JedilnikModes.MALICA_VEGETARIJANSKA) {
                         //run on ui thread
                         Handler handler = new Handler(Looper.getMainLooper());
                         handler.post(new Runnable() {
                             public void run() {
-                                Main.jedlinikTextViews[tempI - 1][0].setText(convertLinesToString(malica.Vegetarijanska, context));
+                                try {
+                                    Main.jedlinikTextViews[tempI - 1][0].setText(convertLinesToString(malica.Vegetarijanska, context));
+                                }catch (Exception e){}
+                            }
+                        });
+                    } else if (Settings.getMalicaMode(context) == JedilnikModes.MALICA_SADNOZELENJAVNA){
+                        //run on ui thread
+                        Handler handler = new Handler(Looper.getMainLooper());
+                        handler.post(new Runnable() {
+                            public void run() {
+                                try {
+                                    Main.jedlinikTextViews[tempI - 1][0].setText(convertLinesToString(malica.SadnoZelenjavna, context));
+                                }catch (Exception e){}
                             }
                         });
                     }
@@ -188,6 +203,7 @@ class Malica {
     String[] Navadna;
     String[] VegSPerutnino;
     String[] Vegetarijanska;
+    String[] SadnoZelenjavna;
 }
 
 class Kosilo {
