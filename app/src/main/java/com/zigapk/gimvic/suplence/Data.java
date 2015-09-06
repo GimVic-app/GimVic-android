@@ -21,7 +21,8 @@ public class Data {
     public static void refresh(Context context, boolean GUI) {
         if (GUI) setRefreshingGuiState(true);
         onGui = GUI;
-        new refreshAsyncTask().execute(context);
+        //new refreshAsyncTask().execute(context);
+        startRefreshThread(context);
     }
 
     public static void setRefreshingGuiState(Boolean refreshing) {
@@ -156,6 +157,42 @@ public class Data {
             return context[0];
         }
         protected void onPostExecute(Context context) {}
+    }
+
+    private static void startRefreshThread(final Context context){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (!refreshing) {
+
+                    refreshing = true;
+                    if (Internet.isOnline(context)) {
+                        downloadData(context, false);
+                    }
+
+                    final Context tempContext = context;
+
+                    while (!Settings.areSuplenceDownloaded(tempContext) || !Settings.isUrnikDownloaded(tempContext)){}
+                    while (!Settings.isTrueUrnikParsed(tempContext)){}
+
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            Suplence.parse(tempContext);
+                            if(onGui){
+                                renderData(tempContext);
+                            }
+                            Data.refreshing = false;
+                        }
+                    }.start();
+
+                }
+                if(onGui){
+                    while (!Other.layoutComponentsReady() || !Settings.isTrueUrnikParsed(context)) {}
+                }
+                while (refreshing) {}
+            }
+        }).start();
     }
 
 }
