@@ -36,7 +36,7 @@ import java.util.Date;
 public class Main extends Activity implements ActionBar.TabListener {
 
     //TODO: UPDATE!!!
-    public static int currentAppVersionNumber = 37;
+    public static int currentAppVersionNumber = 38;
 
     public static Context context;
     public static Boolean mRefreshing = false;
