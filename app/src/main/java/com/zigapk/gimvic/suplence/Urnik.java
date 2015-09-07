@@ -410,7 +410,16 @@ public class Urnik {
     }
 
     public static PersonalUrnik getPersonalUrnik(Context context){
-        PersonalUrnik temp = new Gson().fromJson(Files.getFileValue("Urnik-personal.json", context), PersonalUrnik.class);
+        String file = Files.getFileValue("Urnik-personal.json", context);;
+        while (file == "" || file == null){
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            file = Files.getFileValue("Urnik-personal.json", context);
+        }
+        PersonalUrnik temp = new Gson().fromJson(file, PersonalUrnik.class);
         return temp;
     }
 
