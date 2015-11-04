@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
-import java.io.File;
 
 /**
  * Created by ziga on 10/18/14.
@@ -20,12 +20,6 @@ import java.io.File;
  */
 
 public class Suplence {
-    private static int suplenceCounter = 0;
-    Nadomescanje[] nadomescanja;
-    MenjavaPredmeta[] menjava_predmeta;
-    MenjavaUre[] menjava_ur;
-    MenjavaUcilnice[] menjava_ucilnic;
-
     //for tempDates
     public static final Date tempDate0 = new Date();
     public static final Date tempDate1 = Other.plus1Day(tempDate0);
@@ -34,7 +28,11 @@ public class Suplence {
     public static final Date tempDate4 = Other.plus1Day(tempDate3);
     public static final Date tempDate5 = Other.plus1Day(tempDate4);
     public static final Date tempDate6 = Other.plus1Day(tempDate5);
-
+    private static int suplenceCounter = 0;
+    Nadomescanje[] nadomescanja;
+    MenjavaPredmeta[] menjava_predmeta;
+    MenjavaUre[] menjava_ur;
+    MenjavaUcilnice[] menjava_ucilnic;
 
     public static void downloadSuplence(Context context) {
         final Context ctx = context;
@@ -248,12 +246,15 @@ public class Suplence {
         if (userMode == UserMode.MODE_UCENEC) {
             ChosenRazredi razredi = Settings.getRazredi(context);
 
+            if (suplence.nadomescanja == null) {
+                System.out.print("asdf");
+            }
 
             for (Nadomescanje nadomescanje : suplence.nadomescanja) {
                 for(NadomescanjaUra nadomescanjeUra : nadomescanje.nadomescanja_ure){
                     if (Other.areSame(razredi, nadomescanjeUra.class_name)) {
                         int ura = Integer.parseInt(nadomescanjeUra.ura.substring(0, 1));
-                        //TODO: If ura=0 then this is predura and we do not need to display it (yet)
+                        //TODO: If ura=0 then this is 'predura' and we do not need to display it (yet)
                         if(ura != 0){
                             urnik.days[day - 1].classes[ura - 1].suplenca = true;
                             urnik.days[day - 1].classes[ura - 1].empty = false;
@@ -388,8 +389,16 @@ public class Suplence {
     private static Suplence getSuplenceForDate(Date date, Context context) {
         String name = getFileNameForDate(date);
         String json = Files.getFileValue(name, context);
+        if (json.length() <= 22) {
+            return null;
+        }
         Gson gson = new Gson();
-        return gson.fromJson(json, Suplence.class);
+        Suplence result = gson.fromJson(json, Suplence.class);
+        if (result.nadomescanja == null) {
+            System.out.print("asdf");
+        }
+        return result;
+        //return gson.fromJson(json, Suplence.class);
     }
 
     private static String filterIfNeeded(String original){
@@ -406,7 +415,7 @@ public class Suplence {
         }else {
             result = new String[1];
             result[0] = original;
-        };
+        }
         return result;
     }
 
