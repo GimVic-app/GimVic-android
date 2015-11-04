@@ -36,7 +36,7 @@ import java.util.Date;
 public class Main extends Activity implements ActionBar.TabListener {
 
     //TODO: UPDATE!!!
-    public static int currentAppVersionNumber = 39;
+    public static int currentAppVersionNumber = 43;
 
     public static Context context;
     public static Boolean mRefreshing = false;
@@ -46,7 +46,7 @@ public class Main extends Activity implements ActionBar.TabListener {
     public static SwipeRefreshLayout mSwipeRefreshLayout4;
     public static SwipeRefreshLayout mSwipeRefreshLayout5;
 
-    //textviews [dan][ura][predmet, profesor, ucilnica, opomba]
+    //textviews [dan][ura][predmeti, profesorji, ucilnice, opomba]
     public static TextView[][][] textViews = new TextView[5][9][4];
     public static TextView[][] jedlinikTextViews = new TextView[5][2]; //jedlinikTextViews[x][0] = malica, jedlinikTextViews[x][1] = kosilo
     public static LinearLayout[][] classItems = new LinearLayout[5][9];
@@ -54,8 +54,7 @@ public class Main extends Activity implements ActionBar.TabListener {
     public static String packageName;
 
     public static boolean isDataRendered = false;
-
-
+    public static View view;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -69,8 +68,79 @@ public class Main extends Activity implements ActionBar.TabListener {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
-    public static View view;
 
+    //sets onRefreshListeners and color schemes for swipe to refresh
+    public static void setOnRefreshListeners(int day, View rootView) {
+
+
+        if (day == 1) {
+            Main.mSwipeRefreshLayout1 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+
+            Main.mSwipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout1.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+
+        } else if (day == 2) {
+            Main.mSwipeRefreshLayout2 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+
+            Main.mSwipeRefreshLayout2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout2.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+        } else if (day == 3) {
+            Main.mSwipeRefreshLayout3 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+
+            Main.mSwipeRefreshLayout3.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout3.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+        } else if (day == 4) {
+            Main.mSwipeRefreshLayout4 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+
+            Main.mSwipeRefreshLayout4.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout4.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+        } else if (day == 5) {
+            Main.mSwipeRefreshLayout5 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
+
+            Main.mSwipeRefreshLayout5.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    Data.refresh(context, true);
+                }
+            });
+            Main.mSwipeRefreshLayout5.setColorScheme(R.color.greenOne,
+                    R.color.greenTwo,
+                    R.color.greenThree,
+                    R.color.greenFour);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,6 +304,24 @@ public class Main extends Activity implements ActionBar.TabListener {
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    public void initializeContent() {
+
+        if (Other.holidays()) {
+            Data.clearAllData(context);
+            startActivity(new Intent(context, SummerActivity.class));
+            Main.this.finish();
+
+        } else {
+            Data.refresh(context, true);
+        }
+    }
+
+    private float getScreenHeight() {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        return (float) displaymetrics.heightPixels;
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -298,7 +386,6 @@ public class Main extends Activity implements ActionBar.TabListener {
         }
     }
 
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -354,98 +441,6 @@ public class Main extends Activity implements ActionBar.TabListener {
             }
             return null;
         }
-    }
-
-    public void initializeContent() {
-
-        if (Other.holidays()) {
-            Data.clearAllData(context);
-            startActivity(new Intent(context, SummerActivity.class));
-            Main.this.finish();
-
-        } else {
-            Data.refresh(context, true);
-        }
-    }
-
-
-    //sets onRefreshListeners and color schemes for swipe to refresh
-    public static void setOnRefreshListeners(int day, View rootView) {
-
-
-        if (day == 1) {
-            Main.mSwipeRefreshLayout1 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-
-            Main.mSwipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh(context, true);
-                }
-            });
-            Main.mSwipeRefreshLayout1.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-
-        } else if (day == 2) {
-            Main.mSwipeRefreshLayout2 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-
-            Main.mSwipeRefreshLayout2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh(context, true);
-                }
-            });
-            Main.mSwipeRefreshLayout2.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-        } else if (day == 3) {
-            Main.mSwipeRefreshLayout3 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-
-            Main.mSwipeRefreshLayout3.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh(context, true);
-                }
-            });
-            Main.mSwipeRefreshLayout3.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-        } else if (day == 4) {
-            Main.mSwipeRefreshLayout4 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-
-            Main.mSwipeRefreshLayout4.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh(context, true);
-                }
-            });
-            Main.mSwipeRefreshLayout4.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-        } else if (day == 5) {
-            Main.mSwipeRefreshLayout5 = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
-
-            Main.mSwipeRefreshLayout5.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    Data.refresh(context, true);
-                }
-            });
-            Main.mSwipeRefreshLayout5.setColorScheme(R.color.greenOne,
-                    R.color.greenTwo,
-                    R.color.greenThree,
-                    R.color.greenFour);
-        }
-    }
-
-    private float getScreenHeight() {
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        return (float) displaymetrics.heightPixels;
     }
 
 }

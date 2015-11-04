@@ -43,6 +43,79 @@ public class FirstActivity extends Activity {
     private static boolean[] itemsChecked;
     private static boolean izbirniFinished = false;
 
+    private static boolean[] whichToBeChecked() {
+        boolean[] result = new boolean[izbirni.size()];
+        for (boolean bool : result) {
+            bool = false;
+        }
+        return result;
+
+    }
+
+    private static void izbirniToCharSequences() {
+        izbirniCharSequences = new CharSequence[izbirni.size()];
+        for (int i = 0; i < izbirni.size(); i++) {
+            izbirniCharSequences[i] = izbirni.get(i);
+        }
+    }
+
+    private static void filterRazredi() {
+
+        for (String current : razredi) {
+            if (current.length() == 2) {
+                lepirazredi.add(current);
+            } else {
+                izbirni.add(current);
+            }
+        }
+
+        Collections.sort(lepirazredi, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+
+        Collections.sort(razredi, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+
+        Collections.sort(izbirni, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+
+        itemsChecked = new boolean[izbirni.size()];
+    }
+
+    private static void sortUcitelji() {
+        Collections.sort(ucitelji, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+    }
+
+    private static void parseEverything(final Context context) {
+        new Thread() {
+            @Override
+            public void run() {
+                Urnik.parseUrnik(context);
+            }
+        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                Suplence.parse(context);
+            }
+        }.start();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +209,7 @@ public class FirstActivity extends Activity {
 
 
                 TextView tv = (TextView) findViewById(R.id.firstChooseItem);
-                tv.setText("Izberite razred:");
+                tv.setText("Izberite razredi:");
                 tv.setVisibility(View.VISIBLE);
                 ListView lv = (ListView) findViewById(R.id.firstListView);
 
@@ -333,80 +406,6 @@ public class FirstActivity extends Activity {
             }
         }.start();
 
-    }
-
-    private static boolean[] whichToBeChecked(){
-        boolean[] result = new boolean[izbirni.size()];
-        for(boolean bool : result){
-            bool = false;
-        }
-        return result;
-
-    }
-
-    private static void izbirniToCharSequences(){
-        izbirniCharSequences = new CharSequence[izbirni.size()];
-        for(int i = 0; i < izbirni.size(); i++){
-            izbirniCharSequences[i] = izbirni.get(i);
-        }
-    }
-
-    private static void filterRazredi(){
-
-        for(String current : razredi){
-            if(current.length() == 2){
-                lepirazredi.add(current);
-            }else {
-                izbirni.add(current);
-            }
-        }
-
-        Collections.sort(lepirazredi, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.compareToIgnoreCase(s2);
-            }
-        });
-
-        Collections.sort(razredi, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.compareToIgnoreCase(s2);
-            }
-        });
-
-        Collections.sort(izbirni, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.compareToIgnoreCase(s2);
-            }
-        });
-
-        itemsChecked = new boolean[izbirni.size()];
-    }
-
-    private static void sortUcitelji(){
-        Collections.sort(ucitelji, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.compareToIgnoreCase(s2);
-            }
-        });
-    }
-
-    private static void parseEverything(final Context context){
-        new Thread() {
-            @Override
-            public void run() {
-                Urnik.parseUrnik(context);
-            }
-        }.start();
-        new Thread() {
-            @Override
-            public void run() {
-                Suplence.parse(context);
-            }
-        }.start();
     }
 
 }

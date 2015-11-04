@@ -258,9 +258,12 @@ public class Suplence {
                         if(ura != 0){
                             urnik.days[day - 1].classes[ura - 1].suplenca = true;
                             urnik.days[day - 1].classes[ura - 1].empty = false;
-                            urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(nadomescanjeUra.predmet);
-                            urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(nadomescanjeUra.nadomesca_full_name);
-                            urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(nadomescanjeUra.ucilnica);
+                            urnik.days[day - 1].classes[ura - 1].predmeti.clear();
+                            urnik.days[day - 1].classes[ura - 1].predmeti.add(filterIfNeeded(nadomescanjeUra.predmet));
+                            urnik.days[day - 1].classes[ura - 1].profesorji.clear();
+                            urnik.days[day - 1].classes[ura - 1].profesorji.add(filterIfNeeded(nadomescanjeUra.nadomesca_full_name));
+                            urnik.days[day - 1].classes[ura - 1].ucilnice.clear();
+                            urnik.days[day - 1].classes[ura - 1].ucilnice.add(filterIfNeeded(nadomescanjeUra.ucilnica));
                             if(nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
                         }
                     }
@@ -279,10 +282,14 @@ public class Suplence {
                         }else if(ura != 0) {//TODO: If ura=0 then this is predura and we do not need to display it (yet)
                             urnik.days[day - 1].classes[ura - 1].suplenca = true;
                             urnik.days[day - 1].classes[ura - 1].empty = false;
-                            urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(nadomescanjeUra.predmet);
-                            urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(nadomescanjeUra.nadomesca_full_name);
-                            urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(nadomescanjeUra.ucilnica);
-                            urnik.days[day - 1].classes[ura - 1].razred = nadomescanjeUra.class_name;
+                            urnik.days[day - 1].classes[ura - 1].predmeti.clear();
+                            urnik.days[day - 1].classes[ura - 1].predmeti.add(filterIfNeeded(nadomescanjeUra.predmet));
+                            urnik.days[day - 1].classes[ura - 1].profesorji.clear();
+                            urnik.days[day - 1].classes[ura - 1].profesorji.add(filterIfNeeded(nadomescanjeUra.nadomesca_full_name));
+                            urnik.days[day - 1].classes[ura - 1].ucilnice.clear();
+                            urnik.days[day - 1].classes[ura - 1].ucilnice.add(filterIfNeeded(nadomescanjeUra.ucilnica));
+                            urnik.days[day - 1].classes[ura - 1].razredi.clear();
+                            urnik.days[day - 1].classes[ura - 1].razredi.add(nadomescanjeUra.class_name);
                             if (nadomescanjeUra.opomba != null && nadomescanjeUra.opomba != "")
                                 urnik.days[day - 1].classes[ura - 1].opomba = nadomescanjeUra.opomba;
 
@@ -308,9 +315,12 @@ public class Suplence {
                 if (Other.areSame(razredi, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
-                    urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(menjava.predmet);
-                    urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(menjava.ucitelj);
-                    urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(menjava.ucilnica);
+                    urnik.days[day - 1].classes[ura - 1].predmeti.clear();
+                    urnik.days[day - 1].classes[ura - 1].predmeti.add(filterIfNeeded(menjava.predmet));
+                    urnik.days[day - 1].classes[ura - 1].profesorji.clear();
+                    urnik.days[day - 1].classes[ura - 1].profesorji.add(filterIfNeeded(menjava.ucitelj));
+                    urnik.days[day - 1].classes[ura - 1].ucilnice.clear();
+                    urnik.days[day - 1].classes[ura - 1].ucilnice.add(filterIfNeeded(menjava.ucilnica));
                     if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
@@ -324,9 +334,12 @@ public class Suplence {
                 if (Other.areProfesorsSame(profesor, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
-                    urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(menjava.predmet);
-                    urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(menjava.ucitelj);
-                    urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(menjava.ucilnica);
+                    urnik.days[day - 1].classes[ura - 1].predmeti.clear();
+                    urnik.days[day - 1].classes[ura - 1].predmeti.add(filterIfNeeded(menjava.predmet));
+                    urnik.days[day - 1].classes[ura - 1].profesorji.clear();
+                    urnik.days[day - 1].classes[ura - 1].profesorji.add(filterIfNeeded(menjava.ucitelj));
+                    urnik.days[day - 1].classes[ura - 1].ucilnice.clear();
+                    urnik.days[day - 1].classes[ura - 1].ucilnice.add(filterIfNeeded(menjava.ucilnica));
                     if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
@@ -345,9 +358,12 @@ public class Suplence {
                 if (Other.areSame(razredi, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
-                    urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(menjava.predmet);
-                    urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(menjava.zamenjava_uciteljev);
-                    urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(menjava.ucilnica);
+                    urnik.days[day - 1].classes[ura - 1].predmeti.clear();
+                    urnik.days[day - 1].classes[ura - 1].predmeti.add(filterIfNeeded(menjava.predmet));
+                    urnik.days[day - 1].classes[ura - 1].profesorji.clear();
+                    urnik.days[day - 1].classes[ura - 1].profesorji.add(filterIfNeeded(menjava.zamenjava_uciteljev));
+                    urnik.days[day - 1].classes[ura - 1].ucilnice.clear();
+                    urnik.days[day - 1].classes[ura - 1].ucilnice.add(filterIfNeeded(menjava.ucilnica));
                     if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
@@ -361,9 +377,12 @@ public class Suplence {
                 if (Other.areProfesorsSame(profesor, menjava.class_name)) {
                     int ura = Integer.parseInt(menjava.ura.substring(0, 1));
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
-                    urnik.days[day - 1].classes[ura - 1].predmet = filterIfNeeded(menjava.predmet);
-                    urnik.days[day - 1].classes[ura - 1].profesor = filterIfNeeded(menjava.ucitelj);
-                    urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(menjava.ucilnica);
+                    urnik.days[day - 1].classes[ura - 1].predmeti.clear();
+                    urnik.days[day - 1].classes[ura - 1].predmeti.add(filterIfNeeded(menjava.predmet));
+                    urnik.days[day - 1].classes[ura - 1].profesorji.clear();
+                    urnik.days[day - 1].classes[ura - 1].profesorji.add(filterIfNeeded(menjava.ucitelj));
+                    urnik.days[day - 1].classes[ura - 1].ucilnice.clear();
+                    urnik.days[day - 1].classes[ura - 1].ucilnice.add(filterIfNeeded(menjava.ucilnica));
                     if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
@@ -379,7 +398,8 @@ public class Suplence {
             int ura = Integer.parseInt(menjava.ura.substring(0, 1));
             if(Other.areSame(razredi, menjava.class_name)){
                     urnik.days[day - 1].classes[ura - 1].suplenca = true;
-                    urnik.days[day - 1].classes[ura - 1].ucilnica = filterIfNeeded(menjava.ucilnica_to);
+                urnik.days[day - 1].classes[ura - 1].ucilnice.clear();
+                urnik.days[day - 1].classes[ura - 1].ucilnice.add(filterIfNeeded(menjava.ucilnica_to));
                     if(menjava.opomba != null && menjava.opomba != "") urnik.days[day - 1].classes[ura - 1].opomba = menjava.opomba;
                 }
             }
@@ -389,16 +409,11 @@ public class Suplence {
     private static Suplence getSuplenceForDate(Date date, Context context) {
         String name = getFileNameForDate(date);
         String json = Files.getFileValue(name, context);
-        if (json.length() <= 22) {
+        if (json == null || json.length() <= 22) {
             return null;
         }
         Gson gson = new Gson();
-        Suplence result = gson.fromJson(json, Suplence.class);
-        if (result.nadomescanja == null) {
-            System.out.print("asdf");
-        }
-        return result;
-        //return gson.fromJson(json, Suplence.class);
+        return gson.fromJson(json, Suplence.class);
     }
 
     private static String filterIfNeeded(String original){

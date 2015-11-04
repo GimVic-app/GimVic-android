@@ -88,6 +88,13 @@ public class Urnik {
                         }
                     });
 
+                    while (!Other.layoutComponentsReady()) {
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
                     final TextView predmetTv = Main.textViews[dan - 1][ura - 1][0];
                     final TextView profesorTv = Main.textViews[dan - 1][ura - 1][1];
@@ -103,13 +110,28 @@ public class Urnik {
                         Handler handler2 = new Handler(Looper.getMainLooper());
                         handler2.post(new Runnable() {
                             public void run() {
-                                predmetTv.setText(current.predmet);
+                                predmetTv.setText(current.predmetToString());
+                                if (current.predmetToString().length() >= 7)
+                                    predmetTv.setTextSize(22);
+                                else predmetTv.setTextSize(28);
+
                                 if(current.mankajociUcitelj){
-                                    profesorTv.setText(current.profesor);
+                                    profesorTv.setText(current.profToString());
+                                    if (current.profToString().contains("/"))
+                                        profesorTv.setTextSize(13);
+                                    else profesorTv.setTextSize(16);
                                 }else {
-                                    profesorTv.setText(current.razred);
+                                    profesorTv.setText(current.razredToString());
+                                    if (current.razredToString().contains("/"))
+                                        profesorTv.setTextSize(13);
+                                    else profesorTv.setTextSize(16);
                                 }
-                                ucilnicaTv.setText(current.ucilnica);
+
+                                ucilnicaTv.setText(current.ucilnicaToString());
+                                if (current.ucilnicaToString().length() > 4)
+                                    ucilnicaTv.setTextSize(22);
+                                else ucilnicaTv.setTextSize(28);
+
                                 if(current.opomba != "" || current.opomba == null){
                                     opomba.setVisibility(View.VISIBLE);
                                     opomba.setText(context.getResources().getString(R.string.opomba) + " " + current.opomba);
@@ -120,14 +142,16 @@ public class Urnik {
 
                                 if (current.suplenca){
                                     final UrnikElement temp = originalUrnik.days[tempDan - 1].classes[tempUra - 1];
-                                    if(!current.predmet.equals(temp.predmet)) predmetTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    if (!current.predmeti.equals(temp.predmeti))
+                                        predmetTv.setTextColor(context.getResources().getColor(R.color.white));
                                     else predmetTv.setTextColor(context.getResources().getColor(R.color.black));
                                     if(current.mankajociUcitelj){
                                         profesorTv.setTextColor(context.getResources().getColor(R.color.white));
                                     }else {
                                         profesorTv.setTextColor(context.getResources().getColor(R.color.white));
                                     }
-                                    if(!current.ucilnica.equals(temp.ucilnica)) ucilnicaTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    if (!current.ucilnice.equals(temp.ucilnice))
+                                        ucilnicaTv.setTextColor(context.getResources().getColor(R.color.white));
                                     else ucilnicaTv.setTextColor(context.getResources().getColor(R.color.black));
                                 }else {
                                     predmetTv.setTextColor(context.getResources().getColor(R.color.black));
@@ -142,9 +166,21 @@ public class Urnik {
                         Handler handler2 = new Handler(Looper.getMainLooper());
                         handler2.post(new Runnable() {
                             public void run() {
-                                predmetTv.setText(current.predmet);
-                                profesorTv.setText(current.profesor);
-                                ucilnicaTv.setText(current.ucilnica);
+                                predmetTv.setText(current.predmetToString());
+                                if (current.predmetToString().length() >= 7)
+                                    predmetTv.setTextSize(22);
+                                else predmetTv.setTextSize(28);
+
+                                profesorTv.setText(current.profToString());
+                                if (current.profToString().contains("/"))
+                                    profesorTv.setTextSize(13);
+                                else profesorTv.setTextSize(16);
+
+                                ucilnicaTv.setText(current.ucilnicaToString());
+                                if (current.ucilnicaToString().length() > 4)
+                                    ucilnicaTv.setTextSize(22);
+                                else ucilnicaTv.setTextSize(28);
+
                                 if(current.opomba != "" || current.opomba == null){
                                     opomba.setVisibility(View.VISIBLE);
                                     opomba.setText(context.getResources().getString(R.string.opomba) + " " + current.opomba);
@@ -155,11 +191,14 @@ public class Urnik {
 
                                 if (current.suplenca){
                                     final UrnikElement temp = originalUrnik.days[tempDan - 1].classes[tempUra - 1];
-                                    if(!current.predmet.equals(temp.predmet)) predmetTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    if (!current.predmeti.equals(temp.predmeti))
+                                        predmetTv.setTextColor(context.getResources().getColor(R.color.white));
                                     else predmetTv.setTextColor(context.getResources().getColor(R.color.black));
-                                    if(!current.ucilnica.equals(temp.ucilnica)) ucilnicaTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    if (!current.ucilnice.equals(temp.ucilnice))
+                                        ucilnicaTv.setTextColor(context.getResources().getColor(R.color.white));
                                     else ucilnicaTv.setTextColor(context.getResources().getColor(R.color.black));
-                                    if(!current.profesor.equals(temp.profesor)) profesorTv.setTextColor(context.getResources().getColor(R.color.white));
+                                    if (!current.profesorji.equals(temp.profesorji))
+                                        profesorTv.setTextColor(context.getResources().getColor(R.color.white));
                                     else profesorTv.setTextColor(context.getResources().getColor(R.color.black));
                                 }else {
                                     predmetTv.setTextColor(context.getResources().getColor(R.color.black));
@@ -367,12 +406,12 @@ public class Urnik {
                     String predmet = urnik.urnik[i][3];
                     String ucilnica = urnik.urnik[i][4];
 
-                    personal.days[dan - 1].classes[ura - 1].razred = urnik.urnik[i][1];
+                    personal.days[dan - 1].classes[ura - 1].razredi.add(urnik.urnik[i][1]);
                     personal.days[dan - 1].classes[ura - 1].ura = ura;
                     personal.days[dan - 1].classes[ura - 1].dan = dan;
-                    personal.days[dan - 1].classes[ura - 1].profesor = profesor;
-                    personal.days[dan - 1].classes[ura - 1].predmet = predmet;
-                    personal.days[dan - 1].classes[ura - 1].ucilnica = ucilnica;
+                    personal.days[dan - 1].classes[ura - 1].profesorji.add(profesor);
+                    personal.days[dan - 1].classes[ura - 1].predmeti.add(predmet);
+                    personal.days[dan - 1].classes[ura - 1].ucilnice.add(ucilnica);
                     personal.days[dan - 1].classes[ura - 1].empty = false;
 
                 }
@@ -389,12 +428,12 @@ public class Urnik {
                     String predmet = urnik.urnik[i][3];
                     String ucilnica = urnik.urnik[i][4];
 
-                    personal.days[dan - 1].classes[ura - 1].razred = razred;
+                    personal.days[dan - 1].classes[ura - 1].razredi.add(razred);
                     personal.days[dan - 1].classes[ura - 1].ura = ura;
                     personal.days[dan - 1].classes[ura - 1].dan = dan;
-                    personal.days[dan - 1].classes[ura - 1].profesor = profesor;
-                    personal.days[dan - 1].classes[ura - 1].predmet = predmet;
-                    personal.days[dan - 1].classes[ura - 1].ucilnica = ucilnica;
+                    personal.days[dan - 1].classes[ura - 1].profesorji.add(profesor);
+                    personal.days[dan - 1].classes[ura - 1].predmeti.add(predmet);
+                    personal.days[dan - 1].classes[ura - 1].ucilnice.add(ucilnica);
                     personal.days[dan - 1].classes[ura - 1].empty = false;
 
                 }
@@ -410,7 +449,7 @@ public class Urnik {
     }
 
     public static PersonalUrnik getPersonalUrnik(Context context){
-        String file = Files.getFileValue("Urnik-personal.json", context);;
+        String file = Files.getFileValue("Urnik-personal.json", context);
         while (file == "" || file == null){
             try {
                 Thread.sleep(50);
@@ -447,10 +486,10 @@ class PersonalUrnik{
 }
 
 class UrnikElement{
-    String razred = "";
-    String profesor = "";
-    String predmet = "";
-    String ucilnica = "";
+    ArrayList<String> razredi = new ArrayList<>();
+    ArrayList<String> profesorji = new ArrayList<>();
+    ArrayList<String> predmeti = new ArrayList<>();
+    ArrayList<String> ucilnice = new ArrayList<>();
     String opomba = "";
     int ura = 1;
     int dan = 1; // 1 = monday, 5 = friday
@@ -458,6 +497,44 @@ class UrnikElement{
     boolean mankajociUcitelj = false;
     boolean empty = true;
 
+    private static String everyToString(ArrayList<String> data) {
+        ArrayList<String> added = new ArrayList<>();
+        String result = "";
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i) != null && data.get(i) != "") {
+                if (!isAllreadyAdded(data.get(i), added)) {
+                    if (i != 0) result += "/";
+                    result += data.get(i);
+                    added.add(data.get(i));
+                }
+            }
+        }
+        if (result == "") return "/";
+        return result;
+    }
+
+    private static boolean isAllreadyAdded(String str, ArrayList<String> done) {
+        for (String doneElement : done) {
+            if (str.equals(doneElement)) return true;
+        }
+        return false;
+    }
+
+    public String razredToString() {
+        return everyToString(razredi);
+    }
+
+    public String profToString() {
+        return everyToString(profesorji);
+    }
+
+    public String predmetToString() {
+        return everyToString(predmeti);
+    }
+
+    public String ucilnicaToString() {
+        return everyToString(ucilnice);
+    }
 }
 
 class Day{

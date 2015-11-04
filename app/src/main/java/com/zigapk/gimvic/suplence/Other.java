@@ -1,9 +1,5 @@
 package com.zigapk.gimvic.suplence;
 
-import android.app.ActivityManager;
-import android.content.Context;
-import android.os.Build;
-
 import java.security.MessageDigest;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,15 +10,16 @@ import java.util.Date;
 public class Other {
 
     public static boolean layoutComponentsReady() {
-        boolean temp = true;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 8; j++) {
-                if (Main.textViews[i][j][3] == null) temp = false;
-                if (Main.classItems[i][j] == null) temp = false;
+                if (Main.textViews[i][j][0] == null) return false;
+                if (Main.textViews[i][j][1] == null) return false;
+                if (Main.textViews[i][j][2] == null) return false;
+                if (Main.textViews[i][j][3] == null) return false;
+                if (Main.classItems[i][j] == null) return false;
             }
         }
-
-        return temp;
+        return true;
     }
 
     public static boolean areSame(ChosenRazredi razredi, String suplenceRazred) {
@@ -111,8 +108,7 @@ public class Other {
     }
 
     private static boolean compare3(String urnik, String suplence) {
-        if (suplence.contains(urnik)) return true;
-        else return false;
+        return suplence.contains(urnik);
     }
 
     public static boolean razredEqualsAny(String razred, ChosenRazredi razredi){

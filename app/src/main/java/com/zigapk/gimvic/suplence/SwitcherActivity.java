@@ -38,6 +38,92 @@ public class SwitcherActivity extends Activity {
     private static boolean[] itemsChecked;
     private static boolean izbirniFinished = false;
 
+    private static void filterRazredi() {
+
+        for (String current : razredi) {
+            if (current.length() == 2) {
+                lepirazredi.add(current);
+            } else {
+                izbirni.add(current);
+            }
+        }
+
+        Collections.sort(lepirazredi, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+
+        Collections.sort(razredi, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+
+        Collections.sort(izbirni, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+
+        itemsChecked = new boolean[izbirni.size()];
+    }
+
+    private static boolean[] whichToBeChecked() {
+        boolean[] result = new boolean[izbirni.size()];
+        for (boolean bool : result) {
+            bool = false;
+        }
+        return result;
+
+    }
+
+    private static void izbirniToCharSequences() {
+        izbirniCharSequences = new CharSequence[izbirni.size()];
+        for (int i = 0; i < izbirni.size(); i++) {
+            izbirniCharSequences[i] = izbirni.get(i);
+        }
+    }
+
+    private static void sortUcitelji() {
+        Collections.sort(ucitelji, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.compareToIgnoreCase(s2);
+            }
+        });
+    }
+
+    private static void parseEverything(final Context context) {
+        new Thread() {
+            @Override
+            public void run() {
+                Urnik.parsePersonalUrnik(context);
+            }
+        }.start();
+        new Thread() {
+            @Override
+            public void run() {
+                Suplence.parse(context);
+            }
+        }.start();
+    }
+
+    //clean up and prepare for next time
+    private static void cleanUp() {
+        razredi.clear();
+        ucitelji.clear();
+        lepirazredi.clear();
+        izbirni.clear();
+        izbirniCharSequences = new CharSequence[0];
+        chosenRazredi = new ChosenRazredi();
+        itemsChecked = new boolean[0];
+        izbirniFinished = false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //initialize activity
@@ -60,7 +146,7 @@ public class SwitcherActivity extends Activity {
                 buttonLayout.setVisibility(View.GONE);
 
                 TextView tv = (TextView) findViewById(R.id.switcherChooseItem);
-                tv.setText("Izberite razred:");
+                tv.setText("Izberite razredi:");
                 tv.setVisibility(View.VISIBLE);
                 ListView lv = (ListView) findViewById(R.id.switcherListView);
 
@@ -293,92 +379,6 @@ public class SwitcherActivity extends Activity {
     public void onBackPressed() {
         super.onBackPressed();
         cleanUp();
-    }
-
-    private static void filterRazredi(){
-
-        for(String current : razredi){
-            if(current.length() == 2){
-                lepirazredi.add(current);
-            }else {
-                izbirni.add(current);
-            }
-        }
-
-        Collections.sort(lepirazredi, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.compareToIgnoreCase(s2);
-            }
-        });
-
-        Collections.sort(razredi, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.compareToIgnoreCase(s2);
-            }
-        });
-
-        Collections.sort(izbirni, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.compareToIgnoreCase(s2);
-            }
-        });
-
-        itemsChecked = new boolean[izbirni.size()];
-    }
-
-    private static boolean[] whichToBeChecked(){
-        boolean[] result = new boolean[izbirni.size()];
-        for(boolean bool : result){
-            bool = false;
-        }
-        return result;
-
-    }
-
-    private static void izbirniToCharSequences(){
-        izbirniCharSequences = new CharSequence[izbirni.size()];
-        for(int i = 0; i < izbirni.size(); i++){
-            izbirniCharSequences[i] = izbirni.get(i);
-        }
-    }
-
-    private static void sortUcitelji(){
-        Collections.sort(ucitelji, new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s1.compareToIgnoreCase(s2);
-            }
-        });
-    }
-
-    private static void parseEverything(final Context context){
-        new Thread() {
-            @Override
-            public void run() {
-                Urnik.parsePersonalUrnik(context);
-            }
-        }.start();
-        new Thread() {
-            @Override
-            public void run() {
-                Suplence.parse(context);
-            }
-        }.start();
-    }
-
-    //clean up and prepare for next time
-    private static void cleanUp(){
-        razredi.clear();
-        ucitelji.clear();
-        lepirazredi.clear();
-        izbirni.clear();
-        izbirniCharSequences = new CharSequence[0];
-        chosenRazredi = new ChosenRazredi();
-        itemsChecked = new boolean[0];
-        izbirniFinished = false;
     }
 
     @Override
