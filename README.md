@@ -5,4 +5,4 @@ App scheme:<br>
 
 <a href="https://play.google.com/store/apps/details?id=com.zigapk.gimvic.suplence">App on Google Play</a>
 
-Note: project is deprecated. No major version will probably be released.
+Note: project is deprecated. No major version will probably be released. Some minor patches are to be expected.
