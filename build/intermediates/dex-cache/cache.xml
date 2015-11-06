@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.2.1/jars/classes.jar"
+        jar="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.2.1/jars/libs/internal_impl-22.2.1.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="c4caf832116bca1f2e140bf1fb600e2edd190837">
-        <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/classes-cd75c1b9af731ea6acb76b679d23daae0c8238d6.jar" />
+        sha1="6fc4c7067459e8d69e1bbcb3a8973cdd84d5d87b">
+        <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/internal_impl-22.2.1-a2a786419bbed17a5f700e6788b43cf38c3829e9.jar" />
     </item>
     <item
         jar="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
@@ -16,20 +16,6 @@
         <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/internal_impl-22.2.1-95c47e5bf4e3e79c1d4db356c2813328de2b640d.jar" />
     </item>
     <item
-        jar="/home/zigapk/Programing/SDK/android-sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/support-annotations-22.2.1-1cf2bd42726488ac46e3410db7ea1ed354e1751a.jar" />
-    </item>
-    <item
-        jar="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.2.1/jars/libs/internal_impl-22.2.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="6fc4c7067459e8d69e1bbcb3a8973cdd84d5d87b">
-        <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/internal_impl-22.2.1-a2a786419bbed17a5f700e6788b43cf38c3829e9.jar" />
-    </item>
-    <item
         jar="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
@@ -37,11 +23,25 @@
         <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/classes-d29c9c78cf33aeac03797e0c6a02bc83b0d05fd1.jar" />
     </item>
     <item
+        jar="/home/zigapk/Programing/SDK/android-sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/support-annotations-22.2.1-1cf2bd42726488ac46e3410db7ea1ed354e1751a.jar" />
+    </item>
+    <item
         jar="/home/zigapk/Desktop/GimVic-android/app/libs/gson-2.2.4.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="973e832af433b44c3ed11c426f2f390b29f3f3f8">
         <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/gson-2.2.4-aa4ed9383aa4c7017acd5dceab93c7f1139c81d2.jar" />
+    </item>
+    <item
+        jar="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/exploded-aar/com.android.support/support-v13/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c4caf832116bca1f2e140bf1fb600e2edd190837">
+        <dex dex="/home/zigapk/Desktop/GimVic-android/app/build/intermediates/pre-dexed/release/classes-cd75c1b9af731ea6acb76b679d23daae0c8238d6.jar" />
     </item>
     <item
         jar="/home/zigapk/Desktop/GimVic-android/app/libs/joda-time-2.6.jar"
