@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-    <color name="green">#4CAF50</color>
-    <color name="green_light">#66BB6A</color>
-    <color name="green100">#C8E6C9</color>
-    <color name="green700">#388E3C</color>
-    <color name="green800">#2E7D32</color>
-    <color name="green300">#81C784</color>
-    <color name="green200">#A5D6A7</color>
-
-    <color name="white_transparent">#DDFFFFFF</color>
-    <color name="red">#F44336</color>
-
-
-    <!-- colors for swipe to refresh -->
-    <color name="greenOne">#4CAF50</color>
-    <color name="greenTwo">#81C784</color>
-    <color name="greenThree">#43A047</color>
-    <color name="greenFour">#A5D6A7</color>
-    <color name="white">#ffffff</color>
-    <color name="transparent">#00ffffff</color>
-    <color name="black">#000</color>
-
-
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>

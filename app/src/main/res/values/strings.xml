@@ -1,53 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">GimVic</string>
     <string name="action_settings">Settings</string>
-    <string name="monday">Ponedeljek</string>
-    <string name="tuesday">Torek</string>
-    <string name="wednesday">Sreda</string>
-    <string name="thursday">Četrtek</string>
-    <string name="friday">Petek</string>
-    <string name="saturday">Sobota</string>
-    <string name="sunday">Nedelja</string>
-    <string name="predmet_default"></string>
-    <string name="profesor_default"></string>
-    <string name="ucilnica_default"></string>
-    <string name="title_activity_first">FirstActivity</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_summer">SummerActivity</string>
-    <string name="pocitnice">Vesele počitnice!</string>
-    <string name="pocinice_explanation">Aplikacije GimVic žal ni mogoče uporablatji med poletnimi počitnicami.</string>
-    <string name="gimvic">GimVic</string>
-    <string name="donloading">Prenašanje podatkov</string>
-    <string name="dijak">DIJAK</string>
-    <string name="profesor">PROFESOR</string>
-    <string name="firstChoose">Dijak ali profesor?</string>
-    <string name="switcherChoose">Ste dijak ali profesor?</string>
-    <string name="offline">Ni internetne povezave</string>
-    <string name="offline_explanation">Vključite prenos podatkov ali omrežja wifi.</string>
-    <string name="ok">Ok</string>
-    <string name="setIzbirni">Izberite izbirne predmete</string>
-    <string name="inputPassword">Vpišite geslo:</string>
-    <string name="password">GimVicProfesorji</string>
-    <string name="passwordHash">c00c09606b70d76cd018a432116c3c91ef683d9756eaae7f93574c5789cdcacb</string>
-    <string name="wrongPass">Napačno geslo</string>
-    <string name="opomba">OPOMBA:</string>
-    <string name="title_activity_settings">Nastavitve</string>
-    <string name="changeButton">Zamenjaj razred ali učitelja</string>
-    <string name="zamenjaj">Zamenjaj razred ali profesorja</string>
-    <string name="no_more_trys_left">Tega ne morete več zamenjati.</string>
-    <string name="no_more_trys_left_explanation">Porabili ste vseh 5 poskusov.</string>
-    <string name="title_activity_jedilnik">Jedilnik</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="adminPasswordHash">269433b0e58e6c074b3b3ef17a343fbe140680f59b7ff991feea55a054175214</string>
-    <string name="title_activity_switcher">SwitcherActivity</string>
-    <string name="title_activity_jedlinik">Jedlinik</string>
-    <string name="chosenString">Izbrani</string>
-    <string name="malica_title">Malica</string>
-    <string name="kosilo_title">Kosilo</string>
-    <string name="no_data">Ni podatkov.</string>
-
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>
