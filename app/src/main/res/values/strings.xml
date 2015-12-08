@@ -2,4 +2,6 @@
     <string name="app_name">GimVic</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="snack">Malica</string>
+    <string name="lunch">Kosilo</string>
 </resources>
