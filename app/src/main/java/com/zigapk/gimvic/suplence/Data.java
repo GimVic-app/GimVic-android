@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.zigapk.gimvic.suplence.exceptions.CouldNotReachServerException;
@@ -48,7 +49,7 @@ public class Data {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (Main.textViews[4][7][2] == null || Main.lessons[4][7] == null || Main.menuTvs[4][1] == null) {
+                while (Main.textViews[4][7][3] == null || Main.lessons[4][7] == null || Main.menuTvs[4][1] == null) {
                 }
 
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -56,13 +57,23 @@ public class Data {
                     public void run() {
                         for (int i = 0; i < days.length; i++) {
                             for (int j = 0; j < days[i].lessons.length; j++) {
-                                Main.textViews[i][j][0].setText(days[i].lessons[j].subjectsStr());
-                                Main.textViews[i][j][1].setText(days[i].lessons[j].teachersStr());
-                                Main.textViews[i][j][2].setText(days[i].lessons[j].classroomsStr());
+                                if (!days[i].lessons[j].isEmpty()) {
+                                    Main.lessons[i][j].setVisibility(View.VISIBLE);
+                                    Main.textViews[i][j][0].setText(days[i].lessons[j].subjectsStr());
+                                    Main.textViews[i][j][1].setText(days[i].lessons[j].teachersStr());
+                                    Main.textViews[i][j][2].setText(days[i].lessons[j].classroomsStr());
 
-                                if (days[i].lessons[j].substitution)
-                                    Main.lessons[i][j].setCardBackgroundColor(context.getResources().getColor(R.color.green400));
-                                else Main.lessons[i][j].setCardBackgroundColor(Color.WHITE);
+                                    if (days[i].lessons[j].note != null && days[i].lessons[j].note != "") {
+                                        Main.textViews[i][j][3].setText(days[i].lessons[j].note);
+                                        Main.textViews[i][j][3].setVisibility(View.VISIBLE);
+                                    } else Main.textViews[i][j][3].setVisibility(View.GONE);
+
+                                    if (days[i].lessons[j].substitution)
+                                        Main.lessons[i][j].setCardBackgroundColor(context.getResources().getColor(R.color.green400));
+                                    else Main.lessons[i][j].setCardBackgroundColor(Color.WHITE);
+                                } else {
+                                    Main.lessons[i][j].setVisibility(View.GONE);
+                                }
                             }
                             Main.menuTvs[i][0].setText(days[i].snack());
                             Main.menuTvs[i][1].setText(days[i].lunch());
@@ -115,6 +126,7 @@ class Lesson {
     public String[] teachers;
     public String[] classrooms;
     public String[] classes;
+    public String note;
     public boolean substitution;
 
     public String subjectsStr() {
@@ -138,10 +150,17 @@ class Lesson {
         String result = "";
         for (String item : arr) {
             if (item != "") {
-                if (result != "") result += " / ";
+                if (result != "") result += "/";
                 result += item;
             }
         }
         return result;
+    }
+
+    public boolean isEmpty() {
+        if (subjects != null || classrooms != null ||
+                teachers != null || classes != null ||
+                note != null) return false;
+        return true;
     }
 }

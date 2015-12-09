@@ -37,7 +37,7 @@ public class Main extends AppCompatActivity {
     private static Activity activity;
     public static View[] dayFragments = new View[5];
     public static CardView[][] lessons = new CardView[5][8];
-    public static TextView[][][] textViews = new TextView[5][8][3]; //subject, teacher, classroom
+    public static TextView[][][] textViews = new TextView[5][8][4]; //subject, teacher, classroom
     public static TextView[][] menuTvs = new TextView[5][2];
     public static SwipeRefreshLayout[] swipeRefreshLayouts = new SwipeRefreshLayout[5];
 
@@ -77,6 +77,7 @@ public class Main extends AppCompatActivity {
         }
 
         if (!alreadyRefreshed && Internet.isOnline(context)) refresh(false);
+        //refresh(true);
     }
 
 
@@ -128,6 +129,7 @@ public class Main extends AppCompatActivity {
                 textViews[position][i][0] = ((TextView) lessonToInsert.findViewById(R.id.subject));
                 textViews[position][i][1] = ((TextView) lessonToInsert.findViewById(R.id.teacher));
                 textViews[position][i][2] = ((TextView) lessonToInsert.findViewById(R.id.classroom));
+                textViews[position][i][3] = ((TextView) lessonToInsert.findViewById(R.id.note));
                 insertLayout.addView(lessonToInsert);
             }
 

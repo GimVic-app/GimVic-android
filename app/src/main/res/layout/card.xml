@@ -13,7 +13,6 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         card_view:cardElevation="2dp"
-        android:layout_marginBottom="4dp"
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="2dp">
         <LinearLayout
@@ -23,13 +22,15 @@
             android:padding="4dp">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:id="@+id/lesson"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textSize="28dp"/>
@@ -39,7 +40,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/lesson"
                     android:id="@+id/subject"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:gravity="center_vertical"
@@ -68,8 +69,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:id="@+id/classroom"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textSize="28dp"/>
                 </RelativeLayout>
