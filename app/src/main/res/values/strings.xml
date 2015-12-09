@@ -4,4 +4,10 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="snack">Malica</string>
     <string name="lunch">Kosilo</string>
+    <string name="could_not_reach_server_dialog_title">Povezave z strežnikom ni mogoče vzpostaviti</string>
+    <string name="could_not_reach_server_dialog_message">Preverite internetno povezavo.</string>
+    <string name="data_out_of_date_dialog_title">Podatki niso več veljavni</string>
+    <string name="data_out_of_date_dialog_message">Vzpostavite internetno povezavo in posodobite podatke.</string>
+    <string name="retry">Poskusi ponovno</string>
+    <string name="cancel">Zapri</string>
 </resources>
