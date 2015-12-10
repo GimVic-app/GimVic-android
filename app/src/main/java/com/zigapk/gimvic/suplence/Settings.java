@@ -36,6 +36,19 @@ public class Settings {
         editor.commit();
     }
 
+    public static boolean isScheduleDownloaded(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("schDownloaded", false);
+    }
+
+    public static void setScheduleDownloaded(boolean value, Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putBoolean("schDownloaded", value);
+        editor.commit();
+    }
+
     public static void setAdmin(boolean value, Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
@@ -104,23 +117,24 @@ public class Settings {
         return dir.delete();
     }
 
-    public static void setChosenOptions(ChoosenOptions choosenOptions, Context context) {
-        Files.writeToFile("choosenOptions.json", new Gson().toJson(choosenOptions), context);
+    public static void setChosenOptions(ChosenOptions chosenOptions, Context context) {
+        Files.writeToFile("chosenOptions.json", new Gson().toJson(chosenOptions), context);
     }
 
-    public static ChoosenOptions getChosenOptions(Context context) {
+    public static ChosenOptions getChosenOptions(Context context) {
         try {
-            String json = Files.getFileValue("choosenOptions.json", context);
-            return new Gson().fromJson(json, ChoosenOptions.class);
+            String json = Files.getFileValue("chosenOptions.json", context);
+            return new Gson().fromJson(json, ChosenOptions.class);
         } catch (Exception e) {
-            return new ChoosenOptions();
+            return new ChosenOptions();
         }
     }
 
 }
 
-class ChoosenOptions {
+class ChosenOptions {
     ArrayList<String> classes = new ArrayList<>();
     String snack = "";
     String lunch = "";
+    boolean addSubstitutions = true;
 }

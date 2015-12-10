@@ -41,7 +41,7 @@ public class FirstActivity extends AppCompatActivity {
                         public void run() {
                             findViewById(R.id.progressBar).setVisibility(View.GONE);
 
-                            final ChoosenOptions choosen = new ChoosenOptions();
+                            final ChosenOptions choosen = new ChosenOptions();
 
                             new AlertDialog.Builder(FirstActivity.this)
                                     .setTitle(R.string.selectMainClass)

@@ -31,9 +31,11 @@ public class Data {
 
     public Data download(Context context) throws CouldNotReachServerException {
         try {
-            String json = Internet.getTextFromUrl(buildUrl(context));
+            ChosenOptions chosen = Settings.getChosenOptions(context);
+            String json = Internet.getTextFromUrl(buildUrl(chosen));
             Data result = new Gson().fromJson(json, Data.class);
             Files.writeToFile("schedule.json", json, context);
+            Settings.setScheduleDownloaded(true, context);
             return result;
         } catch (Exception e) {
             throw new CouldNotReachServerException();
@@ -84,8 +86,19 @@ public class Data {
         }).start();
     }
 
-    private String buildUrl(Context context) {
-        return Configuration.server + "/data?addSubstitutions=true&classes[]=3B&classes[]=3GEO1&snackType=navadna&lunchType=navadno";
+    private String buildUrl(ChosenOptions chosen) {
+        String result = Configuration.server + "/data?addSubstitutions=" + chosen.addSubstitutions +
+                classesToUrl(chosen.classes.toArray(new String[chosen.classes.size()])) + "&snackType=" + chosen.snack +
+                "&lunchType=" + chosen.lunch;
+        return result;
+    }
+
+    private static String classesToUrl(String[] classes) {
+        String result = "";
+        for (String strClass : classes) {
+            result += "&classes[]=" + strClass;
+        }
+        return result;
     }
 }
 

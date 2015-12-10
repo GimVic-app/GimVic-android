@@ -85,15 +85,18 @@ public class Main extends AppCompatActivity {
 
     @Override
     public void onResume() {
-        boolean alreadyRefreshed = false;
-        Data data = new Data().fromFile(context);
-        if (data.isValid()) data.render(context);
-        else {
-            if (Internet.isOnline(context)) refresh(true);
-            else showDataOutOfDialog(false);
+        if (Settings.isDataConfigured(context)) {
+            boolean alreadyRefreshed = false;
+            if (Settings.isScheduleDownloaded(context)) {
+                Data data = new Data().fromFile(context);
+                if (data.isValid()) data.render(context);
+                else {
+                    if (Internet.isOnline(context)) refresh(true);
+                    else showDataOutOfDialog(false);
+                }
+            }
+            if (!alreadyRefreshed && Internet.isOnline(context)) refresh(false);
         }
-
-        if (!alreadyRefreshed && Internet.isOnline(context)) refresh(false);
         super.onResume();
     }
 
