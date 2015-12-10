@@ -5,4 +5,5 @@ package com.zigapk.gimvic.suplence;
  */
 public class Configuration {
     public static final String server = "http://vicstock.404.si";
+    public static final int PERMISSIONS_WRITE_EXTERNAL_STORAGE = 1;
 }

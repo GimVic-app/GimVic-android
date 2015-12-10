@@ -36,6 +36,7 @@ public class Data {
             Data result = new Gson().fromJson(json, Data.class);
             Files.writeToFile("schedule.json", json, context);
             Settings.setScheduleDownloaded(true, context);
+            Settings.setLastUpdate(new Date(), context);
             return result;
         } catch (Exception e) {
             throw new CouldNotReachServerException();

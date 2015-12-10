@@ -16,4 +16,5 @@
     <string name="selectAditionalClass">Izberite izbirne predmete</string>
     <string name="selectSnackType">Izberite malico</string>
     <string name="selectLunchType">Izberite kosilo</string>
+    <string name="last_update">Zadnjič posodobljeno:</string>
 </resources>

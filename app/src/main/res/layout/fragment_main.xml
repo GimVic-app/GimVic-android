@@ -104,6 +104,16 @@
 
             <View
                 android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAlignment="gravity"
+                android:id="@+id/lastUpdate" />
+            <View
+                android:layout_width="match_parent"
                 android:layout_height="32dp" />
         </LinearLayout>
     </ScrollView>

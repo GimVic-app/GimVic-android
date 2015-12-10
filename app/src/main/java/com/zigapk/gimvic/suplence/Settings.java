@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by zigapk on 10.12.2015.
@@ -72,6 +73,21 @@ public class Settings {
     public static int getSafetyCounter(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getInt("safetyCounter", 0);
+    }
+
+    public static void setLastUpdate(Date date, Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putString("lastUpdate", new Gson().toJson(date));
+        editor.commit();
+    }
+
+    public static Date getLastUpdate(Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String str = prefs.getString("lastUpdate", "");
+        if (str == "") return new Date();
+        else return new Gson().fromJson(str, Date.class);
     }
 
     public static boolean wasProfesorsPassEntered(Context context) {

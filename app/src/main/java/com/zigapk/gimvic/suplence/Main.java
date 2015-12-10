@@ -28,7 +28,9 @@ import android.widget.TextView;
 
 import com.zigapk.gimvic.suplence.exceptions.CouldNotReachServerException;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Main extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -37,11 +39,12 @@ public class Main extends AppCompatActivity {
 
     public static final int CURRENT_APP_VERSION = 46;
 
-    private static Activity activity;
+    public static Activity activity;
     public static View[] dayFragments = new View[5];
     public static CardView[][] lessons = new CardView[5][8];
     public static TextView[][][] textViews = new TextView[5][8][4]; //subject, teacher, classroom
     public static TextView[][] menuTvs = new TextView[5][2];
+    public static TextView[] lastUpdateTvs = new TextView[5];
     public static SwipeRefreshLayout[] swipeRefreshLayouts = new SwipeRefreshLayout[5];
 
     @Override
@@ -52,7 +55,6 @@ public class Main extends AppCompatActivity {
         context = getApplicationContext();
         activity = this;
 
-        ExternalData.syncExternalBackup(context, true);
         if (Settings.getLastAppVersionNumber(context) < 46) {
             Settings.clearAllData(context);
         }
@@ -97,9 +99,30 @@ public class Main extends AppCompatActivity {
             }
             if (!alreadyRefreshed && Internet.isOnline(context)) refresh(false);
         }
+        refreshLastUpdate();
         super.onResume();
     }
 
+    private static void refreshLastUpdate() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (lastUpdateTvs[4] == null) {
+                }
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Date lastUpdate = Settings.getLastUpdate(context);
+                        SimpleDateFormat format = new SimpleDateFormat("dd. MM. yyyy HH:mm");
+
+                        for (TextView tv : lastUpdateTvs) {
+                            tv.setText(context.getResources().getString(R.string.last_update) + " " + format.format(lastUpdate));
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,6 +179,7 @@ public class Main extends AppCompatActivity {
             dayFragments[position] = rootView;
             menuTvs[position][0] = (TextView) rootView.findViewById(R.id.snack);
             menuTvs[position][1] = (TextView) rootView.findViewById(R.id.lunch);
+            lastUpdateTvs[position] = (TextView) rootView.findViewById(R.id.lastUpdate);
 
             swipeRefreshLayouts[position] = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_container);
             swipeRefreshLayouts[position].setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -220,6 +244,7 @@ public class Main extends AppCompatActivity {
                         public void run() {
                             newData.render(context);
                             setRefreshingGuiState(false);
+                            refreshLastUpdate();
                         }
                     });
                 } catch (CouldNotReachServerException e) {
@@ -228,6 +253,7 @@ public class Main extends AppCompatActivity {
                         public void run() {
                             showCouldNotReachServerDialog(!dataOutOfDate);
                             setRefreshingGuiState(false);
+                            refreshLastUpdate();
                         }
                     });
                 }

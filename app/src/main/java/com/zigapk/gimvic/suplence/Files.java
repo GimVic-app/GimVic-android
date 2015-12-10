@@ -85,6 +85,7 @@ public class Files {
     }
 
     public static void writeToExternalStorage(String fileName, String content) {
+
         File file;
         FileOutputStream outputStream;
         try {
