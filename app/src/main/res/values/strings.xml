@@ -10,4 +10,10 @@
     <string name="data_out_of_date_dialog_message">Vzpostavite internetno povezavo in posodobite podatke.</string>
     <string name="retry">Poskusi ponovno</string>
     <string name="cancel">Zapri</string>
+    <string name="title_activity_first">FirstActivity</string>
+    <string name="selectMainClass">Izberite razred</string>
+    <string name="ok">Ok</string>
+    <string name="selectAditionalClass">Izberite izbirne predmete</string>
+    <string name="selectSnackType">Izberite malico</string>
+    <string name="selectLunchType">Izberite kosilo</string>
 </resources>

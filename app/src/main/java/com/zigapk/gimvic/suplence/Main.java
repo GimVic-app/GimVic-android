@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +35,8 @@ public class Main extends AppCompatActivity {
     private ViewPager mViewPager;
     public static Context context;
 
+    public static final int CURRENT_APP_VERSION = 46;
+
     private static Activity activity;
     public static View[] dayFragments = new View[5];
     public static CardView[][] lessons = new CardView[5][8];
@@ -49,25 +52,39 @@ public class Main extends AppCompatActivity {
         context = getApplicationContext();
         activity = this;
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        ExternalData.syncExternalBackup(context, true);
+        if (Settings.getLastAppVersionNumber(context) < 46) {
+            Settings.clearAllData(context);
+        }
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setOffscreenPageLimit(5);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        if (!Settings.isDataConfigured(context)) {
+            startActivity(new Intent(this, FirstActivity.class));
+            finish();
+        } else {
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            // Create the adapter that will return a fragment for each of the three
+            // primary sections of the activity.
+            mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabLayout.setupWithViewPager(mViewPager);
+            // Set up the ViewPager with the sections adapter.
+            mViewPager = (ViewPager) findViewById(R.id.container);
+            mViewPager.setOffscreenPageLimit(5);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2;
-        if (day < 0 || day > 4) day = 0;
-        mViewPager.setCurrentItem(day);
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+            tabLayout.setupWithViewPager(mViewPager);
 
+            int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 2;
+            if (day < 0 || day > 4) day = 0;
+            mViewPager.setCurrentItem(day);
+
+        }
+    }
+
+    @Override
+    public void onResume() {
         boolean alreadyRefreshed = false;
         Data data = new Data().fromFile(context);
         if (data.isValid()) data.render(context);
@@ -77,7 +94,7 @@ public class Main extends AppCompatActivity {
         }
 
         if (!alreadyRefreshed && Internet.isOnline(context)) refresh(false);
-        //refresh(true);
+        super.onResume();
     }
 
 

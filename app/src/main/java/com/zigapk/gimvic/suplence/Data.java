@@ -64,7 +64,7 @@ public class Data {
                                     Main.textViews[i][j][2].setText(days[i].lessons[j].classroomsStr());
 
                                     if (days[i].lessons[j].note != null && days[i].lessons[j].note != "") {
-                                        Main.textViews[i][j][3].setText(days[i].lessons[j].note);
+                                        Main.textViews[i][j][3].setText("OPOMBA: " + days[i].lessons[j].note);
                                         Main.textViews[i][j][3].setVisibility(View.VISIBLE);
                                     } else Main.textViews[i][j][3].setVisibility(View.GONE);
 
@@ -85,7 +85,7 @@ public class Data {
     }
 
     private String buildUrl(Context context) {
-        return "http://192.168.1.107:8080/data?addSubstitutions=true&classes[]=3B&classes[]=3GEO1&snackType=navadna&lunchType=navadno";
+        return Configuration.server + "/data?addSubstitutions=true&classes[]=3B&classes[]=3GEO1&snackType=navadna&lunchType=navadno";
     }
 }
 
