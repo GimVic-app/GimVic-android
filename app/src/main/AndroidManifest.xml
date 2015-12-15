@@ -24,7 +24,16 @@
         <activity
             android:name=".FirstActivity"
             android:label="@string/title_activity_first"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ClassChooserActivity"
+            android:label="@string/title_activity_class_chooser"
+            android:parentActivityName=".Main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.zigapk.gimvic.suplence.Main" />
+        </activity>
     </application>
 
 </manifest>

@@ -12,23 +12,58 @@
     tools:context="com.zigapk.gimvic.suplence.FirstActivity"
     tools:showIn="@layout/activity_first">
 
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:indeterminateTint="@color/green"
-        android:indeterminateTintMode="src_in"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/firstChooserButtons"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:visibility="gone"></LinearLayout>
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:text="@string/app_name"
+            android:textSize="32dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@drawable/ic_logo_white"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="32dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:text="@string/about"
+            android:textSize="16dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAlignment="gravity"
+            android:textColor="@color/white"
+            android:text="@string/note"
+            android:textSize="14dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:id="@+id/firstOkButton"
+            android:text="@string/ok" />
+    </LinearLayout>
 </RelativeLayout>

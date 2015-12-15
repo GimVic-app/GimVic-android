@@ -19,6 +19,14 @@ public class Settings {
         return prefs.getInt("lastAppVersion", Main.CURRENT_APP_VERSION);
     }
 
+    public static void setLastAppVersionNumber(int value, Context context) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putInt("lastAppVersion", value);
+        editor.commit();
+    }
+
     public static boolean getAdmin(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         return prefs.getBoolean("admin", false);
@@ -150,7 +158,7 @@ public class Settings {
 
 class ChosenOptions {
     ArrayList<String> classes = new ArrayList<>();
-    String snack = "";
-    String lunch = "";
+    String snack = "navadna";
+    String lunch = "navadno";
     boolean addSubstitutions = true;
 }

@@ -37,7 +37,7 @@ public class Main extends AppCompatActivity {
     private ViewPager mViewPager;
     public static Context context;
 
-    public static final int CURRENT_APP_VERSION = 46;
+    public static final int CURRENT_APP_VERSION = 48;
 
     public static Activity activity;
     public static View[] dayFragments = new View[5];
@@ -55,9 +55,9 @@ public class Main extends AppCompatActivity {
         context = getApplicationContext();
         activity = this;
 
-        if (Settings.getLastAppVersionNumber(context) < 46) {
+        if (Settings.getLastAppVersionNumber(context) < 48)
             Settings.clearAllData(context);
-        }
+        Settings.setLastAppVersionNumber(CURRENT_APP_VERSION, context);
 
         if (!Settings.isDataConfigured(context)) {
             startActivity(new Intent(this, FirstActivity.class));

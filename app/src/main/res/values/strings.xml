@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">GimVic</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="action_settings">Nastavitve</string>
     <string name="snack">Malica</string>
     <string name="lunch">Kosilo</string>
     <string name="could_not_reach_server_dialog_title">Povezave z strežnikom ni mogoče vzpostaviti</string>
@@ -10,11 +9,12 @@
     <string name="data_out_of_date_dialog_message">Vzpostavite internetno povezavo in posodobite podatke.</string>
     <string name="retry">Poskusi ponovno</string>
     <string name="cancel">Zapri</string>
-    <string name="title_activity_first">FirstActivity</string>
+    <string name="title_activity_first"></string>
     <string name="selectMainClass">Izberite razred</string>
     <string name="ok">Ok</string>
     <string name="selectAditionalClass">Izberite izbirne predmete</string>
-    <string name="selectSnackType">Izberite malico</string>
-    <string name="selectLunchType">Izberite kosilo</string>
     <string name="last_update">Zadnjič posodobljeno:</string>
+    <string name="about">Aplikacija GimVic prikazuje urnik, nadomeščanja in jedilnik za dijake in profesorje Gimnazije Vič.</string>
+    <string name="note">Podatki so zagotovo točni samo kratek čas po osvežitvi. Tudi takrat lahko zamujajo do 10 minut ali so celo napačni.</string>
+    <string name="title_activity_class_chooser"></string>
 </resources>
