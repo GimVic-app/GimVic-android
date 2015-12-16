@@ -127,6 +127,7 @@ public class Main extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_search).setVisible(Settings.getAdmin(context));
         return true;
     }
 
@@ -136,6 +137,11 @@ public class Main extends AppCompatActivity {
         if (id == R.id.action_settings) {
             if (Internet.isOnline(context))
                 startActivity(new Intent(Main.this, SettingsActivity.class));
+            else showNoInternetForSettingsDialog();
+            return true;
+        } else if (id == R.id.action_search) {
+            if (Internet.isOnline(context))
+                startActivity(new Intent(Main.this, ClassChooserActivity.class));
             else showNoInternetForSettingsDialog();
             return true;
         }

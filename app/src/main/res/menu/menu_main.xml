@@ -4,8 +4,15 @@
     tools:context="com.zigapk.gimvic.suplence.Main">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="50"
         android:icon="@drawable/ic_action_action_settings"
         android:title="@string/action_settings"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_action_search"
+        android:title="@string/choose_new_class_or_teacher"
+        android:visible="false"
         app:showAsAction="always" />
 </menu>

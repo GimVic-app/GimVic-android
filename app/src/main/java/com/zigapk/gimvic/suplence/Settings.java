@@ -80,6 +80,10 @@ public class Settings {
 
     public static int getSafetyCounter(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        if (getAdmin(context)) {
+            resetSafetyCounter(context);
+            return 0;
+        }
         return prefs.getInt("safetyCounter", 0);
     }
 

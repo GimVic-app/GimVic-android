@@ -14,7 +14,6 @@ import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.zigapk.gimvic.suplence.exceptions.CouldNotReachServerException;
@@ -42,7 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setGui() {
-        ((Switch) findViewById(R.id.addSubstitutionsSwitch)).setChecked(chosen.addSubstitutions);
+        ((android.support.v7.widget.SwitchCompat) findViewById(R.id.addSubstitutionsSwitch)).setChecked(chosen.addSubstitutions);
 
         if (!chosen.teacherMode)
             ((TextView) findViewById(R.id.chosenTeacherOrClass)).setText(Html.fromHtml(getString(R.string.chosen_classes) + " <b>" + chosen.classesToStr() + "</b>"));
@@ -61,7 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setListeners() {
-        ((Switch) findViewById(R.id.addSubstitutionsSwitch)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ((android.support.v7.widget.SwitchCompat) findViewById(R.id.addSubstitutionsSwitch)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 chosen.addSubstitutions = isChecked;
@@ -72,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.settings_switch_id).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Switch) findViewById(R.id.addSubstitutionsSwitch)).toggle();
+                ((android.support.v7.widget.SwitchCompat) findViewById(R.id.addSubstitutionsSwitch)).toggle();
             }
         });
 

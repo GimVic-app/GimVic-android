@@ -45,6 +45,7 @@ public class ClassChooserActivity extends AppCompatActivity {
         (findViewById(R.id.button_student)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                teacher = false;
                 ((TextView) findViewById(R.id.choose_item_textView)).setText(R.string.selectMainClass);
                 arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                         R.layout.list_view_item,
