@@ -9,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 48
-        versionName "3.0aplha"
+        versionName "3.0alpha"
     }
     buildTypes {
         release {
