@@ -16,6 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
             android:orientation="vertical"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="8dp">
@@ -24,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:animateLayoutChanges="true"
                 android:id="@+id/lessons_container">
             </LinearLayout>
             <View
@@ -37,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:animateLayoutChanges="true"
                 android:layout_gravity="center_horizontal"
                 card_view:cardElevation="2dp"
                 card_view:cardUseCompatPadding="true"
@@ -45,6 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:animateLayoutChanges="true"
                     android:padding="6dp">
 
                     <TextView
@@ -73,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:animateLayoutChanges="true"
                 android:layout_gravity="center_horizontal"
                 card_view:cardElevation="2dp"
                 card_view:cardUseCompatPadding="true"
@@ -81,6 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:animateLayoutChanges="true"
                     android:padding="6dp">
 
                     <TextView

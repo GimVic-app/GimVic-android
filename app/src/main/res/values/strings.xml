@@ -17,4 +17,9 @@
     <string name="about">Aplikacija GimVic prikazuje urnik, nadomeščanja in jedilnik za dijake in profesorje Gimnazije Vič.</string>
     <string name="note">Podatki so zagotovo točni samo kratek čas po osvežitvi. Tudi takrat lahko zamujajo do 10 minut ali so celo napačni.</string>
     <string name="title_activity_class_chooser"></string>
+    <string name="student_or_teacher">Ste dijak ali profesor?</string>
+    <string name="student">DIJAK</string>
+    <string name="teacher">PROFESOR</string>
+    <string name="input_pass">Vpišite profesorsko geslo:</string>
+    <string name="selectTeacher">Izberite profesorja:</string>
 </resources>

@@ -148,7 +148,9 @@ public class Settings {
     public static ChosenOptions getChosenOptions(Context context) {
         try {
             String json = Files.getFileValue("chosenOptions.json", context);
-            return new Gson().fromJson(json, ChosenOptions.class);
+            ChosenOptions result = new Gson().fromJson(json, ChosenOptions.class);
+            if (result == null) return new ChosenOptions();
+            return result;
         } catch (Exception e) {
             return new ChosenOptions();
         }
@@ -158,6 +160,8 @@ public class Settings {
 
 class ChosenOptions {
     ArrayList<String> classes = new ArrayList<>();
+    String teacher;
+    boolean teacherMode = false;
     String snack = "navadna";
     String lunch = "navadno";
     boolean addSubstitutions = true;

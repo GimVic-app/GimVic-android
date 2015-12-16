@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Html;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -52,6 +53,7 @@ public class Data {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                final ChosenOptions chosen = Settings.getChosenOptions(context);
                 while (Main.textViews[4][7][3] == null || Main.lessons[4][7] == null || Main.menuTvs[4][1] == null) {
                 }
 
@@ -62,12 +64,30 @@ public class Data {
                             for (int j = 0; j < days[i].lessons.length; j++) {
                                 if (!days[i].lessons[j].isEmpty()) {
                                     Main.lessons[i][j].setVisibility(View.VISIBLE);
-                                    Main.textViews[i][j][0].setText(days[i].lessons[j].subjectsStr());
-                                    Main.textViews[i][j][1].setText(days[i].lessons[j].teachersStr());
-                                    Main.textViews[i][j][2].setText(days[i].lessons[j].classroomsStr());
+
+                                    if (!chosen.teacherMode) {
+                                        Main.textViews[i][j][0].setText(days[i].lessons[j].subjectsStr());
+                                        Main.textViews[i][j][1].setText(days[i].lessons[j].teachersStr());
+                                        Main.textViews[i][j][2].setText(days[i].lessons[j].classroomsStr());
+                                    } else {
+                                        Main.textViews[i][j][0].setText(days[i].lessons[j].subjectsStr());
+                                        Main.textViews[i][j][1].setText(days[i].lessons[j].classesStr());
+                                        Main.textViews[i][j][2].setText(days[i].lessons[j].classroomsStr());
+                                        if (days[i].lessons[j].substitution && !days[i].lessons[j].containsTeacher(chosen.teacher) && !days[i].lessons[j].note.contains("UČITELJ")) {
+                                            if (days[i].lessons[j].note != "")
+                                                days[i].lessons[j].note += "\n";
+                                            if (days[i].lessons[j].teachers == null || days[i].lessons[j].teachers.length == 0)
+                                                days[i].lessons[j].note += "<b>NI UČITELJA.</b>";
+                                            else if (days[i].lessons[j].teachers.length == 1)
+                                                days[i].lessons[j].note += "<b>UČITELJ: </b>" + days[i].lessons[j].teachersStr();
+                                            else if (days[i].lessons[j].teachers.length == 0)
+                                                days[i].lessons[j].note += "<b>UČITELJI: </b>" + days[i].lessons[j].teachersStr();
+
+                                        }
+                                    }
 
                                     if (days[i].lessons[j].note != null && days[i].lessons[j].note != "") {
-                                        Main.textViews[i][j][3].setText("OPOMBA: " + days[i].lessons[j].note);
+                                        Main.textViews[i][j][3].setText(Html.fromHtml("OPOMBA: " + days[i].lessons[j].note));
                                         Main.textViews[i][j][3].setVisibility(View.VISIBLE);
                                     } else Main.textViews[i][j][3].setVisibility(View.GONE);
 
@@ -88,10 +108,17 @@ public class Data {
     }
 
     private String buildUrl(ChosenOptions chosen) {
-        String result = Configuration.server + "/data?addSubstitutions=" + chosen.addSubstitutions +
-                classesToUrl(chosen.classes.toArray(new String[chosen.classes.size()])) + "&snackType=" + chosen.snack +
-                "&lunchType=" + chosen.lunch;
-        return result;
+        if (chosen.teacherMode) {
+            String result = Configuration.server + "/teacherData?addSubstitutions=" + chosen.addSubstitutions +
+                    "&teacher=" + chosen.teacher.replace(" ", "%20") + "&snackType=" + chosen.snack +
+                    "&lunchType=" + chosen.lunch;
+            return result;
+        } else {
+            String result = Configuration.server + "/data?addSubstitutions=" + chosen.addSubstitutions +
+                    classesToUrl(chosen.classes.toArray(new String[chosen.classes.size()])) + "&snackType=" + chosen.snack +
+                    "&lunchType=" + chosen.lunch;
+            return result;
+        }
     }
 
     private static String classesToUrl(String[] classes) {
@@ -140,7 +167,7 @@ class Lesson {
     public String[] teachers;
     public String[] classrooms;
     public String[] classes;
-    public String note;
+    public String note = "";
     public boolean substitution;
 
     public String subjectsStr() {
@@ -171,10 +198,18 @@ class Lesson {
         return result;
     }
 
+    public boolean containsTeacher(String teacher) {
+        if (teachers == null || teachers.length == 0) return false;
+        for (String item : teachers) {
+            if (item.equals(teacher)) return true;
+        }
+        return false;
+    }
+
     public boolean isEmpty() {
         if (subjects != null || classrooms != null ||
                 teachers != null || classes != null ||
-                note != null) return false;
+                note != "") return false;
         return true;
     }
 }
