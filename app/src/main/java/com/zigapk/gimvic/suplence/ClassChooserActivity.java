@@ -115,6 +115,8 @@ public class ClassChooserActivity extends AppCompatActivity {
                     chosen.teacher = options.teachers[position];
                     chosen.teacherMode = true;
                     Settings.setChosenOptions(chosen, getApplicationContext());
+                    if (!Settings.getAdmin(getApplicationContext()))
+                        Settings.setSafetyCounter(Settings.getSafetyCounter(getApplicationContext()) + 1, getApplicationContext());
                     if (!Settings.isDataConfigured(getApplicationContext())) {
                         startActivity(new Intent(ClassChooserActivity.this, Main.class));
                         Settings.setDataConfigured(true, getApplicationContext());
@@ -144,6 +146,8 @@ public class ClassChooserActivity extends AppCompatActivity {
                                         chosen.classes = additionalClasses;
                                         chosen.teacherMode = false;
                                         Settings.setChosenOptions(chosen, getApplicationContext());
+                                        if (!Settings.getAdmin(getApplicationContext()))
+                                            Settings.setSafetyCounter(Settings.getSafetyCounter(getApplicationContext()) + 1, getApplicationContext());
                                         if (!Settings.isDataConfigured(getApplicationContext())) {
                                             startActivity(new Intent(ClassChooserActivity.this, Main.class));
                                             Settings.setDataConfigured(true, getApplicationContext());
@@ -162,6 +166,8 @@ public class ClassChooserActivity extends AppCompatActivity {
                             startActivity(new Intent(ClassChooserActivity.this, Main.class));
                             Settings.setDataConfigured(true, getApplicationContext());
                         }
+                        if (!Settings.getAdmin(getApplicationContext()))
+                            Settings.setSafetyCounter(Settings.getSafetyCounter(getApplicationContext()) + 1, getApplicationContext());
                         finish();
                     }
                 }

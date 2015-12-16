@@ -94,7 +94,7 @@ public class Main extends AppCompatActivity {
                 if (data.isValid()) data.render(context);
                 else {
                     if (Internet.isOnline(context)) refresh(true);
-                    else showDataOutOfDialog(false);
+                    else showDataOutOfDateDialog(false);
                 }
             }
             if (!alreadyRefreshed && Internet.isOnline(context)) refresh(false);
@@ -126,7 +126,6 @@ public class Main extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -135,6 +134,9 @@ public class Main extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            if (Internet.isOnline(context))
+                startActivity(new Intent(Main.this, SettingsActivity.class));
+            else showNoInternetForSettingsDialog();
             return true;
         }
 
@@ -261,6 +263,27 @@ public class Main extends AppCompatActivity {
         }).start();
     }
 
+    public static void showNoInternetForSettingsDialog() {
+        final AlertDialog dialog = new AlertDialog.Builder(activity)
+                .setTitle(R.string.could_not_reach_server_dialog_title)
+                .setMessage(R.string.could_not_reach_server_for_settings_dialog_message)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface arg0) {
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            }
+        });
+        dialog.show();
+    }
+
     public static void showCouldNotReachServerDialog(final boolean canclable) {
         DialogInterface.OnClickListener negativeListener;
         if (canclable) {
@@ -301,7 +324,7 @@ public class Main extends AppCompatActivity {
         dialog.show();
     }
 
-    public static void showDataOutOfDialog(final boolean canclable) {
+    public static void showDataOutOfDateDialog(final boolean canclable) {
         DialogInterface.OnClickListener negativeListener;
         if (canclable) {
             negativeListener = new DialogInterface.OnClickListener() {

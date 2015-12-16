@@ -15,11 +15,21 @@
     <string name="selectAditionalClass">Izberite izbirne predmete</string>
     <string name="last_update">Zadnjič posodobljeno:</string>
     <string name="about">Aplikacija GimVic prikazuje urnik, nadomeščanja in jedilnik za dijake in profesorje Gimnazije Vič.</string>
-    <string name="note">Podatki so zagotovo točni samo kratek čas po osvežitvi. Tudi takrat lahko zamujajo do 10 minut ali so celo napačni.</string>
+    <string name="note">Podatki so lahko točni samo, ko jih osvežite. Tudi takrat lahko zamujajo do 10 minut ali so celo napačni.</string>
     <string name="title_activity_class_chooser"></string>
     <string name="student_or_teacher">Ste dijak ali profesor?</string>
     <string name="student">DIJAK</string>
     <string name="teacher">PROFESOR</string>
     <string name="input_pass">Vpišite profesorsko geslo:</string>
     <string name="selectTeacher">Izberite profesorja:</string>
+    <string name="title_activity_settings">Nastavitve</string>
+    <string name="could_not_reach_server_for_settings_dialog_message">Za spreminjanje nastavitev je potrebna internetna povezava.</string>
+    <string name="addSubstitutions">Urniku dodaj nadomeščanja</string>
+    <string name="choose_new_class_or_teacher">Izberi nov razred ali profesorja</string>
+    <string name="chosen_classes">Izbrani razredi:</string>
+    <string name="chosen_teacher">Izbrani profesor:</string>
+    <string name="times_left">To lahko spremenite še</string>
+    <string name="chosen_snack">Malica:</string>
+    <string name="chosen_lunch">Kosilo:</string>
+    <string name="author">Avtor: Žiga Patačko Koderman</string>
 </resources>

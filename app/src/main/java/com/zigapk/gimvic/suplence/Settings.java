@@ -165,4 +165,13 @@ class ChosenOptions {
     String snack = "navadna";
     String lunch = "navadno";
     boolean addSubstitutions = true;
+
+    public String classesToStr() {
+        String result = "";
+        for (int i = classes.size() - 1; i >= 0; i--) {
+            if (result != "") result += ", ";
+            result += classes.get(i);
+        }
+        return result;
+    }
 }

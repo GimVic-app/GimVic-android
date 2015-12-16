@@ -87,7 +87,7 @@ public class Data {
                                     }
 
                                     if (days[i].lessons[j].note != null && days[i].lessons[j].note != "") {
-                                        Main.textViews[i][j][3].setText(Html.fromHtml("OPOMBA: " + days[i].lessons[j].note));
+                                        Main.textViews[i][j][3].setText(Html.fromHtml("<b>OPOMBA:</b> " + days[i].lessons[j].note));
                                         Main.textViews[i][j][3].setVisibility(View.VISIBLE);
                                     } else Main.textViews[i][j][3].setVisibility(View.GONE);
 
