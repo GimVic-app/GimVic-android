@@ -51,7 +51,7 @@ public class SettingsActivity extends AppCompatActivity {
         int left = 5 - Settings.getSafetyCounter(getApplicationContext());
         findViewById(R.id.settings_choose_button).setEnabled(left > 0);
 
-        ((TextView) findViewById(R.id.safetyCounterTV)).setText(Html.fromHtml("<b>" + getString(R.string.times_left) + "</b> " + left + "-krat."));
+        ((TextView) findViewById(R.id.safetyCounterTV)).setText(Html.fromHtml(getString(R.string.times_left) + " <b>" + left + "-krat</b>."));
 
         ((Button) findViewById(R.id.snack_type_button)).setText(getString(R.string.chosen_snack) + " " + chosen.snack.replace("_", " "));
         ((Button) findViewById(R.id.lunch_type_button)).setText(getString(R.string.chosen_lunch) + " " + chosen.lunch.replace("_", " "));

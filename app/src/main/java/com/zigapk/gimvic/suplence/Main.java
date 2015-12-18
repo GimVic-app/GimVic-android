@@ -1,7 +1,9 @@
 package com.zigapk.gimvic.suplence;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,6 +40,7 @@ public class Main extends AppCompatActivity {
     public static Context context;
 
     public static final int CURRENT_APP_VERSION = 48;
+    public static final int ALARM_UNIQUE_ID = 2358;
 
     public static Activity activity;
     public static View[] dayFragments = new View[5];
@@ -82,6 +85,13 @@ public class Main extends AppCompatActivity {
             if (day < 0 || day > 4) day = 0;
             mViewPager.setCurrentItem(day);
 
+            //(re)sets the alarm
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    setAlarm();
+                }
+            }).start();
         }
     }
 
@@ -362,6 +372,15 @@ public class Main extends AppCompatActivity {
                 .create()
                 .show();
     }
+
+    //can be set again and will only reset original alarm
+    private void setAlarm() {
+        Intent intent = new Intent(this, NetworkReceiver.class);
+        PendingIntent pi = PendingIntent.getActivity(this, ALARM_UNIQUE_ID, intent, 0);
+        AlarmManager am = (AlarmManager) getSystemService(Activity.ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 600 * 1000, pi);
+    }
+
 
     private static void setRefreshingGuiState(final boolean state) {
         new Thread(new Runnable() {
