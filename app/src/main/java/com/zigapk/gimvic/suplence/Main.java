@@ -11,6 +11,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -49,6 +51,7 @@ public class Main extends AppCompatActivity {
     public static TextView[][] menuTvs = new TextView[5][2];
     public static TextView[] lastUpdateTvs = new TextView[5];
     public static SwipeRefreshLayout[] swipeRefreshLayouts = new SwipeRefreshLayout[5];
+    private static CoordinatorLayout coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,8 @@ public class Main extends AppCompatActivity {
             mViewPager.setOffscreenPageLimit(5);
             mViewPager.setAdapter(mSectionsPagerAdapter);
 
+            coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
+
             TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
             tabLayout.setupWithViewPager(mViewPager);
@@ -92,6 +97,10 @@ public class Main extends AppCompatActivity {
                     setAlarm();
                 }
             }).start();
+
+            /*AdView mAdView = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);*/
         }
     }
 
@@ -395,6 +404,8 @@ public class Main extends AppCompatActivity {
                         for (SwipeRefreshLayout current : swipeRefreshLayouts) {
                             current.setRefreshing(state);
                         }
+                        if (state)
+                            Snackbar.make(coordinatorLayout, R.string.refreshed, Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }
