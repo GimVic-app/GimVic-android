@@ -8,8 +8,8 @@ android {
         applicationId "com.zigapk.gimvic.suplence"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 50
-        versionName "3.0 alpha 5"
+        versionCode 51
+        versionName "3.0 alpha 6"
     }
     buildTypes {
         release {

@@ -183,6 +183,7 @@ public class ClassChooserActivity extends AppCompatActivity {
                 try {
                     options = new ChooserOptions().download();
 
+                    Looper.prepare();
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {

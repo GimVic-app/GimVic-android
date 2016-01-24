@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -106,19 +105,31 @@ public class Main extends AppCompatActivity {
 
     @Override
     public void onResume() {
-        if (Settings.isDataConfigured(context)) {
-            boolean alreadyRefreshed = false;
-            if (Settings.isScheduleDownloaded(context)) {
-                Data data = new Data().fromFile(context);
-                if (data.isValid()) data.render(context);
-                else {
-                    if (Internet.isOnline(context)) refresh(true);
-                    else showDataOutOfDateDialog(false);
-                }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (context == null){}
+                Looper.prepare();
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (Settings.isDataConfigured(context)) {
+                            boolean alreadyRefreshed = false;
+                            if (Settings.isScheduleDownloaded(context)) {
+                                Data data = new Data().fromFile(context);
+                                if (data.isValid()) data.render(context);
+                                else {
+                                    if (Internet.isOnline(context)) refresh(true);
+                                    else showDataOutOfDateDialog(false);
+                                }
+                            }
+                            if (!alreadyRefreshed && Internet.isOnline(context)) refresh(false);
+                        }
+                        refreshLastUpdate();
+                    }
+                });
             }
-            if (!alreadyRefreshed && Internet.isOnline(context)) refresh(false);
-        }
-        refreshLastUpdate();
+        }).start();
         super.onResume();
     }
 
@@ -404,8 +415,6 @@ public class Main extends AppCompatActivity {
                         for (SwipeRefreshLayout current : swipeRefreshLayouts) {
                             current.setRefreshing(state);
                         }
-                        if (state)
-                            Snackbar.make(coordinatorLayout, R.string.refreshed, Snackbar.LENGTH_SHORT).show();
                     }
                 });
             }
