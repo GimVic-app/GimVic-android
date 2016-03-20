@@ -1,5 +1,6 @@
 package com.zigapk.gimvic.suplence;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static ChooserOptions options;
     private static ChosenOptions chosen;
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        activity = this;
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         start();
@@ -117,7 +121,7 @@ public class SettingsActivity extends AppCompatActivity {
                     showCouldNotReachServerDialog();
                 }
 
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         setGui();

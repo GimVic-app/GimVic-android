@@ -57,7 +57,7 @@ public class Data {
                 while (Main.textViews[4][7][3] == null || Main.lessons[4][7] == null || Main.menuTvs[4][1] == null) {
                 }
 
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                Main.activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         for (int i = 0; i < days.length; i++) {

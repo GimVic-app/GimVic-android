@@ -109,8 +109,7 @@ public class Main extends AppCompatActivity {
             @Override
             public void run() {
                 while (context == null){}
-                Looper.prepare();
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if (Settings.isDataConfigured(context)) {
@@ -139,7 +138,7 @@ public class Main extends AppCompatActivity {
             public void run() {
                 while (lastUpdateTvs[4] == null) {
                 }
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         Date lastUpdate = Settings.getLastUpdate(context);
@@ -277,7 +276,7 @@ public class Main extends AppCompatActivity {
             public void run() {
                 try {
                     final Data newData = new Data().download(context);
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             newData.render(context);
@@ -409,7 +408,7 @@ public class Main extends AppCompatActivity {
                 while (swipeRefreshLayouts[4] == null) {
                 }
 
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         for (SwipeRefreshLayout current : swipeRefreshLayouts) {

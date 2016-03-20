@@ -1,5 +1,6 @@
 package com.zigapk.gimvic.suplence;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,7 @@ public class ClassChooserActivity extends AppCompatActivity {
     ChooserOptions options = new ChooserOptions();
     ArrayAdapter<String> arrayAdapter;
     private static boolean teacher = false;
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class ClassChooserActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().hide();
+
+        activity = this;
 
         addListeners();
         start();
@@ -183,8 +187,7 @@ public class ClassChooserActivity extends AppCompatActivity {
                 try {
                     options = new ChooserOptions().download();
 
-                    Looper.prepare();
-                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             (findViewById(R.id.chooser_progressBar)).setVisibility(View.GONE);
