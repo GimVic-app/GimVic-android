@@ -6,3 +6,17 @@
 .DS_Store
 /build
 /captures
+
+
+#latex
+projektna-blx.bib
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.gz
+*.toc
+*.blg
+*.bbl
