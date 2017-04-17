@@ -1,18 +1,20 @@
-\paragraph{}Android je Googlov odprtokodni\cite{android-source} operacijski sistem mobilne naprave. Zgrajen je na Linux-ovem jedru\cite{linux-kernel-wiki} in je bil prvotno namenjen uporabi na mobilnih telefonih. Kasneje se začel uporabljati tudi na tabličnih računalnikih, v zadnjem času pa celo na prenosnih računalnikih, pametnih urah in televizijah.
+\paragraph{}Android je Googlov odprtokodni\cite{android-source} operacijski sistem mobilne naprave. Zgrajen je na Linuxovem jedru\cite{linux-kernel-wiki} in je bil prvotno namenjen za uporabo na mobilnih telefonih. Kasneje se je razširil tudi na tablične računalnike, v zadnjem času pa celo na prenosne računalnike, pametne ure in televizorje.
 
 \subsection{Programiranje za platformo Android}
-\paragraph{}Za razvoj aplikacij za platformo Android lahko uporabimo najrazličnejša razvijalska orodja, najpogosteje uporabljeno pa je Android Studio. Tega je razvilo podjetje Google in je osnovano na univerzalnem razvojnem orodju Intellij Idea\cite{intellij-idea} podjetja Jetbrains. Poleg platforme za razvoj aplikacij pa Google ponuja tudi spletno trgovino Google Play, kamor lahko razvijalci objavimo svoje aplikacije.
+\paragraph{}Za razvoj aplikacij za platformo Android lahko uporabimo najrazličnejša razvijalska orodja, najpogosteje uporabljeno orodje pa je Android Studio. Tega je razvilo podjetje Google in je osnovano na univerzalnem razvojnem orodju Intellij Idea\cite{intellij-idea} podjetja Jetbrains. Poleg platforme za razvoj aplikacij pa Google ponuja tudi spletno trgovino Google Play, kjer lahko razvijalci objavijo svoje aplikacije.
 
 \subsubsection{Programski jeziki}
-\paragraph{}Za platformo Android lahko programiramo v več različnih jezikih, med njimi Java, Bash, C, C++ ter nekateri spletni jeziki (HTML, JavaScript, CSS), v zadnjem času pa celo Go in Python. Daleč najpogosteje se uporablja Java, saj je zanjo pripravljen zelo obširen nabor knjižnjic za interakcijo z uporabnikom ter cel kup orodji za prevajanje in sestavljanje posameznih delov v zaokroženo celoto imenovano aplikacija.
+\paragraph{}Za platformo Android lahko programiramo v več programskih jezikih, med njimi Java, Bash, C, C++ ter nekateri spletni jeziki (HTML, JavaScript, CSS), v zadnjem času pa celo v Goju in Pythonu. Najpogosteje se uporablja Java, saj je zanjo pripravljen zelo obširen nabor knjižnjic za interakcijo z uporabnikom ter cel kup orodij za prevajanje in sestavljanje posameznih delov v zaokroženo celoto, imenovano aplikacija. V Javi je napisana tudi aplikacija GimVic.
 
 \subsubsection{Struktura aplikacije}
-\paragraph{}Izvorna koda Android aplikacije je sestavljena iz več datotek in map. Te pa se delijo na 3 pomembnejše tipe:
+\paragraph{}Izvorna koda Android aplikacije je sestavljena iz več datotek in map. Te se delijo na 3 pomembnejše tipe.
 \begin{itemize}
   \setlength\itemsep{0em}
-  \item {\bf Manifest} datoteke so zapisane v formatu xml\cite{xml-wiki} in operacijskemu sistemu povedo, kaj aplikacija počne, potrebuje, in zagotavljajo ostale podatke o njeni strukturi.
-  \item {\bf Java} datoteke so izvorna koda v programskem jeziku Java, ki se izvaja na napravi.
-  \item {\bf Res} ali {\bf resource} so datoteke, ki jih aplikacija potrebuje za prikazovanje uporabniškega vmesnika. To vključuje tekstovne datoteke xml, ki vsebujejo najrazličnejša besedila in opis izgleda aplikacije ter datoteke, ki vsebujejo slike, video posnetke in podobno gradivo.
+  \item Datoteke {\bf Manifest} so zapisane v formatu xml\cite{xml-wiki} in operacijskemu sistemu povedo, kaj aplikacija počne, potrebuje, ter zagotavljajo ostale podatke o njeni strukturi.
+  \item Datoteke {\bf Java} so izvorna koda v programskem jeziku Java, ki se izvaja na napravi.
+  \item Datoteke {\bf Res} ali {\bf resource} so datoteke, ki jih aplikacija potrebuje za prikazovanje uporabniškega vmesnika. To vključuje tekstovne datoteke xml, ki vsebujejo najrazličnejša besedila in opis izgleda aplikacije, ter datoteke, ki vsebujejo slike, video posnetke in podobno gradivo.
 \end{itemize}
 
-\paragraph{}Med izvajanjem se aplikacija deli na posamezne niti. Vsaka nit opravlja svojo nalogo, ena iz med njih pa je glavna nit. Ta je prva, ki jo operacijski sistem požene in skrbi za zaganjanje ter ustavljanje vseh ostalih. Njena primarna naloga je skrb za uporabniški vmesnik. Zato ta nit ne sme opravljati nobenih dajših in zahtevnejših opravil, sicer aplikacija zastane, opracijski sistem pa jo zaradi tega po določenem času ubije.
+\paragraph{}Med izvajanjem se aplikacija deli na posamezne niti. Vsaka nit opravlja svojo nalogo, ena izmed med njih pa je glavna. Ta je prva, ki jo operacijski sistem požene, ko odpre posamezno aplikacijo, in skrbi za zaganjanje ter ustavljanje vseh ostalih niti. Ker je njena primarna naloga skrb za uporabniški vmesnik, ne želimo, da bi ta nit opravljala kakšna dajša in zahtevnejša opravila. S tem zagotovimo dobro uporabniško izkušnjo in preprečimo, da bi aplikacija zastajala.
+
+\paragraph{}Takemu načinu programiranja rečemo dogodkovno programiranje\cite{event-programing-wiki}. Večina Android aplikacij pa je, tako kakor tudi aplikacija GimVic, kombinacija dveh pomembnih načinov programiranja: dogodkovnega ter objektnega\cite{object-programing-wiki}.
